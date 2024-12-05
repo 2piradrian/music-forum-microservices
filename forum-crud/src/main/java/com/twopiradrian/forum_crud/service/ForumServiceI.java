@@ -1,10 +1,13 @@
-package com.twopiradrian.forum_crud.services;
+package com.twopiradrian.forum_crud.service;
 
-import com.twopiradrian.forum_crud.entities.Comment;
-import com.twopiradrian.forum_crud.entities.Forum;
-import com.twopiradrian.forum_crud.entities.User;
-import com.twopiradrian.forum_crud.repositories.ForumRepository;
-import com.twopiradrian.forum_crud.repositories.UserRepository;
+import com.twopiradrian.forum_crud.dto.forum.CreateForumDTO;
+import com.twopiradrian.forum_crud.entity.Category;
+import com.twopiradrian.forum_crud.entity.Forum;
+import com.twopiradrian.forum_crud.entity.User;
+import com.twopiradrian.forum_crud.repository.ForumRepository;
+import com.twopiradrian.forum_crud.repository.UserRepository;
+import com.twopiradrian.forum_crud.utils.ErrorHandler;
+import com.twopiradrian.forum_crud.utils.ErrorType;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -35,22 +38,20 @@ public class ForumServiceI implements ForumService {
     }
 
     @Override
-    public Forum create(Forum forum) {
+    public Forum create(CreateForumDTO dto) {
+        User author = this.userRepository.findById(dto.getAuthorId())
+                .orElseThrow(() -> new ErrorHandler(ErrorType.USER_NOT_FOUND));
 
-        if (forum.getAuthor() == null) {
-            throw new IllegalArgumentException("Author is required");
-        }
-        else if (forum.getCategory() == null) {
-            throw new IllegalArgumentException("Category is required");
-        }
-        else if (forum.getTitle() == null || forum.getTitle().isEmpty()) {
-            throw new IllegalArgumentException("Title is required");
-        }
-        else if (forum.getContent() == null || forum.getContent().isEmpty()) {
-            throw new IllegalArgumentException("Content is required");
-        }
+        Forum forum = new Forum();
+
+        forum.setAuthor(author);
+        forum.setTitle(dto.getTitle());
+        forum.setContent(dto.getContent());
+        forum.setCategory(Category.valueOf(dto.getCategory()));
 
         forum.setViews(0L);
+        forum.setUpvoters(Set.of());
+        forum.setComments(List.of());
         forum.setCreatedAt(java.time.LocalDateTime.now());
         forum.setUpdatedAt(java.time.LocalDateTime.now());
 

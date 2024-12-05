@@ -1,6 +1,6 @@
-package com.twopiradrian.forum_crud.services;
+package com.twopiradrian.forum_crud.service;
 
-import com.twopiradrian.forum_crud.entities.User;
+import com.twopiradrian.forum_crud.entity.User;
 
 public interface UserService {
 

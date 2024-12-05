@@ -1,6 +1,6 @@
-package com.twopiradrian.forum_crud.services;
+package com.twopiradrian.forum_crud.service;
 
-import com.twopiradrian.forum_crud.entities.Comment;
+import com.twopiradrian.forum_crud.entity.Comment;
 
 public interface CommentService {
 

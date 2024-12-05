@@ -1,4 +1,4 @@
-package com.twopiradrian.forum_crud.entities;
+package com.twopiradrian.forum_crud.entity;
 
 public enum Role {
     USER,
