@@ -1,17 +1,17 @@
 package com.twopiradrian.forum_crud.service;
 
-import com.twopiradrian.forum_crud.dto.forum.CreateForumDTO;
+import com.twopiradrian.forum_crud.dto.forum.*;
 import com.twopiradrian.forum_crud.entity.Forum;
 
 public interface ForumService {
 
-    Forum getById(Long id);
+    Forum getById(GetForumByIdDTO dto);
 
     Forum create(CreateForumDTO dto);
 
-    Forum edit(Forum forum);
+    Forum edit(EditForumDTO dto);
 
-    void updateUpvoters(Long forumId, Long userId);
+    void updateUpvoters(UpdateForumUpvotersDTO dto);
 
-    void delete(Long id);
+    void delete(DeleteForumDTO dto);
 }

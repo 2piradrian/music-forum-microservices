@@ -1,6 +1,6 @@
 package com.twopiradrian.forum_crud.service;
 
-import com.twopiradrian.forum_crud.dto.forum.CreateForumDTO;
+import com.twopiradrian.forum_crud.dto.forum.*;
 import com.twopiradrian.forum_crud.entity.Category;
 import com.twopiradrian.forum_crud.entity.Forum;
 import com.twopiradrian.forum_crud.entity.User;
@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -25,9 +26,9 @@ public class ForumServiceI implements ForumService {
     private final UserRepository userRepository;
 
     @Override
-    public Forum getById(Long id) {
-        Forum existingForum = this.forumRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Forum with id " + id + " not found"));
+    public Forum getById(GetForumByIdDTO dto) {
+        Forum existingForum = this.forumRepository.findById(dto.getForumId())
+                .orElseThrow(() -> new ErrorHandler(ErrorType.FORUM_NOT_FOUND));
 
         Long views = existingForum.getViews();
         existingForum.setViews(views + 1);
@@ -59,24 +60,24 @@ public class ForumServiceI implements ForumService {
     }
 
     @Override
-    public Forum edit(Forum forum) {
-        Forum existingForum = forumRepository.findById(forum.getId())
-                .orElseThrow(() -> new NoSuchElementException("Forum with id " + forum.getId() + " not found"));
+    public Forum edit(EditForumDTO dto) {
+        Forum existingForum = this.forumRepository.findById(dto.getForumId())
+                .orElseThrow(() -> new ErrorHandler(ErrorType.FORUM_NOT_FOUND));
 
-        existingForum.setTitle(forum.getTitle());
-        existingForum.setContent(forum.getContent());
-        existingForum.setCategory(forum.getCategory());
+        existingForum.setTitle(dto.getTitle());
+        existingForum.setContent(dto.getContent());
+        existingForum.setCategory(Category.valueOf(dto.getCategory()));
 
         return forumRepository.save(existingForum);
     }
 
     @Override
-    public void updateUpvoters(Long forumId, Long userId) {
-        Forum existingForum = forumRepository.findById(forumId)
-                .orElseThrow(() -> new NoSuchElementException("Forum with id " + forumId + " not found"));
+    public void updateUpvoters(UpdateForumUpvotersDTO dto) {
+        Forum existingForum = this.forumRepository.findById(dto.getForumId())
+                .orElseThrow(() -> new ErrorHandler(ErrorType.FORUM_NOT_FOUND));
 
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new NoSuchElementException("User with id " + userId + " not found"));
+        User user = userRepository.findById(dto.getUserId())
+                .orElseThrow(() -> new ErrorHandler(ErrorType.USER_NOT_FOUND));
 
         Set<User> upvoters = existingForum.getUpvoters();
         if (upvoters.contains(user)) {
@@ -90,9 +91,9 @@ public class ForumServiceI implements ForumService {
     }
 
     @Override
-    public void delete(Long id) {
-        Forum forum = forumRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Forum with id " + id + " not found"));
+    public void delete(DeleteForumDTO dto) {
+        Forum forum = this.forumRepository.findById(dto.getForumId())
+                .orElseThrow(() -> new ErrorHandler(ErrorType.FORUM_NOT_FOUND));
 
         forumRepository.delete(forum);
     }
