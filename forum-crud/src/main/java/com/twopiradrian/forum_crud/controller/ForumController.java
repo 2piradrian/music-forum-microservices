@@ -23,7 +23,7 @@ public class ForumController {
                     (Long) payload.get("forumId")
             );
 
-            return ResponseEntity.ok(forumService.getById(dto));
+            return ResponseEntity.ok(this.forumService.getById(dto));
         }
         catch (ErrorHandler e) {
             return ResponseEntity.status(e.getHttpCode()).body(e.getMessage());
@@ -40,7 +40,7 @@ public class ForumController {
                     (Long) payload.get("authorId")
             );
 
-            return ResponseEntity.ok(forumService.create(dto));
+            return ResponseEntity.ok(this.forumService.create(dto));
         }
         catch (ErrorHandler e) {
             return ResponseEntity.status(e.getHttpCode()).body(e.getMessage());
@@ -58,7 +58,7 @@ public class ForumController {
                     (Long) payload.get("forumId")
             );
 
-            return ResponseEntity.ok(forumService.edit(dto));
+            return ResponseEntity.ok(this.forumService.edit(dto));
         }
         catch (ErrorHandler e) {
             return ResponseEntity.status(e.getHttpCode()).body(e.getMessage());
@@ -73,7 +73,7 @@ public class ForumController {
                     (Long) payload.get("forumId")
             );
 
-            forumService.updateUpvoters(dto);
+            this.forumService.updateUpvoters(dto);
             return ResponseEntity.ok().build();
         }
         catch (ErrorHandler e) {
@@ -88,7 +88,7 @@ public class ForumController {
                     (Long) payload.get("forumId")
             );
 
-            forumService.delete(dto);
+            this.forumService.delete(dto);
             return ResponseEntity.ok().build();
         }
         catch (ErrorHandler e) {

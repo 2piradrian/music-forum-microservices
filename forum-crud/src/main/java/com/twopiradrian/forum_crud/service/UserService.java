@@ -1,6 +1,6 @@
 package com.twopiradrian.forum_crud.service;
 
-import com.twopiradrian.forum_crud.dto.forum.DeleteForumDTO;
+import com.twopiradrian.forum_crud.dto.user.request.DeleteUserDTO;
 import com.twopiradrian.forum_crud.dto.user.request.GetByIdRequestDTO;
 import com.twopiradrian.forum_crud.dto.user.request.LoginUserDTO;
 import com.twopiradrian.forum_crud.dto.user.request.RegisterRequestDTO;
@@ -16,6 +16,6 @@ public interface UserService {
 
     User login(LoginUserDTO dto);
 
-    void delete(DeleteForumDTO dto);
+    void delete(DeleteUserDTO dto);
 
 }

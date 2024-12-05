@@ -5,9 +5,19 @@ import com.twopiradrian.forum_crud.dto.user.response.RegisterResponseDTO;
 import com.twopiradrian.forum_crud.entity.Role;
 import com.twopiradrian.forum_crud.entity.User;
 
+import java.util.Map;
 import java.util.Set;
 
 public class RegisterMapper {
+
+    public static RegisterRequestDTO toRequest(Map<String, Object> payload) {
+        return RegisterRequestDTO.create(
+                (String) payload.get("username"),
+                (String) payload.get("password"),
+                (String) payload.get("email")
+        );
+
+    }
 
     public static RegisterResponseDTO toResponse(User user) {
         return new RegisterResponseDTO(
