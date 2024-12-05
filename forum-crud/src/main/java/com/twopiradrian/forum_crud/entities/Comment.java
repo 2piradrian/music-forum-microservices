@@ -1,4 +1,4 @@
-package com.twopiradrian.forum_crud.entity;
+package com.twopiradrian.forum_crud.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
