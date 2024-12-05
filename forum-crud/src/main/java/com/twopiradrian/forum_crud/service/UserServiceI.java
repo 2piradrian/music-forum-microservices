@@ -1,10 +1,17 @@
 package com.twopiradrian.forum_crud.service;
 
 import com.twopiradrian.forum_crud.dto.forum.DeleteForumDTO;
-import com.twopiradrian.forum_crud.dto.forum.GetForumByIdDTO;
-import com.twopiradrian.forum_crud.dto.user.LoginUserDTO;
-import com.twopiradrian.forum_crud.dto.user.RegisterUserDTO;
+import com.twopiradrian.forum_crud.dto.user.mapper.GetByIdMapper;
+import com.twopiradrian.forum_crud.dto.user.mapper.RegisterMapper;
+import com.twopiradrian.forum_crud.dto.user.request.GetByIdRequestDTO;
+import com.twopiradrian.forum_crud.dto.user.request.LoginUserDTO;
+import com.twopiradrian.forum_crud.dto.user.request.RegisterRequestDTO;
+import com.twopiradrian.forum_crud.dto.user.response.GetByIdResponseDTO;
+import com.twopiradrian.forum_crud.dto.user.response.RegisterResponseDTO;
 import com.twopiradrian.forum_crud.entity.User;
+import com.twopiradrian.forum_crud.repository.UserRepository;
+import com.twopiradrian.forum_crud.utils.ErrorHandler;
+import com.twopiradrian.forum_crud.utils.ErrorType;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,15 +21,23 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class UserServiceI implements UserService {
 
+    private final UserRepository userRepository;
 
     @Override
-    public User getById(GetForumByIdDTO dto) {
-        return null;
+    public GetByIdResponseDTO getById(GetByIdRequestDTO dto) {
+        User existingUser = this.userRepository.findById(dto.getUserId())
+                .orElseThrow(() -> new ErrorHandler(ErrorType.USER_NOT_FOUND));
+
+        return GetByIdMapper.toResponse(existingUser);
     }
 
     @Override
-    public User register(RegisterUserDTO dto) {
-        return null;
+    public RegisterResponseDTO register(RegisterRequestDTO dto) {
+        User user = RegisterMapper.toEntity(dto);
+
+        User savedUser = userRepository.save(user);
+
+        return RegisterMapper.toResponse(savedUser);
     }
 
     @Override

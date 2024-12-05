@@ -1,16 +1,18 @@
 package com.twopiradrian.forum_crud.service;
 
 import com.twopiradrian.forum_crud.dto.forum.DeleteForumDTO;
-import com.twopiradrian.forum_crud.dto.forum.GetForumByIdDTO;
-import com.twopiradrian.forum_crud.dto.user.LoginUserDTO;
-import com.twopiradrian.forum_crud.dto.user.RegisterUserDTO;
+import com.twopiradrian.forum_crud.dto.user.request.GetByIdRequestDTO;
+import com.twopiradrian.forum_crud.dto.user.request.LoginUserDTO;
+import com.twopiradrian.forum_crud.dto.user.request.RegisterRequestDTO;
+import com.twopiradrian.forum_crud.dto.user.response.GetByIdResponseDTO;
+import com.twopiradrian.forum_crud.dto.user.response.RegisterResponseDTO;
 import com.twopiradrian.forum_crud.entity.User;
 
 public interface UserService {
 
-    User getById(GetForumByIdDTO dto);
+    GetByIdResponseDTO getById(GetByIdRequestDTO dto);
 
-    User register(RegisterUserDTO dto);
+    RegisterResponseDTO register(RegisterRequestDTO dto);
 
     User login(LoginUserDTO dto);
 

@@ -1,4 +1,4 @@
-package com.twopiradrian.forum_crud.dto.user;
+package com.twopiradrian.forum_crud.dto.user.request;
 
 import com.twopiradrian.forum_crud.utils.ErrorHandler;
 import com.twopiradrian.forum_crud.utils.ErrorType;

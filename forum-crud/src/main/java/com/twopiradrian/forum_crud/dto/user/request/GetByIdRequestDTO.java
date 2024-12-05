@@ -1,19 +1,19 @@
-package com.twopiradrian.forum_crud.dto.user;
+package com.twopiradrian.forum_crud.dto.user.request;
 
 import com.twopiradrian.forum_crud.utils.ErrorHandler;
 import com.twopiradrian.forum_crud.utils.ErrorType;
 import lombok.Getter;
 
 @Getter
-public class GetUserByIdDTO {
+public class GetByIdRequestDTO {
 
     private final Long userId;
 
-    private GetUserByIdDTO(Long userId) {
+    private GetByIdRequestDTO(Long userId) {
         this.userId = userId;
     }
 
-    public static GetUserByIdDTO create(Long userId) {
+    public static GetByIdRequestDTO create(Long userId) {
 
         if (userId == null) {
             throw new ErrorHandler(ErrorType.MISSING_REQUIRED_FIELDS);
@@ -23,7 +23,7 @@ public class GetUserByIdDTO {
             throw new ErrorHandler(ErrorType.INVALID_FIELDS);
         }
 
-        return new GetUserByIdDTO(userId);
+        return new GetByIdRequestDTO(userId);
     }
 
 }

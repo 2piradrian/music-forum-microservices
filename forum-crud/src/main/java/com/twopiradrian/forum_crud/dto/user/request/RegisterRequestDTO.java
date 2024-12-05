@@ -1,4 +1,4 @@
-package com.twopiradrian.forum_crud.dto.user;
+package com.twopiradrian.forum_crud.dto.user.request;
 
 import com.twopiradrian.forum_crud.utils.ErrorHandler;
 import com.twopiradrian.forum_crud.utils.ErrorType;
@@ -6,7 +6,7 @@ import com.twopiradrian.forum_crud.utils.RegexValidators;
 import lombok.Getter;
 
 @Getter
-public class RegisterUserDTO {
+public class RegisterRequestDTO {
 
         private final String username;
 
@@ -14,13 +14,13 @@ public class RegisterUserDTO {
 
         private final String email;
 
-        private RegisterUserDTO(String username, String password, String email) {
+        private RegisterRequestDTO(String username, String password, String email) {
             this.username = username;
             this.password = password;
             this.email = email;
         }
 
-        public static RegisterUserDTO create(String username, String password, String email) {
+        public static RegisterRequestDTO create(String username, String password, String email) {
 
             if (username == null || password == null || email == null) {
                 throw new ErrorHandler(ErrorType.MISSING_REQUIRED_FIELDS);
@@ -45,7 +45,7 @@ public class RegisterUserDTO {
                 throw new ErrorHandler(ErrorType.INVALID_FIELDS);
             }
 
-            return new RegisterUserDTO(username, password, email);
+            return new RegisterRequestDTO(username, password, email);
         }
 
 }
