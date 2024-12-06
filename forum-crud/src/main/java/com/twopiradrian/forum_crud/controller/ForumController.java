@@ -1,6 +1,7 @@
 package com.twopiradrian.forum_crud.controller;
 
-import com.twopiradrian.forum_crud.dto.forum.mapper.*;
+import com.twopiradrian.forum_crud.dto.forum.mapper.ForumMapper;
+import com.twopiradrian.forum_crud.dto.forum.mapper.implementation.*;
 import com.twopiradrian.forum_crud.dto.forum.request.*;
 import com.twopiradrian.forum_crud.service.ForumService;
 import com.twopiradrian.forum_crud.utils.ErrorHandler;
@@ -20,7 +21,7 @@ public class ForumController {
     @GetMapping("/get-by-id")
     public ResponseEntity<?> getById(@RequestBody Map<String, Object> payload) {
         try {
-            GetByIdRequestDTO dto = GetByIdMapper.toRequest(payload);
+            GetByIdRequestDTO dto = ForumMapper.getById().toRequest(payload);
 
             return ResponseEntity.ok(this.forumService.getById(dto));
         }
@@ -32,7 +33,7 @@ public class ForumController {
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody Map<String, Object> payload) {
         try {
-            CreateRequestDTO dto = CreateMapper.toRequest(payload);
+            CreateRequestDTO dto = ForumMapper.create().toRequest(payload);
 
             return ResponseEntity.ok(this.forumService.create(dto));
         }
@@ -44,7 +45,7 @@ public class ForumController {
     @PatchMapping("/edit")
     public ResponseEntity<?> edit(@RequestBody Map<String, Object> payload) {
         try {
-            EditRequestDTO dto = EditMapper.toRequest(payload);
+            EditRequestDTO dto = ForumMapper.edit().toRequest(payload);
 
             return ResponseEntity.ok(this.forumService.edit(dto));
         }
@@ -56,7 +57,7 @@ public class ForumController {
     @PatchMapping("/update-upvoters")
     public ResponseEntity<?> updateUpvoters(@RequestBody Map<String, Object> payload) {
         try {
-            UpdateUpvotersRequestDTO dto = UpdateUpvotersMapper.toRequest(payload);
+            UpdateUpvotersRequestDTO dto = ForumMapper.updateUpvoters().toRequest(payload);
             this.forumService.updateUpvoters(dto);
 
             return ResponseEntity.ok().build();
@@ -69,7 +70,7 @@ public class ForumController {
     @DeleteMapping("/delete")
     public ResponseEntity<?> delete(@RequestBody Map<String, Object> payload) {
         try {
-            DeleteRequestDTO dto = DeleteMapper.toRequest(payload);
+            DeleteRequestDTO dto = ForumMapper.delete().toRequest(payload);
             this.forumService.delete(dto);
 
             return ResponseEntity.ok().build();
@@ -78,6 +79,5 @@ public class ForumController {
             return ResponseEntity.status(e.getHttpCode()).body(e.getMessage());
         }
     }
-
 
 }

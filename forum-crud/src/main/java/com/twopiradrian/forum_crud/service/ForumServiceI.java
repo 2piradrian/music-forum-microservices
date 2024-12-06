@@ -1,12 +1,10 @@
 package com.twopiradrian.forum_crud.service;
 
-import com.twopiradrian.forum_crud.dto.forum.mapper.CreateMapper;
-import com.twopiradrian.forum_crud.dto.forum.mapper.EditMapper;
+import com.twopiradrian.forum_crud.dto.forum.mapper.ForumMapper;
 import com.twopiradrian.forum_crud.dto.forum.request.*;
 import com.twopiradrian.forum_crud.dto.forum.response.CreateResponseDTO;
 import com.twopiradrian.forum_crud.dto.forum.response.EditResponseDTO;
 import com.twopiradrian.forum_crud.dto.forum.response.GetByIdResponseDTO;
-import com.twopiradrian.forum_crud.dto.forum.mapper.GetByIdMapper;
 import com.twopiradrian.forum_crud.entity.Category;
 import com.twopiradrian.forum_crud.entity.Forum;
 import com.twopiradrian.forum_crud.entity.User;
@@ -39,7 +37,7 @@ public class ForumServiceI implements ForumService {
 
         forumRepository.save(existingForum);
 
-        return GetByIdMapper.toResponse(existingForum);
+        return ForumMapper.getById().toResponse(existingForum);
     }
 
     @Override
@@ -47,10 +45,21 @@ public class ForumServiceI implements ForumService {
         User author = this.userRepository.findById(dto.getAuthorId())
                 .orElseThrow(() -> new ErrorHandler(ErrorType.USER_NOT_FOUND));
 
-        Forum forum = CreateMapper.toEntity(dto, author);
+        Forum forum = new Forum();
+
+        forum.setAuthor(author);
+        forum.setTitle(dto.getTitle());
+        forum.setContent(dto.getContent());
+        forum.setCategory(Category.valueOf(dto.getCategory()));
+
+        forum.setViews(0L);
+        forum.setUpvoters(Set.of());
+        forum.setComments(List.of());
+        forum.setCreatedAt(java.time.LocalDateTime.now());
+        forum.setUpdatedAt(java.time.LocalDateTime.now());
         Forum savedForum = forumRepository.save(forum);
 
-        return CreateMapper.toResponse(savedForum);
+        return ForumMapper.create().toResponse(savedForum);
     }
 
     @Override
@@ -63,7 +72,7 @@ public class ForumServiceI implements ForumService {
         existingForum.setCategory(Category.valueOf(dto.getCategory()));
 
         Forum editedForum = forumRepository.save(existingForum);
-        return EditMapper.toResponse(editedForum);
+        return ForumMapper.edit().toResponse(editedForum);
     }
 
     @Override

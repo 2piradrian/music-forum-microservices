@@ -1,4 +1,4 @@
-package com.twopiradrian.forum_crud.dto.forum.mapper;
+package com.twopiradrian.forum_crud.dto.forum.mapper.implementation;
 
 import com.twopiradrian.forum_crud.dto.forum.request.EditRequestDTO;
 import com.twopiradrian.forum_crud.dto.forum.response.EditResponseDTO;
@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class EditMapper {
 
-    public static EditRequestDTO toRequest(Map<String, Object> payload) {
+    public EditRequestDTO toRequest(Map<String, Object> payload) {
         return EditRequestDTO.create(
                 (String) payload.get("title"),
                 (String) payload.get("content"),
@@ -18,7 +18,7 @@ public class EditMapper {
         );
     }
 
-    public static EditResponseDTO toResponse(Forum forum) {
+    public EditResponseDTO toResponse(Forum forum) {
         return new EditResponseDTO(
             forum.getId()
         );
