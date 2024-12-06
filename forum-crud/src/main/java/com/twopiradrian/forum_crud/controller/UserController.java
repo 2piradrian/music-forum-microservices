@@ -9,9 +9,7 @@ import com.twopiradrian.forum_crud.service.UserService;
 import com.twopiradrian.forum_crud.utils.ErrorHandler;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -22,6 +20,7 @@ public class UserController {
 
     private final UserService userService;
 
+    @GetMapping("/get-by-id")
     public ResponseEntity<?> getById(@RequestBody Map<String, Object> payload) {
         try {
             GetByIdRequestDTO dto = GetByIdMapper.toRequest(payload);
@@ -33,6 +32,7 @@ public class UserController {
         }
     }
 
+    @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody Map<String, Object> payload) {
         try {
             RegisterRequestDTO dto = RegisterMapper.toRequest(payload);
