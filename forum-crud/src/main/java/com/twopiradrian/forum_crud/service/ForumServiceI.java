@@ -1,6 +1,12 @@
 package com.twopiradrian.forum_crud.service;
 
-import com.twopiradrian.forum_crud.dto.forum.*;
+import com.twopiradrian.forum_crud.dto.forum.mapper.CreateMapper;
+import com.twopiradrian.forum_crud.dto.forum.mapper.EditMapper;
+import com.twopiradrian.forum_crud.dto.forum.request.*;
+import com.twopiradrian.forum_crud.dto.forum.response.CreateResponseDTO;
+import com.twopiradrian.forum_crud.dto.forum.response.EditResponseDTO;
+import com.twopiradrian.forum_crud.dto.forum.response.GetByIdResponseDTO;
+import com.twopiradrian.forum_crud.dto.forum.mapper.GetByIdMapper;
 import com.twopiradrian.forum_crud.entity.Category;
 import com.twopiradrian.forum_crud.entity.Forum;
 import com.twopiradrian.forum_crud.entity.User;
@@ -13,8 +19,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -26,7 +30,7 @@ public class ForumServiceI implements ForumService {
     private final UserRepository userRepository;
 
     @Override
-    public Forum getById(GetForumByIdDTO dto) {
+    public GetByIdResponseDTO getById(GetByIdRequestDTO dto) {
         Forum existingForum = this.forumRepository.findById(dto.getForumId())
                 .orElseThrow(() -> new ErrorHandler(ErrorType.FORUM_NOT_FOUND));
 
@@ -35,32 +39,22 @@ public class ForumServiceI implements ForumService {
 
         forumRepository.save(existingForum);
 
-        return existingForum;
+        return GetByIdMapper.toResponse(existingForum);
     }
 
     @Override
-    public Forum create(CreateForumDTO dto) {
+    public CreateResponseDTO create(CreateRequestDTO dto) {
         User author = this.userRepository.findById(dto.getAuthorId())
                 .orElseThrow(() -> new ErrorHandler(ErrorType.USER_NOT_FOUND));
 
-        Forum forum = new Forum();
+        Forum forum = CreateMapper.toEntity(dto, author);
+        Forum savedForum = forumRepository.save(forum);
 
-        forum.setAuthor(author);
-        forum.setTitle(dto.getTitle());
-        forum.setContent(dto.getContent());
-        forum.setCategory(Category.valueOf(dto.getCategory()));
-
-        forum.setViews(0L);
-        forum.setUpvoters(Set.of());
-        forum.setComments(List.of());
-        forum.setCreatedAt(java.time.LocalDateTime.now());
-        forum.setUpdatedAt(java.time.LocalDateTime.now());
-
-        return forumRepository.save(forum);
+        return CreateMapper.toResponse(savedForum);
     }
 
     @Override
-    public Forum edit(EditForumDTO dto) {
+    public EditResponseDTO edit(EditRequestDTO dto) {
         Forum existingForum = this.forumRepository.findById(dto.getForumId())
                 .orElseThrow(() -> new ErrorHandler(ErrorType.FORUM_NOT_FOUND));
 
@@ -68,11 +62,12 @@ public class ForumServiceI implements ForumService {
         existingForum.setContent(dto.getContent());
         existingForum.setCategory(Category.valueOf(dto.getCategory()));
 
-        return forumRepository.save(existingForum);
+        Forum editedForum = forumRepository.save(existingForum);
+        return EditMapper.toResponse(editedForum);
     }
 
     @Override
-    public void updateUpvoters(UpdateForumUpvotersDTO dto) {
+    public void updateUpvoters(UpdateUpvotersRequestDTO dto) {
         Forum existingForum = this.forumRepository.findById(dto.getForumId())
                 .orElseThrow(() -> new ErrorHandler(ErrorType.FORUM_NOT_FOUND));
 
@@ -91,7 +86,7 @@ public class ForumServiceI implements ForumService {
     }
 
     @Override
-    public void delete(DeleteForumDTO dto) {
+    public void delete(DeleteRequestDTO dto) {
         Forum forum = this.forumRepository.findById(dto.getForumId())
                 .orElseThrow(() -> new ErrorHandler(ErrorType.FORUM_NOT_FOUND));
 

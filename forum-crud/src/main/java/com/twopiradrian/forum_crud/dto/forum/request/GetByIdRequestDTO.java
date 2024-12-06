@@ -1,19 +1,19 @@
-package com.twopiradrian.forum_crud.dto.forum;
+package com.twopiradrian.forum_crud.dto.forum.request;
 
 import com.twopiradrian.forum_crud.utils.ErrorHandler;
 import com.twopiradrian.forum_crud.utils.ErrorType;
 import lombok.Getter;
 
 @Getter
-public class GetForumByIdDTO {
+public class GetByIdRequestDTO {
 
     private final Long forumId;
 
-    private GetForumByIdDTO(Long forumId) {
+    private GetByIdRequestDTO(Long forumId) {
         this.forumId = forumId;
     }
 
-    public static GetForumByIdDTO create(Long forumId) {
+    public static GetByIdRequestDTO create(Long forumId) {
 
         if (forumId == null) {
             throw new ErrorHandler(ErrorType.MISSING_REQUIRED_FIELDS);
@@ -23,7 +23,7 @@ public class GetForumByIdDTO {
             throw new ErrorHandler(ErrorType.INVALID_FIELDS);
         }
 
-        return new GetForumByIdDTO(forumId);
+        return new GetByIdRequestDTO(forumId);
     }
 
 }

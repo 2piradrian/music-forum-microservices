@@ -1,4 +1,4 @@
-package com.twopiradrian.forum_crud.dto.forum;
+package com.twopiradrian.forum_crud.dto.forum.request;
 
 import com.twopiradrian.forum_crud.entity.Category;
 import com.twopiradrian.forum_crud.utils.ErrorHandler;
@@ -6,7 +6,7 @@ import com.twopiradrian.forum_crud.utils.ErrorType;
 import lombok.Getter;
 
 @Getter
-public class CreateForumDTO {
+public class EditRequestDTO {
 
     private final String title;
 
@@ -16,14 +16,17 @@ public class CreateForumDTO {
 
     private final Long authorId;
 
-    private CreateForumDTO(String title, String content, String category, Long authorId) {
+    private final Long forumId;
+
+    private EditRequestDTO(String title, String content, String category, Long authorId, Long forumId) {
         this.title = title;
         this.content = content;
         this.category = category;
         this.authorId = authorId;
+        this.forumId = forumId;
     }
 
-    public static CreateForumDTO create(String title, String content, String category, Long authorId) {
+    public static EditRequestDTO create(String title, String content, String category, Long authorId, Long forumId) {
 
         if (title == null) {
             throw new ErrorHandler(ErrorType.MISSING_REQUIRED_FIELDS);
@@ -58,15 +61,15 @@ public class CreateForumDTO {
             throw new ErrorHandler(ErrorType.INVALID_FIELDS);
         }
 
-        if (authorId == null) {
+        if (authorId == null || forumId == null) {
             throw new ErrorHandler(ErrorType.MISSING_REQUIRED_FIELDS);
         }
 
-        if (authorId < 0) {
+        if (authorId < 0 || forumId < 0) {
             throw new ErrorHandler(ErrorType.INVALID_FIELDS);
         }
 
-        return new CreateForumDTO(title, content, category, authorId);
+        return new EditRequestDTO(title, content, category, authorId, forumId);
     }
 
 }

@@ -1,22 +1,22 @@
-package com.twopiradrian.forum_crud.dto.forum;
+package com.twopiradrian.forum_crud.dto.forum.request;
 
 import com.twopiradrian.forum_crud.utils.ErrorHandler;
 import com.twopiradrian.forum_crud.utils.ErrorType;
 import lombok.Getter;
 
 @Getter
-public class UpdateForumUpvotersDTO {
+public class UpdateUpvotersRequestDTO {
 
     private final Long userId;
 
     private final Long forumId;
 
-    private UpdateForumUpvotersDTO(Long userId, Long forumId) {
+    private UpdateUpvotersRequestDTO(Long userId, Long forumId) {
         this.userId = userId;
         this.forumId = forumId;
     }
 
-    public static UpdateForumUpvotersDTO create(Long userId, Long forumId) {
+    public static UpdateUpvotersRequestDTO create(Long userId, Long forumId) {
 
         if (userId == null || forumId == null) {
             throw new ErrorHandler(ErrorType.MISSING_REQUIRED_FIELDS);
@@ -26,6 +26,6 @@ public class UpdateForumUpvotersDTO {
             throw new ErrorHandler(ErrorType.INVALID_FIELDS);
         }
 
-        return new UpdateForumUpvotersDTO(userId, forumId);
+        return new UpdateUpvotersRequestDTO(userId, forumId);
     }
 }

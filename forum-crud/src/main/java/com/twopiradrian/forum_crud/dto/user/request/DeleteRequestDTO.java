@@ -3,15 +3,15 @@ package com.twopiradrian.forum_crud.dto.user.request;
 import com.twopiradrian.forum_crud.utils.ErrorHandler;
 import com.twopiradrian.forum_crud.utils.ErrorType;
 
-public class DeleteUserDTO {
+public class DeleteRequestDTO {
 
     private final Long userId;
 
-    private DeleteUserDTO(Long userId) {
+    private DeleteRequestDTO(Long userId) {
         this.userId = userId;
     }
 
-    public static DeleteUserDTO create(Long userId) {
+    public static DeleteRequestDTO create(Long userId) {
 
         if (userId == null) {
             throw new ErrorHandler(ErrorType.MISSING_REQUIRED_FIELDS);
@@ -21,6 +21,6 @@ public class DeleteUserDTO {
             throw new ErrorHandler(ErrorType.INVALID_FIELDS);
         }
 
-        return new DeleteUserDTO(userId);
+        return new DeleteRequestDTO(userId);
     }
 }

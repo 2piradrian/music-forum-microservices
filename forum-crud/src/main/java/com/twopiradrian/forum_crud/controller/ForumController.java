@@ -1,6 +1,7 @@
 package com.twopiradrian.forum_crud.controller;
 
-import com.twopiradrian.forum_crud.dto.forum.*;
+import com.twopiradrian.forum_crud.dto.forum.mapper.*;
+import com.twopiradrian.forum_crud.dto.forum.request.*;
 import com.twopiradrian.forum_crud.service.ForumService;
 import com.twopiradrian.forum_crud.utils.ErrorHandler;
 import lombok.AllArgsConstructor;
@@ -19,9 +20,7 @@ public class ForumController {
     @GetMapping("/get-by-id")
     public ResponseEntity<?> getById(@RequestBody Map<String, Object> payload) {
         try {
-            GetForumByIdDTO dto = GetForumByIdDTO.create(
-                    (Long) payload.get("forumId")
-            );
+            GetByIdRequestDTO dto = GetByIdMapper.toRequest(payload);
 
             return ResponseEntity.ok(this.forumService.getById(dto));
         }
@@ -33,12 +32,7 @@ public class ForumController {
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody Map<String, Object> payload) {
         try {
-            CreateForumDTO dto = CreateForumDTO.create(
-                    (String) payload.get("title"),
-                    (String) payload.get("description"),
-                    (String) payload.get("category"),
-                    (Long) payload.get("authorId")
-            );
+            CreateRequestDTO dto = CreateMapper.toRequest(payload);
 
             return ResponseEntity.ok(this.forumService.create(dto));
         }
@@ -50,13 +44,7 @@ public class ForumController {
     @PatchMapping("/edit")
     public ResponseEntity<?> edit(@RequestBody Map<String, Object> payload) {
         try {
-            EditForumDTO dto = EditForumDTO.create(
-                    (String) payload.get("title"),
-                    (String) payload.get("content"),
-                    (String) payload.get("category"),
-                    (Long) payload.get("authorId"),
-                    (Long) payload.get("forumId")
-            );
+            EditRequestDTO dto = EditMapper.toRequest(payload);
 
             return ResponseEntity.ok(this.forumService.edit(dto));
         }
@@ -68,12 +56,9 @@ public class ForumController {
     @PatchMapping("/update-upvoters")
     public ResponseEntity<?> updateUpvoters(@RequestBody Map<String, Object> payload) {
         try {
-            UpdateForumUpvotersDTO dto = UpdateForumUpvotersDTO.create(
-                    (Long) payload.get("userId"),
-                    (Long) payload.get("forumId")
-            );
-
+            UpdateUpvotersRequestDTO dto = UpdateUpvotersMapper.toRequest(payload);
             this.forumService.updateUpvoters(dto);
+
             return ResponseEntity.ok().build();
         }
         catch (ErrorHandler e) {
@@ -84,11 +69,9 @@ public class ForumController {
     @DeleteMapping("/delete")
     public ResponseEntity<?> delete(@RequestBody Map<String, Object> payload) {
         try {
-            DeleteForumDTO dto = DeleteForumDTO.create(
-                    (Long) payload.get("forumId")
-            );
-
+            DeleteRequestDTO dto = DeleteMapper.toRequest(payload);
             this.forumService.delete(dto);
+
             return ResponseEntity.ok().build();
         }
         catch (ErrorHandler e) {

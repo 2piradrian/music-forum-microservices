@@ -1,10 +1,10 @@
 package com.twopiradrian.forum_crud.service;
 
-import com.twopiradrian.forum_crud.dto.forum.DeleteForumDTO;
+import com.twopiradrian.forum_crud.dto.user.request.DeleteRequestDTO;
 import com.twopiradrian.forum_crud.dto.user.mapper.GetByIdMapper;
 import com.twopiradrian.forum_crud.dto.user.mapper.RegisterMapper;
 import com.twopiradrian.forum_crud.dto.user.request.GetByIdRequestDTO;
-import com.twopiradrian.forum_crud.dto.user.request.LoginUserDTO;
+import com.twopiradrian.forum_crud.dto.user.request.LoginRequestDTO;
 import com.twopiradrian.forum_crud.dto.user.request.RegisterRequestDTO;
 import com.twopiradrian.forum_crud.dto.user.response.GetByIdResponseDTO;
 import com.twopiradrian.forum_crud.dto.user.response.RegisterResponseDTO;
@@ -41,12 +41,13 @@ public class UserServiceI implements UserService {
     }
 
     @Override
-    public User login(LoginUserDTO dto) {
+    public User login(LoginRequestDTO dto) {
         return null;
     }
 
     @Override
-    public void delete(DeleteForumDTO dto) {
+    public void delete(DeleteRequestDTO dto) {
 
     }
+
 }

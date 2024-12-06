@@ -6,18 +6,18 @@ import com.twopiradrian.forum_crud.utils.RegexValidators;
 import lombok.Getter;
 
 @Getter
-public class LoginUserDTO {
+public class LoginRequestDTO {
 
     private final String email;
 
     private final String password;
 
-    private LoginUserDTO(String email, String password) {
+    private LoginRequestDTO(String email, String password) {
         this.email = email;
         this.password = password;
     }
 
-    public static LoginUserDTO create(String email, String password) {
+    public static LoginRequestDTO create(String email, String password) {
 
         if (password == null || email == null) {
             throw new ErrorHandler(ErrorType.MISSING_REQUIRED_FIELDS);
@@ -37,7 +37,7 @@ public class LoginUserDTO {
             throw new ErrorHandler(ErrorType.INVALID_FIELDS);
         }
 
-        return new LoginUserDTO(email, password);
+        return new LoginRequestDTO(email, password);
     }
 
 }
