@@ -1,4 +1,4 @@
-package com.twopiradrian.forum_crud.dto.user.mapper;
+package com.twopiradrian.forum_crud.dto.user.mapper.implementation;
 
 import com.twopiradrian.forum_crud.dto.user.request.RegisterRequestDTO;
 import com.twopiradrian.forum_crud.dto.user.response.RegisterResponseDTO;
@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class RegisterMapper {
 
-    public static RegisterRequestDTO toRequest(Map<String, Object> payload) {
+    public RegisterRequestDTO toRequest(Map<String, Object> payload) {
         return RegisterRequestDTO.create(
                 (String) payload.get("username"),
                 (String) payload.get("password"),
@@ -19,7 +19,7 @@ public class RegisterMapper {
 
     }
 
-    public static RegisterResponseDTO toResponse(User user) {
+    public RegisterResponseDTO toResponse(User user) {
         return new RegisterResponseDTO(
             user.getId(),
             user.getUsername(),
@@ -28,19 +28,6 @@ public class RegisterMapper {
             user.getMemberSince(),
             user.getLastLogin()
         );
-    }
-
-    public static User toEntity(RegisterRequestDTO dto) {
-        User user = new User();
-
-        user.setUsername(dto.getUsername());
-        user.setEmail(dto.getEmail());
-        user.setPassword(dto.getPassword());
-        user.setRoles(Set.of(Role.USER));
-        user.setMemberSince(java.time.LocalDateTime.now());
-        user.setLastLogin(java.time.LocalDateTime.now());
-
-        return user;
     }
 
 }

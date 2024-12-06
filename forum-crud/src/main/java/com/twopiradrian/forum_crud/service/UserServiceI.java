@@ -1,13 +1,15 @@
 package com.twopiradrian.forum_crud.service;
 
+import com.twopiradrian.forum_crud.dto.user.mapper.UserMapper;
 import com.twopiradrian.forum_crud.dto.user.request.DeleteRequestDTO;
-import com.twopiradrian.forum_crud.dto.user.mapper.GetByIdMapper;
-import com.twopiradrian.forum_crud.dto.user.mapper.RegisterMapper;
+import com.twopiradrian.forum_crud.dto.user.mapper.implementation.GetByIdMapper;
+import com.twopiradrian.forum_crud.dto.user.mapper.implementation.RegisterMapper;
 import com.twopiradrian.forum_crud.dto.user.request.GetByIdRequestDTO;
 import com.twopiradrian.forum_crud.dto.user.request.LoginRequestDTO;
 import com.twopiradrian.forum_crud.dto.user.request.RegisterRequestDTO;
 import com.twopiradrian.forum_crud.dto.user.response.GetByIdResponseDTO;
 import com.twopiradrian.forum_crud.dto.user.response.RegisterResponseDTO;
+import com.twopiradrian.forum_crud.entity.Role;
 import com.twopiradrian.forum_crud.entity.User;
 import com.twopiradrian.forum_crud.repository.UserRepository;
 import com.twopiradrian.forum_crud.utils.ErrorHandler;
@@ -15,6 +17,8 @@ import com.twopiradrian.forum_crud.utils.ErrorType;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.Set;
 
 @Service
 @Transactional
@@ -28,16 +32,24 @@ public class UserServiceI implements UserService {
         User existingUser = this.userRepository.findById(dto.getUserId())
                 .orElseThrow(() -> new ErrorHandler(ErrorType.USER_NOT_FOUND));
 
-        return GetByIdMapper.toResponse(existingUser);
+        return UserMapper.getById().toResponse(existingUser);
     }
 
     @Override
     public RegisterResponseDTO register(RegisterRequestDTO dto) {
-        User user = RegisterMapper.toEntity(dto);
+
+        User user = new User();
+
+        user.setUsername(dto.getUsername());
+        user.setEmail(dto.getEmail());
+        user.setPassword(dto.getPassword());
+        user.setRoles(Set.of(Role.USER));
+        user.setMemberSince(java.time.LocalDateTime.now());
+        user.setLastLogin(java.time.LocalDateTime.now());
 
         User savedUser = userRepository.save(user);
 
-        return RegisterMapper.toResponse(savedUser);
+        return UserMapper.register().toResponse(savedUser);
     }
 
     @Override
