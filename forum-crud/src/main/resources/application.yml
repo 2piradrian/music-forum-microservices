@@ -4,7 +4,7 @@ spring:
     name: forum-crud
 
   profiles:
-    active: default
+    default: default
 
   config:
     import: "optional:configserver:http://localhost:7777"
