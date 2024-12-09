@@ -1,6 +1,22 @@
 spring:
+
   application:
     name: forum-crud
+
+  profiles:
+    active: default
+
+  config:
+    import: "optional:configserver:http://localhost:7777"
+
+  datasource:
+    username: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    url: ${spring.datasource.url}
+    hikari:
+      maximum-pool-size: ${spring.datasource.hikari.maximum-pool-size}
+      connection-timeout: ${spring.datasource.hikari.connection-timeout}
+
 server:
   servlet:
     context-path: /forum-crud
