@@ -1,22 +1,22 @@
 package com.twopiradrian.forum_crud.presentation.service;
 
 
-import com.twopiradrian.forum_crud.domain.dto.user.response.GetByIdResponseDTO;
-import com.twopiradrian.forum_crud.domain.dto.user.request.DeleteRequestDTO;
-import com.twopiradrian.forum_crud.domain.dto.user.request.GetByIdRequestDTO;
-import com.twopiradrian.forum_crud.domain.dto.user.request.LoginRequestDTO;
-import com.twopiradrian.forum_crud.domain.dto.user.request.RegisterRequestDTO;
-import com.twopiradrian.forum_crud.domain.dto.user.response.RegisterResponseDTO;
+import com.twopiradrian.forum_crud.domain.dto.user.response.GetUserByIdRes;
+import com.twopiradrian.forum_crud.domain.dto.user.request.DeleteUserReq;
+import com.twopiradrian.forum_crud.domain.dto.user.request.GetUserByIdReq;
+import com.twopiradrian.forum_crud.domain.dto.user.request.LoginUserReq;
+import com.twopiradrian.forum_crud.domain.dto.user.request.RegisterUserReq;
+import com.twopiradrian.forum_crud.domain.dto.user.response.RegisterUserRes;
 import com.twopiradrian.forum_crud.domain.entity.User;
 
 public interface UserService {
 
-    GetByIdResponseDTO getById(GetByIdRequestDTO dto);
+    GetUserByIdRes getById(GetUserByIdReq dto);
 
-    RegisterResponseDTO register(RegisterRequestDTO dto);
+    RegisterUserRes register(RegisterUserReq dto);
 
-    User login(LoginRequestDTO dto);
+    User login(LoginUserReq dto);
 
-    void delete(DeleteRequestDTO dto);
+    void delete(DeleteUserReq dto);
 
 }

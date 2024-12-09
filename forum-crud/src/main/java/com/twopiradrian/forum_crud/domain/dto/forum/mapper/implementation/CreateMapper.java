@@ -1,16 +1,16 @@
 package com.twopiradrian.forum_crud.domain.dto.forum.mapper.implementation;
 
 
-import com.twopiradrian.forum_crud.domain.dto.forum.request.CreateRequestDTO;
-import com.twopiradrian.forum_crud.domain.dto.forum.response.CreateResponseDTO;
+import com.twopiradrian.forum_crud.domain.dto.forum.request.CreateForumReq;
+import com.twopiradrian.forum_crud.domain.dto.forum.response.CreateForumRes;
 import com.twopiradrian.forum_crud.domain.entity.Forum;
 
 import java.util.Map;
 
 public class CreateMapper {
 
-    public CreateRequestDTO toRequest(Map<String, Object> payload) {
-        return CreateRequestDTO.create(
+    public CreateForumReq toRequest(Map<String, Object> payload) {
+        return CreateForumReq.create(
                 (String) payload.get("title"),
                 (String) payload.get("content"),
                 (String) payload.get("category"),
@@ -18,8 +18,8 @@ public class CreateMapper {
         );
     }
 
-    public CreateResponseDTO toResponse(Forum forum) {
-        return new CreateResponseDTO(
+    public CreateForumRes toResponse(Forum forum) {
+        return new CreateForumRes(
             forum.getId()
         );
     }

@@ -2,22 +2,22 @@ package com.twopiradrian.forum_crud.domain.dto.user.mapper.implementation;
 
 
 
-import com.twopiradrian.forum_crud.domain.dto.user.request.GetByIdRequestDTO;
-import com.twopiradrian.forum_crud.domain.dto.user.response.GetByIdResponseDTO;
+import com.twopiradrian.forum_crud.domain.dto.user.request.GetUserByIdReq;
+import com.twopiradrian.forum_crud.domain.dto.user.response.GetUserByIdRes;
 import com.twopiradrian.forum_crud.domain.entity.User;
 
 import java.util.Map;
 
 public class GetByIdMapper {
 
-    public GetByIdRequestDTO toRequest(Map<String, Object> payload) {
-        return GetByIdRequestDTO.create(
+    public GetUserByIdReq toRequest(Map<String, Object> payload) {
+        return GetUserByIdReq.create(
                 (Long) payload.get("userId")
         );
     }
 
-    public GetByIdResponseDTO toResponse(User user) {
-        return new GetByIdResponseDTO(
+    public GetUserByIdRes toResponse(User user) {
+        return new GetUserByIdRes(
                 user.getId(),
                 user.getUsername(),
                 user.getEmail(),

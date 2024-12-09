@@ -5,25 +5,27 @@ import com.twopiradrian.forum_crud.domain.error.ErrorType;
 import lombok.Getter;
 
 @Getter
-public class GetByIdRequestDTO {
+public class UpdateForumUpvotersReq {
+
+    private final Long userId;
 
     private final Long forumId;
 
-    private GetByIdRequestDTO(Long forumId) {
+    private UpdateForumUpvotersReq(Long userId, Long forumId) {
+        this.userId = userId;
         this.forumId = forumId;
     }
 
-    public static GetByIdRequestDTO create(Long forumId) {
+    public static UpdateForumUpvotersReq create(Long userId, Long forumId) {
 
-        if (forumId == null) {
+        if (userId == null || forumId == null) {
             throw new ErrorHandler(ErrorType.MISSING_REQUIRED_FIELDS);
         }
 
-        if (forumId < 0) {
+        if (userId < 0 || forumId < 0) {
             throw new ErrorHandler(ErrorType.INVALID_FIELDS);
         }
 
-        return new GetByIdRequestDTO(forumId);
+        return new UpdateForumUpvotersReq(userId, forumId);
     }
-
 }

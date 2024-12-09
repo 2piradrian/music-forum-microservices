@@ -6,7 +6,7 @@ import com.twopiradrian.forum_crud.domain.validator.RegexValidators;
 import lombok.Getter;
 
 @Getter
-public class RegisterRequestDTO {
+public class RegisterUserReq {
 
         private final String username;
 
@@ -14,13 +14,13 @@ public class RegisterRequestDTO {
 
         private final String email;
 
-        private RegisterRequestDTO(String username, String password, String email) {
+        private RegisterUserReq(String username, String password, String email) {
             this.username = username;
             this.password = password;
             this.email = email;
         }
 
-        public static RegisterRequestDTO create(String username, String password, String email) {
+        public static RegisterUserReq create(String username, String password, String email) {
 
             if (username == null || password == null || email == null) {
                 throw new ErrorHandler(ErrorType.MISSING_REQUIRED_FIELDS);
@@ -45,7 +45,7 @@ public class RegisterRequestDTO {
                 throw new ErrorHandler(ErrorType.INVALID_FIELDS);
             }
 
-            return new RegisterRequestDTO(username, password, email);
+            return new RegisterUserReq(username, password, email);
         }
 
 }

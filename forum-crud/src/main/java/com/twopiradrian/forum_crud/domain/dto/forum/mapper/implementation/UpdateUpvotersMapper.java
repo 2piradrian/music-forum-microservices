@@ -1,14 +1,14 @@
 package com.twopiradrian.forum_crud.domain.dto.forum.mapper.implementation;
 
 
-import com.twopiradrian.forum_crud.domain.dto.forum.request.UpdateUpvotersRequestDTO;
+import com.twopiradrian.forum_crud.domain.dto.forum.request.UpdateForumUpvotersReq;
 
 import java.util.Map;
 
 public class UpdateUpvotersMapper {
 
-    public UpdateUpvotersRequestDTO toRequest(Map<String, Object> payload) {
-        return UpdateUpvotersRequestDTO.create(
+    public UpdateForumUpvotersReq toRequest(Map<String, Object> payload) {
+        return UpdateForumUpvotersReq.create(
                 (Long) payload.get("userId"),
                 (Long) payload.get("forumId")
         );

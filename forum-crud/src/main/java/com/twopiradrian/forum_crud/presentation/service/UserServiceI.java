@@ -2,12 +2,12 @@ package com.twopiradrian.forum_crud.presentation.service;
 
 import com.twopiradrian.forum_crud.data.repository.UserRepository;
 import com.twopiradrian.forum_crud.domain.dto.user.mapper.UserMapper;
-import com.twopiradrian.forum_crud.domain.dto.user.request.DeleteRequestDTO;
-import com.twopiradrian.forum_crud.domain.dto.user.request.LoginRequestDTO;
-import com.twopiradrian.forum_crud.domain.dto.user.request.RegisterRequestDTO;
-import com.twopiradrian.forum_crud.domain.dto.user.response.GetByIdResponseDTO;
-import com.twopiradrian.forum_crud.domain.dto.user.request.GetByIdRequestDTO;
-import com.twopiradrian.forum_crud.domain.dto.user.response.RegisterResponseDTO;
+import com.twopiradrian.forum_crud.domain.dto.user.request.DeleteUserReq;
+import com.twopiradrian.forum_crud.domain.dto.user.request.LoginUserReq;
+import com.twopiradrian.forum_crud.domain.dto.user.request.RegisterUserReq;
+import com.twopiradrian.forum_crud.domain.dto.user.response.GetUserByIdRes;
+import com.twopiradrian.forum_crud.domain.dto.user.request.GetUserByIdReq;
+import com.twopiradrian.forum_crud.domain.dto.user.response.RegisterUserRes;
 import com.twopiradrian.forum_crud.domain.entity.Role;
 import com.twopiradrian.forum_crud.domain.entity.User;
 import com.twopiradrian.forum_crud.domain.error.ErrorHandler;
@@ -26,7 +26,7 @@ public class UserServiceI implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public GetByIdResponseDTO getById(GetByIdRequestDTO dto) {
+    public GetUserByIdRes getById(GetUserByIdReq dto) {
         User existingUser = this.userRepository.findById(dto.getUserId())
                 .orElseThrow(() -> new ErrorHandler(ErrorType.USER_NOT_FOUND));
 
@@ -34,7 +34,7 @@ public class UserServiceI implements UserService {
     }
 
     @Override
-    public RegisterResponseDTO register(RegisterRequestDTO dto) {
+    public RegisterUserRes register(RegisterUserReq dto) {
 
         User user = new User();
 
@@ -51,12 +51,12 @@ public class UserServiceI implements UserService {
     }
 
     @Override
-    public User login(LoginRequestDTO dto) {
+    public User login(LoginUserReq dto) {
         return null;
     }
 
     @Override
-    public void delete(DeleteRequestDTO dto) {
+    public void delete(DeleteUserReq dto) {
 
     }
 

@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Getter
 @AllArgsConstructor
-public class GetByIdResponseDTO {
+public class RegisterUserRes {
 
     private final Long userId;
 

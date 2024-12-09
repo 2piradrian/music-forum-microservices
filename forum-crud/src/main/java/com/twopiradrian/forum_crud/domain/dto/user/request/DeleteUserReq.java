@@ -1,19 +1,18 @@
 package com.twopiradrian.forum_crud.domain.dto.user.request;
 
+
 import com.twopiradrian.forum_crud.domain.error.ErrorHandler;
 import com.twopiradrian.forum_crud.domain.error.ErrorType;
-import lombok.Getter;
 
-@Getter
-public class GetByIdRequestDTO {
+public class DeleteUserReq {
 
     private final Long userId;
 
-    private GetByIdRequestDTO(Long userId) {
+    private DeleteUserReq(Long userId) {
         this.userId = userId;
     }
 
-    public static GetByIdRequestDTO create(Long userId) {
+    public static DeleteUserReq create(Long userId) {
 
         if (userId == null) {
             throw new ErrorHandler(ErrorType.MISSING_REQUIRED_FIELDS);
@@ -23,7 +22,6 @@ public class GetByIdRequestDTO {
             throw new ErrorHandler(ErrorType.INVALID_FIELDS);
         }
 
-        return new GetByIdRequestDTO(userId);
+        return new DeleteUserReq(userId);
     }
-
 }

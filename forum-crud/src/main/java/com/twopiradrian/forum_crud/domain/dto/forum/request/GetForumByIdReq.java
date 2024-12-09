@@ -5,15 +5,15 @@ import com.twopiradrian.forum_crud.domain.error.ErrorType;
 import lombok.Getter;
 
 @Getter
-public class DeleteRequestDTO {
+public class GetForumByIdReq {
 
     private final Long forumId;
 
-    private DeleteRequestDTO(Long forumId) {
+    private GetForumByIdReq(Long forumId) {
         this.forumId = forumId;
     }
 
-    public static DeleteRequestDTO create(Long forumId) {
+    public static GetForumByIdReq create(Long forumId) {
 
         if (forumId == null) {
             throw new ErrorHandler(ErrorType.MISSING_REQUIRED_FIELDS);
@@ -23,6 +23,7 @@ public class DeleteRequestDTO {
             throw new ErrorHandler(ErrorType.INVALID_FIELDS);
         }
 
-        return new DeleteRequestDTO(forumId);
+        return new GetForumByIdReq(forumId);
     }
+
 }

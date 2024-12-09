@@ -26,7 +26,7 @@ public class ForumServiceI implements ForumService {
     private final UserRepository userRepository;
 
     @Override
-    public GetByIdResponseDTO getById(GetByIdRequestDTO dto) {
+    public GetForumByIdRes getById(GetForumByIdReq dto) {
         Forum existingForum = this.forumRepository.findById(dto.getForumId())
                 .orElseThrow(() -> new ErrorHandler(ErrorType.FORUM_NOT_FOUND));
 
@@ -39,7 +39,7 @@ public class ForumServiceI implements ForumService {
     }
 
     @Override
-    public CreateResponseDTO create(CreateRequestDTO dto) {
+    public CreateForumRes create(CreateForumReq dto) {
         User author = this.userRepository.findById(dto.getAuthorId())
                 .orElseThrow(() -> new ErrorHandler(ErrorType.USER_NOT_FOUND));
 
@@ -61,7 +61,7 @@ public class ForumServiceI implements ForumService {
     }
 
     @Override
-    public EditResponseDTO edit(EditRequestDTO dto) {
+    public EditForumRes edit(EditForumReq dto) {
         Forum existingForum = this.forumRepository.findById(dto.getForumId())
                 .orElseThrow(() -> new ErrorHandler(ErrorType.FORUM_NOT_FOUND));
 
@@ -74,7 +74,7 @@ public class ForumServiceI implements ForumService {
     }
 
     @Override
-    public void updateUpvoters(UpdateUpvotersRequestDTO dto) {
+    public void updateUpvoters(UpdateForumUpvotersReq dto) {
         Forum existingForum = this.forumRepository.findById(dto.getForumId())
                 .orElseThrow(() -> new ErrorHandler(ErrorType.FORUM_NOT_FOUND));
 
@@ -93,7 +93,7 @@ public class ForumServiceI implements ForumService {
     }
 
     @Override
-    public void delete(DeleteRequestDTO dto) {
+    public void delete(DeleteForumReq dto) {
         Forum forum = this.forumRepository.findById(dto.getForumId())
                 .orElseThrow(() -> new ErrorHandler(ErrorType.FORUM_NOT_FOUND));
 

@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class CreateResponseDTO {
+public class EditForumRes {
 
     private long forumId;
 

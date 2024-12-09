@@ -1,16 +1,16 @@
 package com.twopiradrian.forum_crud.domain.dto.user.mapper.implementation;
 
 
-import com.twopiradrian.forum_crud.domain.dto.user.request.RegisterRequestDTO;
-import com.twopiradrian.forum_crud.domain.dto.user.response.RegisterResponseDTO;
+import com.twopiradrian.forum_crud.domain.dto.user.request.RegisterUserReq;
+import com.twopiradrian.forum_crud.domain.dto.user.response.RegisterUserRes;
 import com.twopiradrian.forum_crud.domain.entity.User;
 
 import java.util.Map;
 
 public class RegisterMapper {
 
-    public RegisterRequestDTO toRequest(Map<String, Object> payload) {
-        return RegisterRequestDTO.create(
+    public RegisterUserReq toRequest(Map<String, Object> payload) {
+        return RegisterUserReq.create(
                 (String) payload.get("username"),
                 (String) payload.get("password"),
                 (String) payload.get("email")
@@ -18,8 +18,8 @@ public class RegisterMapper {
 
     }
 
-    public RegisterResponseDTO toResponse(User user) {
-        return new RegisterResponseDTO(
+    public RegisterUserRes toResponse(User user) {
+        return new RegisterUserRes(
             user.getId(),
             user.getUsername(),
             user.getEmail(),

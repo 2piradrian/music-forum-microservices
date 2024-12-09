@@ -1,8 +1,8 @@
 package com.twopiradrian.forum_crud.presentation.controller;
 
 import com.twopiradrian.forum_crud.domain.dto.user.mapper.UserMapper;
-import com.twopiradrian.forum_crud.domain.dto.user.request.GetByIdRequestDTO;
-import com.twopiradrian.forum_crud.domain.dto.user.request.RegisterRequestDTO;
+import com.twopiradrian.forum_crud.domain.dto.user.request.GetUserByIdReq;
+import com.twopiradrian.forum_crud.domain.dto.user.request.RegisterUserReq;
 import com.twopiradrian.forum_crud.domain.error.ErrorHandler;
 import com.twopiradrian.forum_crud.presentation.service.UserService;
 import lombok.AllArgsConstructor;
@@ -21,7 +21,7 @@ public class UserController {
     @GetMapping("/get-by-id")
     public ResponseEntity<?> getById(@RequestBody Map<String, Object> payload) {
         try {
-            GetByIdRequestDTO dto = UserMapper.getById().toRequest(payload);
+            GetUserByIdReq dto = UserMapper.getById().toRequest(payload);
 
             return ResponseEntity.ok(this.userService.getById(dto));
         }
@@ -33,7 +33,7 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody Map<String, Object> payload) {
         try {
-            RegisterRequestDTO dto = UserMapper.register().toRequest(payload);
+            RegisterUserReq dto = UserMapper.register().toRequest(payload);
 
             return ResponseEntity.ok(this.userService.register(dto));
         }

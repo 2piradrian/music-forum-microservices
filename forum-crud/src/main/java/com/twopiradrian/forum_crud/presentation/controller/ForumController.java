@@ -20,7 +20,7 @@ public class ForumController {
     @GetMapping("/get-by-id")
     public ResponseEntity<?> getById(@RequestBody Map<String, Object> payload) {
         try {
-            GetByIdRequestDTO dto = ForumMapper.getById().toRequest(payload);
+            GetForumByIdReq dto = ForumMapper.getById().toRequest(payload);
 
             return ResponseEntity.ok(this.forumService.getById(dto));
         }
@@ -32,7 +32,7 @@ public class ForumController {
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody Map<String, Object> payload) {
         try {
-            CreateRequestDTO dto = ForumMapper.create().toRequest(payload);
+            CreateForumReq dto = ForumMapper.create().toRequest(payload);
 
             return ResponseEntity.ok(this.forumService.create(dto));
         }
@@ -44,7 +44,7 @@ public class ForumController {
     @PatchMapping("/edit")
     public ResponseEntity<?> edit(@RequestBody Map<String, Object> payload) {
         try {
-            EditRequestDTO dto = ForumMapper.edit().toRequest(payload);
+            EditForumReq dto = ForumMapper.edit().toRequest(payload);
 
             return ResponseEntity.ok(this.forumService.edit(dto));
         }
@@ -56,7 +56,7 @@ public class ForumController {
     @PatchMapping("/update-upvoters")
     public ResponseEntity<?> updateUpvoters(@RequestBody Map<String, Object> payload) {
         try {
-            UpdateUpvotersRequestDTO dto = ForumMapper.updateUpvoters().toRequest(payload);
+            UpdateForumUpvotersReq dto = ForumMapper.updateUpvoters().toRequest(payload);
             this.forumService.updateUpvoters(dto);
 
             return ResponseEntity.ok().build();
@@ -69,7 +69,7 @@ public class ForumController {
     @DeleteMapping("/delete")
     public ResponseEntity<?> delete(@RequestBody Map<String, Object> payload) {
         try {
-            DeleteRequestDTO dto = ForumMapper.delete().toRequest(payload);
+            DeleteForumReq dto = ForumMapper.delete().toRequest(payload);
             this.forumService.delete(dto);
 
             return ResponseEntity.ok().build();

@@ -6,7 +6,7 @@ import com.twopiradrian.forum_crud.domain.error.ErrorType;
 import lombok.Getter;
 
 @Getter
-public class CreateRequestDTO {
+public class CreateForumReq {
 
     private final String title;
 
@@ -16,14 +16,14 @@ public class CreateRequestDTO {
 
     private final Long authorId;
 
-    private CreateRequestDTO(String title, String content, String category, Long authorId) {
+    private CreateForumReq(String title, String content, String category, Long authorId) {
         this.title = title;
         this.content = content;
         this.category = category;
         this.authorId = authorId;
     }
 
-    public static CreateRequestDTO create(String title, String content, String category, Long authorId) {
+    public static CreateForumReq create(String title, String content, String category, Long authorId) {
 
         if (title == null) {
             throw new ErrorHandler(ErrorType.MISSING_REQUIRED_FIELDS);
@@ -66,7 +66,7 @@ public class CreateRequestDTO {
             throw new ErrorHandler(ErrorType.INVALID_FIELDS);
         }
 
-        return new CreateRequestDTO(title, content, category, authorId);
+        return new CreateForumReq(title, content, category, authorId);
     }
 
 }

@@ -1,23 +1,23 @@
 package com.twopiradrian.forum_crud.presentation.service;
 
-import com.twopiradrian.forum_crud.domain.dto.forum.request.CreateRequestDTO;
-import com.twopiradrian.forum_crud.domain.dto.forum.request.EditRequestDTO;
-import com.twopiradrian.forum_crud.domain.dto.forum.request.UpdateUpvotersRequestDTO;
-import com.twopiradrian.forum_crud.domain.dto.forum.response.CreateResponseDTO;
-import com.twopiradrian.forum_crud.domain.dto.forum.response.EditResponseDTO;
-import com.twopiradrian.forum_crud.domain.dto.forum.request.DeleteRequestDTO;
-import com.twopiradrian.forum_crud.domain.dto.forum.request.GetByIdRequestDTO;
-import com.twopiradrian.forum_crud.domain.dto.forum.response.GetByIdResponseDTO;
+import com.twopiradrian.forum_crud.domain.dto.forum.request.CreateForumReq;
+import com.twopiradrian.forum_crud.domain.dto.forum.request.EditForumReq;
+import com.twopiradrian.forum_crud.domain.dto.forum.request.UpdateForumUpvotersReq;
+import com.twopiradrian.forum_crud.domain.dto.forum.response.CreateForumRes;
+import com.twopiradrian.forum_crud.domain.dto.forum.response.EditForumRes;
+import com.twopiradrian.forum_crud.domain.dto.forum.request.DeleteForumReq;
+import com.twopiradrian.forum_crud.domain.dto.forum.request.GetForumByIdReq;
+import com.twopiradrian.forum_crud.domain.dto.forum.response.GetForumByIdRes;
 
 public interface ForumService {
 
-    GetByIdResponseDTO getById(GetByIdRequestDTO dto);
+    GetForumByIdRes getById(GetForumByIdReq dto);
 
-    CreateResponseDTO create(CreateRequestDTO dto);
+    CreateForumRes create(CreateForumReq dto);
 
-    EditResponseDTO edit(EditRequestDTO dto);
+    EditForumRes edit(EditForumReq dto);
 
-    void updateUpvoters(UpdateUpvotersRequestDTO dto);
+    void updateUpvoters(UpdateForumUpvotersReq dto);
 
-    void delete(DeleteRequestDTO dto);
+    void delete(DeleteForumReq dto);
 }

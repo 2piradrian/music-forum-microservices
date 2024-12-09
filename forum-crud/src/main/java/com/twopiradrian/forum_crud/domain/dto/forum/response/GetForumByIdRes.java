@@ -12,7 +12,7 @@ import java.util.List;
 
 @Getter
 @AllArgsConstructor
-public class GetByIdResponseDTO {
+public class GetForumByIdRes {
 
     private final Long forumId;
 
