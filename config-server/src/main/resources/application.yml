@@ -1,19 +1,18 @@
-server:
-  port: 7777
-
 spring:
   profiles:
-    active: default
-application:
+    active: dev
+  application:
   name: config-server
-cloud:
-  config:
-    server:
-      git:
-        uri: https://github.com/2piradrian/music-forum-microservices.git
-        search-paths: app-config
-        default-label: main
-        clone-on-start: true
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/2piradrian/music-forum-microservices.git
+          search-paths: app-config
+          default-label: main
+          clone-on-start: true
+server:
+  port: 7777
 
 eureka:
   instance:
