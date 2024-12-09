@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    username: music-forum
+    password: music-forum
+    url: jdbc:postgresql://localhost:5432/music-forum
+    hikari:
+      maximum-pool-size: 5
+      connection-timeout: 20000
