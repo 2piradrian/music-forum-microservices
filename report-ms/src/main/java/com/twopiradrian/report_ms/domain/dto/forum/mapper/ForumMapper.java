@@ -2,7 +2,6 @@ package com.twopiradrian.report_ms.domain.dto.forum.mapper;
 
 
 import com.twopiradrian.report_ms.domain.dto.forum.mapper.implementation.*;
-import com.twopiradrian.report_ms.dto.forum.mapper.implementation.*;
 
 public class ForumMapper {
 
