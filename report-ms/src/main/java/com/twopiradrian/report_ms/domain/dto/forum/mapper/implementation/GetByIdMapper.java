@@ -1,17 +1,16 @@
-package com.twopiradrian.forum_crud.domain.dto.forum.mapper.implementation;
+package com.twopiradrian.report_ms.domain.dto.forum.mapper.implementation;
 
-
-import com.twopiradrian.forum_crud.domain.dto.forum.request.GetForumByIdReq;
-import com.twopiradrian.forum_crud.domain.dto.forum.response.GetForumByIdRes;
-import com.twopiradrian.forum_crud.domain.entity.Forum;
+import com.twopiradrian.report_ms.domain.dto.forum.request.GetForumByIdReq;
+import com.twopiradrian.report_ms.domain.dto.forum.response.GetForumByIdRes;
+import com.twopiradrian.report_ms.domain.models.Forum;
 
 import java.util.Map;
 
 public class GetByIdMapper {
 
-    public GetForumByIdReq toRequest(Long forumId) {
+    public GetForumByIdReq toRequest(Map<String, Object> payload) {
         return GetForumByIdReq.create(
-                forumId
+                (Long) payload.get("forumId")
         );
     }
 

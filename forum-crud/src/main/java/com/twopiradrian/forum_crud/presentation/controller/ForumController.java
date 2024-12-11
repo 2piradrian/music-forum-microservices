@@ -17,10 +17,10 @@ public class ForumController {
 
     private final ForumService forumService;
 
-    @GetMapping("/get-by-id")
-    public ResponseEntity<?> getById(@RequestBody Map<String, Object> payload) {
+    @GetMapping("/get-by-id/{forumId}")
+    public ResponseEntity<?> getById(@PathVariable Long forumId) {
         try {
-            GetForumByIdReq dto = ForumMapper.getById().toRequest(payload);
+            GetForumByIdReq dto = ForumMapper.getById().toRequest(forumId);
 
             return ResponseEntity.ok(this.forumService.getById(dto));
         }

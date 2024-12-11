@@ -18,10 +18,10 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/get-by-id")
-    public ResponseEntity<?> getById(@RequestBody Map<String, Object> payload) {
+    @GetMapping("/get-by-id/{userId}")
+    public ResponseEntity<?> getById(@PathVariable Long userId) {
         try {
-            GetUserByIdReq dto = UserMapper.getById().toRequest(payload);
+            GetUserByIdReq dto = UserMapper.getById().toRequest(userId);
 
             return ResponseEntity.ok(this.userService.getById(dto));
         }
