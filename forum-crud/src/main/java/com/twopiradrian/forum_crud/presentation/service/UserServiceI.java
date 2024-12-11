@@ -1,6 +1,6 @@
 package com.twopiradrian.forum_crud.presentation.service;
 
-import com.twopiradrian.forum_crud.data.repository.UserRepository;
+import com.twopiradrian.forum_crud.data.repository.UserRepositoryI;
 import com.twopiradrian.forum_crud.domain.dto.user.mapper.UserMapper;
 import com.twopiradrian.forum_crud.domain.dto.user.request.DeleteUserReq;
 import com.twopiradrian.forum_crud.domain.dto.user.request.LoginUserReq;
@@ -23,14 +23,17 @@ import java.util.Set;
 @AllArgsConstructor
 public class UserServiceI implements UserService {
 
-    private final UserRepository userRepository;
+    private final UserRepositoryI userRepository;
 
     @Override
     public GetUserByIdRes getById(GetUserByIdReq dto) {
-        User existingUser = this.userRepository.findById(dto.getUserId())
-                .orElseThrow(() -> new ErrorHandler(ErrorType.USER_NOT_FOUND));
+        User user = this.userRepository.getById(dto.getUserId());
 
-        return UserMapper.getById().toResponse(existingUser);
+        if (user == null) {
+            throw new ErrorHandler(ErrorType.USER_NOT_FOUND);
+        }
+
+        return UserMapper.getById().toResponse(user);
     }
 
     @Override
@@ -45,9 +48,9 @@ public class UserServiceI implements UserService {
         user.setMemberSince(java.time.LocalDateTime.now());
         user.setLastLogin(java.time.LocalDateTime.now());
 
-        User savedUser = userRepository.save(user);
+        this.userRepository.save(user);
 
-        return UserMapper.register().toResponse(savedUser);
+        return UserMapper.register().toResponse(user);
     }
 
     @Override
@@ -57,7 +60,13 @@ public class UserServiceI implements UserService {
 
     @Override
     public void delete(DeleteUserReq dto) {
+        User user = this.userRepository.getById(dto.getUserId());
 
+        if (user == null) {
+            throw new ErrorHandler(ErrorType.USER_NOT_FOUND);
+        }
+
+        this.userRepository.deleteById(dto.getUserId());
     }
 
 }

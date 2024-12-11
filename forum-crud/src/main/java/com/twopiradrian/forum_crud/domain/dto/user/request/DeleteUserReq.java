@@ -3,7 +3,9 @@ package com.twopiradrian.forum_crud.domain.dto.user.request;
 
 import com.twopiradrian.forum_crud.domain.error.ErrorHandler;
 import com.twopiradrian.forum_crud.domain.error.ErrorType;
+import lombok.Getter;
 
+@Getter
 public class DeleteUserReq {
 
     private final Long userId;

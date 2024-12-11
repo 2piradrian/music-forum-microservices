@@ -1,4 +1,4 @@
-package com.twopiradrian.forum_crud.data.repository;
+package com.twopiradrian.forum_crud.infrastructure.repository;
 
 import com.twopiradrian.forum_crud.domain.entity.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
