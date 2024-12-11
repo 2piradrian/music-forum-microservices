@@ -11,7 +11,7 @@ spring:
 
 server:
   servlet:
-    context-path: /forum-crud
+    context-path: /report-ms
   port: 0
 
 eureka:

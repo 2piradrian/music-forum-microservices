@@ -21,6 +21,7 @@ server:
   servlet:
     context-path: /forum-crud
   port: 0
+
 logging:
   level:
     org:
