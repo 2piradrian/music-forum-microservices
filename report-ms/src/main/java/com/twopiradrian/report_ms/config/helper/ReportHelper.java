@@ -1,4 +1,4 @@
-package com.twopiradrian.report_ms.domain.helper;
+package com.twopiradrian.report_ms.config.helper;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

@@ -1,7 +1,7 @@
 package com.twopiradrian.report_ms.presentation.service;
 
 import com.twopiradrian.report_ms.data.repository.ForumRepository;
-import com.twopiradrian.report_ms.domain.helper.ReportHelper;
+import com.twopiradrian.report_ms.config.helper.ReportHelper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
