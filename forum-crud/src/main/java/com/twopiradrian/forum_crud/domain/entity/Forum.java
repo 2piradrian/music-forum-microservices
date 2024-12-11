@@ -15,6 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "forums")
 public class Forum {
 
     @Id
