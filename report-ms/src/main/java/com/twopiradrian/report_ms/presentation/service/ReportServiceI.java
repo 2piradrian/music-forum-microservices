@@ -2,9 +2,15 @@ package com.twopiradrian.report_ms.presentation.service;
 
 import com.twopiradrian.report_ms.data.repository.ForumRepository;
 import com.twopiradrian.report_ms.config.helper.ReportHelper;
+import com.twopiradrian.report_ms.domain.models.Category;
 import com.twopiradrian.report_ms.domain.models.Forum;
+import com.twopiradrian.report_ms.domain.models.User;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -28,16 +34,6 @@ public class ReportServiceI implements ReportService {
         forum.setCreatedAt(forumFromDB.getCreatedAt());
 
         return reportHelper.readReportTemplate(forum);
-    }
-
-    @Override
-    public String saveReport(String reportName) {
-        return "";
-    }
-
-    @Override
-    public void deleteReport(String reportName) {
-
     }
 
 }

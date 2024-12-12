@@ -8,9 +8,9 @@ import java.util.Map;
 
 public class GetByIdMapper {
 
-    public GetForumByIdReq toRequest(Map<String, Object> payload) {
+    public GetForumByIdReq toRequest(Long forumId) {
         return GetForumByIdReq.create(
-                (Long) payload.get("forumId")
+                forumId
         );
     }
 
