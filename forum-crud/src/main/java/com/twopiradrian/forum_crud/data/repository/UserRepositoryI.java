@@ -1,6 +1,8 @@
 package com.twopiradrian.forum_crud.data.repository;
 
-import com.twopiradrian.forum_crud.data.postgres.PostgresUserRepository;
+import com.twopiradrian.forum_crud.data.postgres.mapper.UserEntityMapper;
+import com.twopiradrian.forum_crud.data.postgres.model.UserModel;
+import com.twopiradrian.forum_crud.data.postgres.repository.PostgresUserRepository;
 import com.twopiradrian.forum_crud.domain.entity.User;
 import com.twopiradrian.forum_crud.domain.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -14,17 +16,20 @@ public class UserRepositoryI implements UserRepository {
 
     @Override
     public User getById(Long userId) {
-        return userRepository.findById(userId).orElse(null);
+        UserModel userModel = userRepository.findById(userId).orElse(null);
+        return userModel != null ? UserEntityMapper.toDomain(userModel) : null;
     }
 
     @Override
     public void save(User user) {
-        userRepository.save(user);
+        UserModel userModel = UserEntityMapper.toModel(user);
+        userRepository.save(userModel);
     }
 
     @Override
     public void update(User user) {
-        userRepository.save(user);
+        UserModel userModel = UserEntityMapper.toModel(user);
+        userRepository.save(userModel);
     }
 
     @Override

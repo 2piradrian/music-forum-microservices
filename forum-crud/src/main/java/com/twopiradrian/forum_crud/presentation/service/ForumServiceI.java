@@ -1,6 +1,5 @@
 package com.twopiradrian.forum_crud.presentation.service;
 
-import com.twopiradrian.forum_crud.data.postgres.PostgresUserRepository;
 import com.twopiradrian.forum_crud.data.repository.ForumRepositoryI;
 import com.twopiradrian.forum_crud.data.repository.UserRepositoryI;
 import com.twopiradrian.forum_crud.domain.dto.forum.mapper.ForumMapper;
