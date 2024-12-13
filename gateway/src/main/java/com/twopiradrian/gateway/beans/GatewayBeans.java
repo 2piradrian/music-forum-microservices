@@ -13,10 +13,17 @@ public class GatewayBeans {
         return builder.routes()
                 .route(r -> r
                         .path("/api/forum/**")
+                        .filters(f -> f.rewritePath("/api/forum/(?<segment>.*)", "/forum-crud/api/forum/${segment}"))
                         .uri("lb://forum-crud")
                 )
                 .route(r -> r
-                        .path("/api/report/**")
+                        .path("/api/users/**")
+                        .filters(f -> f.rewritePath("/api/users/(?<segment>.*)", "/forum-crud/api/users/${segment}"))
+                        .uri("lb://forum-crud")
+                )
+                .route(r -> r
+                        .path("/report/**")
+                        .filters(f -> f.rewritePath("/report/(?<segment>.*)", "/report-ms/report/${segment}"))
                         .uri("lb://report-ms")
                 )
                 .build();

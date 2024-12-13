@@ -12,4 +12,8 @@ public class ErrorHandler extends RuntimeException {
         this.httpCode = errorType.getHttpCode();
     }
 
+    public ErrorResponse toResponse() {
+        return new ErrorResponse(this);
+    }
+
 }

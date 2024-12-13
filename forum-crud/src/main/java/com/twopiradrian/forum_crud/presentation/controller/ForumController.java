@@ -3,6 +3,7 @@ package com.twopiradrian.forum_crud.presentation.controller;
 import com.twopiradrian.forum_crud.domain.dto.forum.mapper.ForumMapper;
 import com.twopiradrian.forum_crud.domain.dto.forum.request.*;
 import com.twopiradrian.forum_crud.domain.error.ErrorHandler;
+import com.twopiradrian.forum_crud.domain.error.ErrorResponse;
 import com.twopiradrian.forum_crud.presentation.service.ForumService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class ForumController {
             return ResponseEntity.ok(this.forumService.getById(dto));
         }
         catch (ErrorHandler e) {
-            return ResponseEntity.status(e.getHttpCode()).body(e.getMessage());
+            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
         }
     }
 
@@ -37,7 +38,7 @@ public class ForumController {
             return ResponseEntity.ok(this.forumService.create(dto));
         }
         catch (ErrorHandler e) {
-            return ResponseEntity.status(e.getHttpCode()).body(e.getMessage());
+            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
         }
     }
 
@@ -49,7 +50,7 @@ public class ForumController {
             return ResponseEntity.ok(this.forumService.edit(dto));
         }
         catch (ErrorHandler e) {
-            return ResponseEntity.status(e.getHttpCode()).body(e.getMessage());
+            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
         }
     }
 
@@ -62,7 +63,7 @@ public class ForumController {
             return ResponseEntity.ok().build();
         }
         catch (ErrorHandler e) {
-            return ResponseEntity.status(e.getHttpCode()).body(e.getMessage());
+            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
         }
     }
 
@@ -75,7 +76,7 @@ public class ForumController {
             return ResponseEntity.ok().build();
         }
         catch (ErrorHandler e) {
-            return ResponseEntity.status(e.getHttpCode()).body(e.getMessage());
+            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
         }
     }
 

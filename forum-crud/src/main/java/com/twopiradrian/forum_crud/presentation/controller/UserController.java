@@ -13,7 +13,7 @@ import java.util.Map;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 public class UserController {
 
     private final UserService userService;
@@ -26,7 +26,7 @@ public class UserController {
             return ResponseEntity.ok(this.userService.getById(dto));
         }
         catch (ErrorHandler e) {
-            return ResponseEntity.status(e.getHttpCode()).body(e.getMessage());
+            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
         }
     }
 
@@ -38,7 +38,7 @@ public class UserController {
             return ResponseEntity.ok(this.userService.register(dto));
         }
         catch (ErrorHandler e) {
-            return ResponseEntity.status(e.getHttpCode()).body(e.getMessage());
+            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
         }
     }
 }
