@@ -1,2 +1,5 @@
 /postgres
 /mongo
+
+/forum-main-db
+/forum-fallback-db

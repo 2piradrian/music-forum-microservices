@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
 
-  postgres-db:
+  forum-main-db:
     image: postgres:15.3
     restart: always
     environment:
@@ -10,6 +10,18 @@ services:
       POSTGRES_USER: 'music-forum'
       POSTGRES_PASSWORD: 'music-forum'
     volumes:
-      - ./postgres:/var/lib/postgresql/data
+      - ./forum-main-db:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - 5432:5432 # default port
+
+  forum-fallback-db:
+    image: postgres:15.3
+    restart: always
+    environment:
+      POSTGRES_DB: 'music-forum'
+      POSTGRES_USER: 'music-forum'
+      POSTGRES_PASSWORD: 'music-forum'
+    volumes:
+      - ./forum-fallback-db:/var/lib/postgresql/data
+    ports:
+      - 5433:5432 # different port
