@@ -1,28 +1,11 @@
 package com.twopiradrian.report_ms.domain.dto.forum.mapper;
 
-
-import com.twopiradrian.report_ms.domain.dto.forum.mapper.implementation.*;
+import com.twopiradrian.report_ms.domain.dto.forum.implementation.MakeMonthlyForumReportMapper;
 
 public class ForumMapper {
 
-    public static CreateMapper create() {
-        return new CreateMapper();
-    }
-
-    public static DeleteMapper delete() {
-        return new DeleteMapper();
-    }
-
-    public static EditMapper edit() {
-        return new EditMapper();
-    }
-
-    public static GetByIdMapper getById() {
-        return new GetByIdMapper();
-    }
-
-    public static UpdateUpvotersMapper updateUpvoters() {
-        return new UpdateUpvotersMapper();
+    public static MakeMonthlyForumReportMapper makeMonthlyReport() {
+        return new MakeMonthlyForumReportMapper();
     }
 
 }

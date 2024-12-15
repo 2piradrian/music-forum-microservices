@@ -1,8 +1,13 @@
 package com.twopiradrian.report_ms.presentation.service;
 
-import com.twopiradrian.report_ms.data.repository.ForumRepository;
+import com.twopiradrian.report_ms.data.repository.ForumRepositoryI;
 import com.twopiradrian.report_ms.config.helper.ReportHelper;
-import com.twopiradrian.report_ms.domain.models.Forum;
+import com.twopiradrian.report_ms.domain.dto.forum.mapper.ForumMapper;
+import com.twopiradrian.report_ms.domain.dto.forum.request.MakeMonthlyForumReportReq;
+import com.twopiradrian.report_ms.domain.dto.forum.response.MakeMonthlyForumReportRes;
+import com.twopiradrian.report_ms.domain.entity.Forum;
+import com.twopiradrian.report_ms.domain.error.ErrorHandler;
+import com.twopiradrian.report_ms.domain.error.ErrorType;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,24 +16,21 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class ReportServiceI implements ReportService {
 
-    private final ForumRepository forumRepository;
+    private final ForumRepositoryI forumRepository;
     private final ReportHelper reportHelper;
 
     @Override
-    public String makeReport(Long id) {
-        var forumFromDB = this.forumRepository.getForumById(id).orElseThrow();
+    public MakeMonthlyForumReportRes makeMonthlyForumReport(MakeMonthlyForumReportReq dto) {
+        var forums = this.forumRepository.getMonthlyForums(dto.getMonth(), dto.getYear());
 
-        Forum forum = new Forum();
-        forum.setId(forumFromDB.getForumId());
-        forum.setAuthor(forumFromDB.getAuthor());
-        forum.setTitle(forumFromDB.getTitle());
-        forum.setContent(forumFromDB.getContent());
-        forum.setViews(forumFromDB.getViews());
-        forum.setCategory(forumFromDB.getCategory());
-        forum.setComments(forumFromDB.getComments());
-        forum.setCreatedAt(forumFromDB.getCreatedAt());
+        if (forums == null || forums.isEmpty()) {
+            throw new ErrorHandler(ErrorType.FORUM_NOT_FOUND);
+        }
 
-        return reportHelper.readReportTemplate(forum);
+        // TODO: Implement the logic to generate the report from the list of forums
+        String report = reportHelper.readReportTemplate(new Forum());
+
+        return ForumMapper.makeMonthlyReport().toResponse(report);
     }
 
 }

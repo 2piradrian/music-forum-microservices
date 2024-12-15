@@ -1,4 +1,4 @@
-package com.twopiradrian.report_ms.domain.models;
+package com.twopiradrian.report_ms.domain.entity;
 
 public enum Category {
     ALBUMS,

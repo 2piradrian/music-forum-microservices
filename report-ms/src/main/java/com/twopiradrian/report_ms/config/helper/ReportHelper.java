@@ -1,7 +1,6 @@
 package com.twopiradrian.report_ms.config.helper;
 
-import com.twopiradrian.report_ms.domain.models.Forum;
-import lombok.extern.slf4j.Slf4j;
+import com.twopiradrian.report_ms.domain.entity.Forum;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 

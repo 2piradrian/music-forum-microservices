@@ -1,25 +1,32 @@
 package com.twopiradrian.report_ms.presentation.controller;
 
+import com.twopiradrian.report_ms.domain.dto.forum.mapper.ForumMapper;
+import com.twopiradrian.report_ms.domain.dto.forum.request.MakeMonthlyForumReportReq;
+import com.twopiradrian.report_ms.domain.error.ErrorHandler;
 import com.twopiradrian.report_ms.presentation.service.ReportService;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
 @RestController
-@RequestMapping(path = "report")
 @AllArgsConstructor
+@RequestMapping(path = "report")
 public class ReportController {
 
     private ReportService reportService;
 
-    @GetMapping(path = "{forumId}")
-    public ResponseEntity<Map<String, String>> makeReport(@PathVariable Long forumId) {
-        var response = Map.of("report", this.reportService.makeReport(forumId));
+    @PostMapping
+    public ResponseEntity<?> makeMonthlyForumReport(@RequestBody Map<String, Object> payload) {
+        try {
+            MakeMonthlyForumReportReq dto = ForumMapper.makeMonthlyReport().toRequest(payload);
 
-        return ResponseEntity.ok(response);
+            return ResponseEntity.ok(this.reportService.makeMonthlyForumReport(dto));
+        }
+        catch (ErrorHandler e) {
+            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
+        }
     }
 
 }
