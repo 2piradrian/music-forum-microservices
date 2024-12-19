@@ -5,6 +5,8 @@ import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Set;
+
 @Configuration
 public class GatewayBeans {
 
@@ -12,19 +14,16 @@ public class GatewayBeans {
     public RouteLocator routeLocator(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route(r -> r
-                        .path("/api/forum/**")
-                        .filters(f -> f.rewritePath("/api/forum/(?<segment>.*)", "/forum-crud/api/forum/${segment}"))
+                        .path("/forum-crud/**")
+                        .filters(f -> f.circuitBreaker(c -> c
+                                .setName("gateway-cb")
+                                .setFallbackUri("forward:/forum-crud-fallback/**")
+                        ))
                         .uri("lb://forum-crud")
                 )
                 .route(r -> r
-                        .path("/api/users/**")
-                        .filters(f -> f.rewritePath("/api/users/(?<segment>.*)", "/forum-crud/api/users/${segment}"))
-                        .uri("lb://forum-crud")
-                )
-                .route(r -> r
-                        .path("/report/**")
-                        .filters(f -> f.rewritePath("/report/(?<segment>.*)", "/report-ms/report/${segment}"))
-                        .uri("lb://report-ms")
+                        .path("/forum-crud-fallback/**")
+                        .uri("lb://forum-crud-fallback")
                 )
                 .build();
     }

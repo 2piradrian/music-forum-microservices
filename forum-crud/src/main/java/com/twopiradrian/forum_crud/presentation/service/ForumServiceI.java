@@ -29,6 +29,13 @@ public class ForumServiceI implements ForumService {
     public GetForumByIdRes getById(GetForumByIdReq dto) {
         Forum forum = this.forumRepository.getById(dto.getForumId());
 
+        // simulating a latency
+        try {
+            Thread.sleep(6000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         if(forum == null) {
             throw new ErrorHandler(ErrorType.FORUM_NOT_FOUND);
         }
