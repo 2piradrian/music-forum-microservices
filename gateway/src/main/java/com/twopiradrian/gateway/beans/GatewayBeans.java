@@ -14,16 +14,19 @@ public class GatewayBeans {
     public RouteLocator routeLocator(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route(r -> r
-                        .path("/forum-crud/**")
-                        .filters(f -> f.circuitBreaker(c -> c
-                                .setName("gateway-cb")
-                                .setFallbackUri("forward:/forum-crud-fallback/**")
-                        ))
+                        .path("/api/forum/**")
+                        .filters(f -> f.rewritePath("/api/forum/(?<segment>.*)", "/forum-crud/api/forum/${segment}"))
                         .uri("lb://forum-crud")
                 )
                 .route(r -> r
-                        .path("/forum-crud-fallback/**")
-                        .uri("lb://forum-crud-fallback")
+                        .path("/api/users/**")
+                        .filters(f -> f.rewritePath("/api/users/(?<segment>.*)", "/user-crud/api/users/${segment}"))
+                        .uri("lb://forum-crud")
+                )
+                .route(r -> r
+                        .path("/api/report/**")
+                        .filters(f -> f.rewritePath("/api/report/(?<segment>.*)", "/report-ms/api/report/${segment}"))
+                        .uri("lb://report-ms")
                 )
                 .build();
     }
