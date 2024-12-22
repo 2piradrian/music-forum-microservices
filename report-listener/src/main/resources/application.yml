@@ -1,0 +1,38 @@
+spring:
+
+  application:
+    name: report-listener
+
+  profiles:
+    default: default
+
+  config:
+    import: "optional:configserver:http://localhost:7777"
+
+  data:
+    mongodb:
+      authentication-database: ${spring.data.mongodb.authentication-database}
+      host: ${spring.data.mongodb.host}
+      port: ${spring.data.mongodb.port}
+      username: ${spring.data.mongodb.username}
+      password: ${spring.data.mongodb.password}
+
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:9092
+      function:
+        binding:
+          consumer-report-in-0:
+            destination: consumer-report
+
+server:
+  port: 0
+
+eureka:
+  instance:
+    instance-id: "${spring.application.name}:${random.value}"
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
