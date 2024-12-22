@@ -9,6 +9,16 @@ spring:
   config:
     import: "optional:configserver:http://localhost:7777"
 
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:9092
+      function:
+        binding:
+          consumer-report-out-0:
+            destination: consumer-report
+
 server:
   servlet:
     context-path: /report-ms

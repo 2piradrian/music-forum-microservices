@@ -1,5 +1,6 @@
 package com.twopiradrian.report_ms.presentation.service;
 
+import com.twopiradrian.report_ms.config.streams.ReportPublisher;
 import com.twopiradrian.report_ms.data.repository.ForumRepositoryI;
 import com.twopiradrian.report_ms.config.helper.ReportHelper;
 import com.twopiradrian.report_ms.domain.dto.forum.mapper.ForumMapper;
@@ -17,7 +18,9 @@ import org.springframework.stereotype.Service;
 public class ReportServiceI implements ReportService {
 
     private final ForumRepositoryI forumRepository;
+
     private final ReportHelper reportHelper;
+    private final ReportPublisher reportPublisher;
 
     @Override
     public MakeMonthlyForumReportRes makeMonthlyForumReport(MakeMonthlyForumReportReq dto) {
@@ -29,6 +32,8 @@ public class ReportServiceI implements ReportService {
 
         // TODO: Implement the logic to generate the report from the list of forums
         String report = reportHelper.readReportTemplate(new Forum());
+
+        this.reportPublisher.publishReport(report);
 
         return ForumMapper.makeMonthlyReport().toResponse(report);
     }
