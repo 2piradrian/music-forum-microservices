@@ -12,7 +12,7 @@ services:
     volumes:
       - ./forum-main-db:/var/lib/postgresql/data
     ports:
-      - 5432:5432 # default port
+      - 5432:5432 # default port for main db
 
   forum-fallback-db:
     image: postgres:15.3
@@ -24,4 +24,46 @@ services:
     volumes:
       - ./forum-fallback-db:/var/lib/postgresql/data
     ports:
-      - 5433:5432 # different port
+      - 5433:5432 # different port for fallback db
+
+  reports-db:
+    image: mongo:7.0.5
+    restart: always
+    container_name: mongo-db
+    hostname: mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: 'music-forum'
+      MONGO_INITDB_ROOT_PASSWORD: 'music-forum'
+      MONGO_INITDB_DATABASE: 'reports'
+    volumes:
+      - ./reports-db:/data/db
+    ports:
+      - "27017:27017"
+
+  zookeeper:
+      image: confluentinc/cp-zookeeper:7.4.3
+      container_name: zookeeper-lb
+      restart: always
+      environment:
+        ZOOKEEPER_CLIENT_PORT: 2181
+        ZOOKEEPER_TICK_TIME: 2000
+      ports:
+        - "2181:2181"
+
+  kafka:
+    image: confluentinc/cp-kafka:7.4.3
+    container_name: msg-broker
+    restart: always
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://broker:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+    ports:
+      - "9092:9092"
+      
