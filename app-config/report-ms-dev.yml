@@ -1,2 +1,0 @@
-report:
-  template: "{The forum {forumId} was created by {userId} at {createdAt}, and has {views} views}"

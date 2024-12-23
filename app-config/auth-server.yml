@@ -2,7 +2,7 @@ spring:
   datasource:
     username: music-forum
     password: music-forum
-    url: jdbc:postgresql://localhost:5433/music-forum
+    url: jdbc:postgresql://localhost:5433/users-db
     hikari:
       maximum-pool-size: 5
       connection-timeout: 20000
