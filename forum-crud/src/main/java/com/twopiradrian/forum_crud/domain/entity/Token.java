@@ -1,4 +1,4 @@
-package com.twopiradrian.gateway.entity;
+package com.twopiradrian.forum_crud.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -9,6 +9,8 @@ public interface AuthService {
 
     String validateToken(String token);
 
+    String getSubject(String token);
+
     Token createToken(User user);
 
 }

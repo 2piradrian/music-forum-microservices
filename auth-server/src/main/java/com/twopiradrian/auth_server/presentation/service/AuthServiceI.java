@@ -23,6 +23,7 @@ public class AuthServiceI implements AuthService {
 
     @Override
     public Token createToken(User user) {
+
         return new Token(this.jwtHelper.createToken(user));
     }
 
@@ -33,6 +34,11 @@ public class AuthServiceI implements AuthService {
         }
         
         return null;
+    }
+
+    @Override
+    public String getSubject(String token) {
+        return this.jwtHelper.getSubject(token);
     }
 
 }

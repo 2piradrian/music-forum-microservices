@@ -3,10 +3,10 @@ package com.twopiradrian.auth_server.presentation.service;
 import com.twopiradrian.auth_server.data.repository.UserRepositoryI;
 import com.twopiradrian.auth_server.domain.dto.user.mapper.UserMapper;
 import com.twopiradrian.auth_server.domain.dto.user.request.*;
-import com.twopiradrian.auth_server.domain.dto.user.response.CredentialsLoginUserRes;
+import com.twopiradrian.auth_server.domain.dto.user.response.LoginUserRes;
 import com.twopiradrian.auth_server.domain.dto.user.response.GetUserByIdRes;
 import com.twopiradrian.auth_server.domain.dto.user.response.RegisterUserRes;
-import com.twopiradrian.auth_server.domain.dto.user.response.TokenLoginUserRes;
+import com.twopiradrian.auth_server.domain.dto.user.response.AuthUserRes;
 import com.twopiradrian.auth_server.domain.entity.Role;
 import com.twopiradrian.auth_server.domain.entity.Token;
 import com.twopiradrian.auth_server.domain.entity.User;
@@ -57,7 +57,7 @@ public class UserServiceI implements UserService {
     }
 
     @Override
-    public CredentialsLoginUserRes credentialsLogin(CredentialsLoginUserReq dto) {
+    public LoginUserRes login(LoginUserReq dto) {
         User userFromDB = this.userRepository.getByEmail(dto.getEmail());
 
         if (userFromDB == null) {
@@ -70,17 +70,21 @@ public class UserServiceI implements UserService {
 
         final var token = this.authService.createToken(userFromDB);
 
-        return UserMapper.credentialsLogin().toResponse(token);
+        return UserMapper.login().toResponse(token);
     }
 
     @Override
-    public TokenLoginUserRes tokenLoginUser(TokenLoginUserReq dto) {
-        final var validatedToken = this.authService.validateToken(dto.getAccessToken());
+    public AuthUserRes auth(AuthUserReq dto) {
+        String token = this.authService.validateToken(dto.getAccessToken());
 
-        Token token = new Token();
-        token.setAccessToken(validatedToken);
+        if (token == null) { // null means token is invalid
+            throw new ErrorHandler(ErrorType.INVALID_TOKEN);
+        }
 
-        return UserMapper.tokenLogin().toResponse(token);
+        String subject = this.authService.getSubject(token);
+        User user = this.userRepository.getByEmail(subject);
+
+        return UserMapper.auth().toResponse(user);
     }
 
     @Override

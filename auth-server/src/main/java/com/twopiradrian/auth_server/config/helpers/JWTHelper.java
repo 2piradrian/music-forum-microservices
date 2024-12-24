@@ -27,6 +27,10 @@ public class JWTHelper {
         return expirationDate.after(new Date());
     }
 
+    public String getSubject(String token) {
+        return this.getClaims(token, Claims::getSubject);
+    }
+
     public String createToken (User user) {
         final var now = new Date();
         final var expirationDate = new Date(now.getTime() + this.expiration);

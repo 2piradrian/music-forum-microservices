@@ -2,9 +2,9 @@ package com.twopiradrian.auth_server.presentation.controller;
 
 import com.twopiradrian.auth_server.domain.dto.user.mapper.UserMapper;
 import com.twopiradrian.auth_server.domain.dto.user.request.GetUserByIdReq;
-import com.twopiradrian.auth_server.domain.dto.user.request.CredentialsLoginUserReq;
+import com.twopiradrian.auth_server.domain.dto.user.request.LoginUserReq;
 import com.twopiradrian.auth_server.domain.dto.user.request.RegisterUserReq;
-import com.twopiradrian.auth_server.domain.dto.user.request.TokenLoginUserReq;
+import com.twopiradrian.auth_server.domain.dto.user.request.AuthUserReq;
 import com.twopiradrian.auth_server.domain.error.ErrorHandler;
 import com.twopiradrian.auth_server.presentation.service.UserService;
 import lombok.AllArgsConstructor;
@@ -44,24 +44,24 @@ public class UserController {
         }
     }
 
-    @PostMapping("/login/credentials")
+    @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Map<String, Object> payload) {
         try {
-            CredentialsLoginUserReq dto = UserMapper.credentialsLogin().toRequest(payload);
+            LoginUserReq dto = UserMapper.login().toRequest(payload);
 
-            return ResponseEntity.ok(this.userService.credentialsLogin(dto));
+            return ResponseEntity.ok(this.userService.login(dto));
         }
         catch (ErrorHandler e) {
             return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
         }
     }
 
-    @GetMapping("/login/token")
+    @GetMapping("/auth")
     public ResponseEntity<?> login(@RequestHeader("Authorization") String token) {
         try {
-            TokenLoginUserReq dto = UserMapper.tokenLogin().toRequest(token);
+            AuthUserReq dto = UserMapper.auth().toRequest(token);
 
-            return ResponseEntity.ok(this.userService.tokenLoginUser(dto));
+            return ResponseEntity.ok(this.userService.auth(dto));
         }
         catch (ErrorHandler e) {
             return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());

@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class CredentialsLoginUserRes {
+public class LoginUserRes {
 
     private final Token token;
 
