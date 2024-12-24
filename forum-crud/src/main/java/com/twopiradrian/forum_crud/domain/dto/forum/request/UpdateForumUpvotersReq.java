@@ -7,16 +7,23 @@ import lombok.Getter;
 @Getter
 public class UpdateForumUpvotersReq {
 
+    private final String token;
+
     private final Long userId;
 
     private final Long forumId;
 
-    private UpdateForumUpvotersReq(Long userId, Long forumId) {
+    private UpdateForumUpvotersReq(String token, Long userId, Long forumId) {
+        this.token = token;
         this.userId = userId;
         this.forumId = forumId;
     }
 
-    public static UpdateForumUpvotersReq create(Long userId, Long forumId) {
+    public static UpdateForumUpvotersReq create(String token, Long userId, Long forumId) {
+
+        if (token == null) {
+            throw new ErrorHandler(ErrorType.UNAUTHORIZED);
+        }
 
         if (userId == null || forumId == null) {
             throw new ErrorHandler(ErrorType.MISSING_REQUIRED_FIELDS);
@@ -26,6 +33,6 @@ public class UpdateForumUpvotersReq {
             throw new ErrorHandler(ErrorType.INVALID_FIELDS);
         }
 
-        return new UpdateForumUpvotersReq(userId, forumId);
+        return new UpdateForumUpvotersReq(token, userId, forumId);
     }
 }

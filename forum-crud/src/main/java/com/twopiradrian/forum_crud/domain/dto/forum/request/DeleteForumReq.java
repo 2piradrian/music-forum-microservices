@@ -7,13 +7,20 @@ import lombok.Getter;
 @Getter
 public class DeleteForumReq {
 
+    private final String token;
+
     private final Long forumId;
 
-    private DeleteForumReq(Long forumId) {
+    private DeleteForumReq(String token, Long forumId) {
+        this.token = token;
         this.forumId = forumId;
     }
 
-    public static DeleteForumReq create(Long forumId) {
+    public static DeleteForumReq create(String token, Long forumId) {
+
+        if (token == null) {
+            throw new ErrorHandler(ErrorType.UNAUTHORIZED);
+        }
 
         if (forumId == null) {
             throw new ErrorHandler(ErrorType.MISSING_REQUIRED_FIELDS);
@@ -23,6 +30,6 @@ public class DeleteForumReq {
             throw new ErrorHandler(ErrorType.INVALID_FIELDS);
         }
 
-        return new DeleteForumReq(forumId);
+        return new DeleteForumReq(token, forumId);
     }
 }

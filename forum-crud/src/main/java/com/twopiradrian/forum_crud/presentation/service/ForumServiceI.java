@@ -29,10 +29,7 @@ public class ForumServiceI implements ForumService {
     @Override
     public GetForumByIdRes getById(GetForumByIdReq dto) {
         Forum forum = this.forumRepository.getById(dto.getForumId());
-
-        if(forum == null) {
-            throw new ErrorHandler(ErrorType.FORUM_NOT_FOUND);
-        }
+        if(forum == null) throw new ErrorHandler(ErrorType.FORUM_NOT_FOUND);
 
         Long views = forum.getViews();
         forum.setViews(views + 1);
@@ -45,7 +42,6 @@ public class ForumServiceI implements ForumService {
     @Override
     public CreateForumRes create(CreateForumReq dto) {
         TokenClaims claims = this.authRepository.auth(dto.getToken());
-
         if (claims == null) throw new ErrorHandler(ErrorType.UNAUTHORIZED);
 
         Forum forum = new Forum();
@@ -68,9 +64,15 @@ public class ForumServiceI implements ForumService {
 
     @Override
     public EditForumRes edit(EditForumReq dto) {
-        Forum forum = this.forumRepository.getById(dto.getForumId());
+        TokenClaims claims = this.authRepository.auth(dto.getToken());
+        if (claims == null) throw new ErrorHandler(ErrorType.UNAUTHORIZED);
 
+        Forum forum = this.forumRepository.getById(dto.getForumId());
         if (forum == null) throw new ErrorHandler(ErrorType.FORUM_NOT_FOUND);
+
+        if (!forum.getAuthorId().equals(claims.getUserId())) {
+            throw new ErrorHandler(ErrorType.UNAUTHORIZED);
+        }
 
         forum.setTitle(dto.getTitle());
         forum.setContent(dto.getContent());
@@ -82,19 +84,14 @@ public class ForumServiceI implements ForumService {
 
     @Override
     public void updateUpvoters(UpdateForumUpvotersReq dto) {
+        TokenClaims claims = this.authRepository.auth(dto.getToken());
+        if (claims == null) throw new ErrorHandler(ErrorType.UNAUTHORIZED);
+
         Forum forum = this.forumRepository.getById(dto.getForumId());
+        if (forum == null) throw new ErrorHandler(ErrorType.FORUM_NOT_FOUND);
 
-        if (forum == null) {
-            throw new ErrorHandler(ErrorType.FORUM_NOT_FOUND);
-        }
-
-        User user = this.userRepository.getById(dto.getUserId());
-
-        if (user == null) {
-            throw new ErrorHandler(ErrorType.USER_NOT_FOUND);
-        }
-
-        Set<User> upvoters = forum.getUpvoters();
+        Set<Long> upvoters = forum.getUpvoters();
+        Long user = claims.getUserId();
 
         if (upvoters.contains(user)) {
             upvoters.remove(user);
@@ -108,10 +105,14 @@ public class ForumServiceI implements ForumService {
 
     @Override
     public void delete(DeleteForumReq dto) {
-        Forum forum = this.forumRepository.getById(dto.getForumId());
+        TokenClaims claims = this.authRepository.auth(dto.getToken());
+        if (claims == null) throw new ErrorHandler(ErrorType.UNAUTHORIZED);
 
-        if (forum == null) {
-            throw new ErrorHandler(ErrorType.FORUM_NOT_FOUND);
+        Forum forum = this.forumRepository.getById(dto.getForumId());
+        if (forum == null) throw new ErrorHandler(ErrorType.FORUM_NOT_FOUND);
+
+        if (!forum.getAuthorId().equals(claims.getUserId())) {
+            throw new ErrorHandler(ErrorType.UNAUTHORIZED);
         }
 
         forumRepository.deleteById(dto.getForumId());
