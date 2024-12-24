@@ -13,4 +13,12 @@ public class UserMapper {
         return new RegisterMapper();
     }
 
+    public static CredentialsLoginMapper credentialsLogin() {
+        return new CredentialsLoginMapper();
+    }
+
+    public static TokenLoginMapper tokenLogin() {
+        return new TokenLoginMapper();
+    }
+
 }

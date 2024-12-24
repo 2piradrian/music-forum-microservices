@@ -32,7 +32,7 @@ public class JWTHelper {
         final var expirationDate = new Date(now.getTime() + this.expiration);
 
         return Jwts.builder()
-                .setSubject(user.getUsername())
+                .setSubject(user.getEmail())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(expirationDate)
                 .signWith(this.getSecretKey())

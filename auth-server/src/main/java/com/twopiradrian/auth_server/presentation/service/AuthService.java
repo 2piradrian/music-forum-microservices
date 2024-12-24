@@ -7,7 +7,8 @@ public interface AuthService {
 
     Boolean validatePassword(User user, String password);
 
-    Token validateToken(Token token);
+    String validateToken(String token);
 
     Token createToken(User user);
+
 }

@@ -27,8 +27,8 @@ public class AuthServiceI implements AuthService {
     }
 
     @Override
-    public Token validateToken(Token token) {
-        if (this.jwtHelper.validateToken(token.getAccessToken())) {
+    public String validateToken(String token) {
+        if (this.jwtHelper.validateToken(token)) {
             return token;
         }
         

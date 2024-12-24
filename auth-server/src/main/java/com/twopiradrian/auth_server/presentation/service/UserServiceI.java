@@ -2,12 +2,11 @@ package com.twopiradrian.auth_server.presentation.service;
 
 import com.twopiradrian.auth_server.data.repository.UserRepositoryI;
 import com.twopiradrian.auth_server.domain.dto.user.mapper.UserMapper;
-import com.twopiradrian.auth_server.domain.dto.user.request.DeleteUserReq;
-import com.twopiradrian.auth_server.domain.dto.user.request.GetUserByIdReq;
-import com.twopiradrian.auth_server.domain.dto.user.request.LoginUserReq;
-import com.twopiradrian.auth_server.domain.dto.user.request.RegisterUserReq;
+import com.twopiradrian.auth_server.domain.dto.user.request.*;
+import com.twopiradrian.auth_server.domain.dto.user.response.CredentialsLoginUserRes;
 import com.twopiradrian.auth_server.domain.dto.user.response.GetUserByIdRes;
 import com.twopiradrian.auth_server.domain.dto.user.response.RegisterUserRes;
+import com.twopiradrian.auth_server.domain.dto.user.response.TokenLoginUserRes;
 import com.twopiradrian.auth_server.domain.entity.Role;
 import com.twopiradrian.auth_server.domain.entity.Token;
 import com.twopiradrian.auth_server.domain.entity.User;
@@ -15,9 +14,9 @@ import com.twopiradrian.auth_server.domain.error.ErrorHandler;
 import com.twopiradrian.auth_server.domain.error.ErrorType;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Service
@@ -49,8 +48,8 @@ public class UserServiceI implements UserService {
         user.setEmail(dto.getEmail());
         user.setPassword(dto.getPassword());
         user.setRoles(Set.of(Role.USER));
-        user.setMemberSince(java.time.LocalDateTime.now());
-        user.setLastLogin(java.time.LocalDateTime.now());
+        user.setMemberSince(LocalDateTime.now());
+        user.setLastLogin(LocalDateTime.now());
 
         this.userRepository.save(user);
 
@@ -58,7 +57,7 @@ public class UserServiceI implements UserService {
     }
 
     @Override
-    public Token login(LoginUserReq dto) {
+    public CredentialsLoginUserRes credentialsLogin(CredentialsLoginUserReq dto) {
         User userFromDB = this.userRepository.getByEmail(dto.getEmail());
 
         if (userFromDB == null) {
@@ -70,6 +69,16 @@ public class UserServiceI implements UserService {
         }
 
         return null;
+    }
+
+    @Override
+    public TokenLoginUserRes tokenLoginUser(TokenLoginUserReq dto) {
+        final var validatedToken = this.authService.validateToken(dto.getAccessToken());
+
+        Token token = new Token();
+        token.setAccessToken(validatedToken);
+
+        return UserMapper.tokenLogin().toResponse(token);
     }
 
     @Override

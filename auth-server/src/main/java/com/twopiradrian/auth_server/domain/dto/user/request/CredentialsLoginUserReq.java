@@ -6,18 +6,18 @@ import com.twopiradrian.auth_server.domain.validator.RegexValidators;
 import lombok.Getter;
 
 @Getter
-public class LoginUserReq {
+public class CredentialsLoginUserReq {
 
     private final String email;
 
     private final String password;
 
-    private LoginUserReq(String email, String password) {
+    private CredentialsLoginUserReq(String email, String password) {
         this.email = email;
         this.password = password;
     }
 
-    public static LoginUserReq create(String email, String password) {
+    public static CredentialsLoginUserReq create(String email, String password) {
 
         if (password == null || email == null) {
             throw new ErrorHandler(ErrorType.MISSING_REQUIRED_FIELDS);
@@ -37,7 +37,7 @@ public class LoginUserReq {
             throw new ErrorHandler(ErrorType.INVALID_FIELDS);
         }
 
-        return new LoginUserReq(email, password);
+        return new CredentialsLoginUserReq(email, password);
     }
 
 }

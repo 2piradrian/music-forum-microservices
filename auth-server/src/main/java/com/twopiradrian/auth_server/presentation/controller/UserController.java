@@ -2,7 +2,9 @@ package com.twopiradrian.auth_server.presentation.controller;
 
 import com.twopiradrian.auth_server.domain.dto.user.mapper.UserMapper;
 import com.twopiradrian.auth_server.domain.dto.user.request.GetUserByIdReq;
+import com.twopiradrian.auth_server.domain.dto.user.request.CredentialsLoginUserReq;
 import com.twopiradrian.auth_server.domain.dto.user.request.RegisterUserReq;
+import com.twopiradrian.auth_server.domain.dto.user.request.TokenLoginUserReq;
 import com.twopiradrian.auth_server.domain.error.ErrorHandler;
 import com.twopiradrian.auth_server.presentation.service.UserService;
 import lombok.AllArgsConstructor;
@@ -36,6 +38,30 @@ public class UserController {
             RegisterUserReq dto = UserMapper.register().toRequest(payload);
 
             return ResponseEntity.ok(this.userService.register(dto));
+        }
+        catch (ErrorHandler e) {
+            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
+        }
+    }
+
+    @PostMapping("/login/credentials")
+    public ResponseEntity<?> login(@RequestBody Map<String, Object> payload) {
+        try {
+            CredentialsLoginUserReq dto = UserMapper.credentialsLogin().toRequest(payload);
+
+            return ResponseEntity.ok(this.userService.credentialsLogin(dto));
+        }
+        catch (ErrorHandler e) {
+            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
+        }
+    }
+
+    @PostMapping("/login/token")
+    public ResponseEntity<?> login(@RequestHeader("Authorization") String token) {
+        try {
+            TokenLoginUserReq dto = UserMapper.tokenLogin().toRequest(token);
+
+            return ResponseEntity.ok(this.userService.tokenLoginUser(dto));
         }
         catch (ErrorHandler e) {
             return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
