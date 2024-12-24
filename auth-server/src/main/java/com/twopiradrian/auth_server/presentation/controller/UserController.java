@@ -56,7 +56,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/login/token")
+    @GetMapping("/login/token")
     public ResponseEntity<?> login(@RequestHeader("Authorization") String token) {
         try {
             TokenLoginUserReq dto = UserMapper.tokenLogin().toRequest(token);
