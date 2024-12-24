@@ -8,22 +8,26 @@ import lombok.Getter;
 @Getter
 public class CreateForumReq {
 
+    private final String token;
+
     private final String title;
 
     private final String content;
 
     private final String category;
 
-    private final Long authorId;
-
-    private CreateForumReq(String title, String content, String category, Long authorId) {
+    private CreateForumReq(String token, String title, String content, String category) {
+        this.token = token;
         this.title = title;
         this.content = content;
         this.category = category;
-        this.authorId = authorId;
     }
 
-    public static CreateForumReq create(String title, String content, String category, Long authorId) {
+    public static CreateForumReq create(String token, String title, String content, String category) {
+
+        if (token == null) {
+            throw new ErrorHandler(ErrorType.UNAUTHORIZED);
+        }
 
         if (title == null) {
             throw new ErrorHandler(ErrorType.MISSING_REQUIRED_FIELDS);
@@ -58,15 +62,7 @@ public class CreateForumReq {
             throw new ErrorHandler(ErrorType.INVALID_FIELDS);
         }
 
-        if (authorId == null) {
-            throw new ErrorHandler(ErrorType.MISSING_REQUIRED_FIELDS);
-        }
-
-        if (authorId < 0) {
-            throw new ErrorHandler(ErrorType.INVALID_FIELDS);
-        }
-
-        return new CreateForumReq(title, content, category, authorId);
+        return new CreateForumReq(token, title, content, category);
     }
 
 }

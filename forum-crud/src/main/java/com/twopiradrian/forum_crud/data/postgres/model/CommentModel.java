@@ -13,7 +13,6 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Table(name = "comments")
 public class CommentModel {
 
@@ -21,8 +20,7 @@ public class CommentModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private UserModel author;
+    private Long authorId;
 
     @ManyToOne
     private ForumModel forum;
@@ -33,7 +31,7 @@ public class CommentModel {
     private String content;
 
     @ManyToMany
-    private Set<UserModel> likedBy;
+    private Set<Long> likedBy;
 
     private LocalDateTime createdAt;
 

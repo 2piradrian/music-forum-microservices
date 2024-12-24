@@ -19,7 +19,9 @@ public class ForumController {
     private final ForumService forumService;
 
     @GetMapping("/get-by-id/{forumId}")
-    public ResponseEntity<?> getById(@PathVariable Long forumId) {
+    public ResponseEntity<?> getById(
+            @PathVariable Long forumId
+    ) {
         try {
             GetForumByIdReq dto = ForumMapper.getById().toRequest(forumId);
 
@@ -31,9 +33,12 @@ public class ForumController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody Map<String, Object> payload) {
+    public ResponseEntity<?> create(
+            @RequestHeader("Authorization") String token,
+            @RequestBody Map<String, Object> payload
+    ) {
         try {
-            CreateForumReq dto = ForumMapper.create().toRequest(payload);
+            CreateForumReq dto = ForumMapper.create().toRequest(token, payload);
 
             return ResponseEntity.ok(this.forumService.create(dto));
         }
@@ -43,9 +48,12 @@ public class ForumController {
     }
 
     @PatchMapping("/edit")
-    public ResponseEntity<?> edit(@RequestBody Map<String, Object> payload) {
+    public ResponseEntity<?> edit(
+            @RequestHeader("Authorization") String token,
+            @RequestBody Map<String, Object> payload
+    ) {
         try {
-            EditForumReq dto = ForumMapper.edit().toRequest(payload);
+            EditForumReq dto = ForumMapper.edit().toRequest(token, payload);
 
             return ResponseEntity.ok(this.forumService.edit(dto));
         }
@@ -55,7 +63,9 @@ public class ForumController {
     }
 
     @PatchMapping("/update-upvoters")
-    public ResponseEntity<?> updateUpvoters(@RequestBody Map<String, Object> payload) {
+    public ResponseEntity<?> updateUpvoters(
+            @RequestBody Map<String, Object> payload
+    ) {
         try {
             UpdateForumUpvotersReq dto = ForumMapper.updateUpvoters().toRequest(payload);
             this.forumService.updateUpvoters(dto);
@@ -68,7 +78,9 @@ public class ForumController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<?> delete(@RequestBody Map<String, Object> payload) {
+    public ResponseEntity<?> delete(
+            @RequestBody Map<String, Object> payload
+    ) {
         try {
             DeleteForumReq dto = ForumMapper.delete().toRequest(payload);
             this.forumService.delete(dto);

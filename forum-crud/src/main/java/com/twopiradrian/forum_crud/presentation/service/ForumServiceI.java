@@ -1,12 +1,13 @@
 package com.twopiradrian.forum_crud.presentation.service;
 
+import com.twopiradrian.forum_crud.data.repository.AuthRepositoryI;
 import com.twopiradrian.forum_crud.data.repository.ForumRepositoryI;
-import com.twopiradrian.forum_crud.data.repository.UserRepositoryI;
 import com.twopiradrian.forum_crud.domain.dto.forum.mapper.ForumMapper;
 import com.twopiradrian.forum_crud.domain.dto.forum.request.*;
 import com.twopiradrian.forum_crud.domain.dto.forum.response.*;
 import com.twopiradrian.forum_crud.domain.entity.Category;
 import com.twopiradrian.forum_crud.domain.entity.Forum;
+import com.twopiradrian.forum_crud.domain.entity.TokenClaims;
 import com.twopiradrian.forum_crud.domain.entity.User;
 import com.twopiradrian.forum_crud.domain.error.ErrorHandler;
 import com.twopiradrian.forum_crud.domain.error.ErrorType;
@@ -23,7 +24,7 @@ import java.util.Set;
 public class ForumServiceI implements ForumService {
 
     private final ForumRepositoryI forumRepository;
-    private final UserRepositoryI userRepository;
+    private final AuthRepositoryI authRepository;
 
     @Override
     public GetForumByIdRes getById(GetForumByIdReq dto) {
@@ -43,15 +44,13 @@ public class ForumServiceI implements ForumService {
 
     @Override
     public CreateForumRes create(CreateForumReq dto) {
-        User author = this.userRepository.getById(dto.getAuthorId());
+        TokenClaims claims = this.authRepository.auth(dto.getToken());
 
-        if (author == null) {
-            throw new ErrorHandler(ErrorType.USER_NOT_FOUND);
-        }
+        if (claims == null) throw new ErrorHandler(ErrorType.UNAUTHORIZED);
 
         Forum forum = new Forum();
 
-        forum.setAuthor(author);
+        forum.setAuthorId(claims.getUserId());
         forum.setTitle(dto.getTitle());
         forum.setContent(dto.getContent());
         forum.setCategory(Category.valueOf(dto.getCategory()));
@@ -71,9 +70,7 @@ public class ForumServiceI implements ForumService {
     public EditForumRes edit(EditForumReq dto) {
         Forum forum = this.forumRepository.getById(dto.getForumId());
 
-        if (forum == null) {
-            throw new ErrorHandler(ErrorType.FORUM_NOT_FOUND);
-        }
+        if (forum == null) throw new ErrorHandler(ErrorType.FORUM_NOT_FOUND);
 
         forum.setTitle(dto.getTitle());
         forum.setContent(dto.getContent());

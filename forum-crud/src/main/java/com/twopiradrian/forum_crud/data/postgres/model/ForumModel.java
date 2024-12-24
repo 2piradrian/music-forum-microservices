@@ -29,11 +29,9 @@ public class ForumModel {
 
     private Long views;
 
-    @ManyToOne
-    private UserModel author;
+    private Long authorId;
 
-    @ManyToMany
-    private Set<UserModel> upvoters;
+    private Set<Long> upvoters;
 
     @Enumerated(EnumType.STRING)
     private Category category;

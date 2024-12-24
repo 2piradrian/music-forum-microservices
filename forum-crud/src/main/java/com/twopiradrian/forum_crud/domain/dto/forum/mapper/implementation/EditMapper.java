@@ -9,12 +9,12 @@ import java.util.Map;
 
 public class EditMapper {
 
-    public EditForumReq toRequest(Map<String, Object> payload) {
+    public EditForumReq toRequest(String token, Map<String, Object> payload) {
         return EditForumReq.create(
+                token,
                 (String) payload.get("title"),
                 (String) payload.get("content"),
                 (String) payload.get("category"),
-                (Long) payload.get("authorId"),
                 (Long) payload.get("forumId")
         );
     }

@@ -9,7 +9,10 @@ public enum ErrorType {
     INVALID_FIELDS("Invalid fields", 400),
 
     USER_NOT_FOUND("User not found", 404),
-    FORUM_NOT_FOUND("Forum not found", 404);
+    FORUM_NOT_FOUND("Forum not found", 404),
+    USER_ALREADY_EXISTS("User already exists", 409),
+
+    UNAUTHORIZED("Unauthorized", 401);
 
     private final String message;
     private final int httpCode;

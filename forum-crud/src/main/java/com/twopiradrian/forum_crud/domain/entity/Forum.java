@@ -21,9 +21,9 @@ public class Forum {
 
     private Long views;
 
-    private User author;
+    private Long authorId;
 
-    private Set<User> upvoters;
+    private Set<Long> upvoters;
 
     private Category category;
 
