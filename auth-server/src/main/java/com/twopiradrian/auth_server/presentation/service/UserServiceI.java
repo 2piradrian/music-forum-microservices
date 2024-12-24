@@ -84,6 +84,10 @@ public class UserServiceI implements UserService {
         String subject = this.authService.getSubject(token);
         User user = this.userRepository.getByEmail(subject);
 
+        if (user == null) {
+            throw new ErrorHandler(ErrorType.USER_NOT_FOUND);
+        }
+
         return UserMapper.auth().toResponse(user);
     }
 

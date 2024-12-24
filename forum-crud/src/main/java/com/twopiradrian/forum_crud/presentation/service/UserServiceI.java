@@ -1,5 +1,6 @@
 package com.twopiradrian.forum_crud.presentation.service;
 
+import com.twopiradrian.forum_crud.data.repository.AuthRepositoryI;
 import com.twopiradrian.forum_crud.data.repository.UserRepositoryI;
 import com.twopiradrian.forum_crud.domain.dto.user.mapper.UserMapper;
 import com.twopiradrian.forum_crud.domain.dto.user.request.DeleteUserReq;
@@ -24,6 +25,7 @@ import java.util.Set;
 public class UserServiceI implements UserService {
 
     private final UserRepositoryI userRepository;
+    private final AuthRepositoryI authRepository;
 
     @Override
     public GetUserByIdRes getById(GetUserByIdReq dto) {
