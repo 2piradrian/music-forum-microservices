@@ -1,6 +1,5 @@
 package com.twopiradrian.auth_server.domain.dto.user.request;
 
-
 import com.twopiradrian.auth_server.domain.error.ErrorHandler;
 import com.twopiradrian.auth_server.domain.error.ErrorType;
 import lombok.Getter;
@@ -8,22 +7,18 @@ import lombok.Getter;
 @Getter
 public class DeleteUserReq {
 
-    private final Long userId;
+    private final String token;
 
-    private DeleteUserReq(Long userId) {
-        this.userId = userId;
+    private DeleteUserReq(String token) {
+        this.token = token;
     }
 
-    public static DeleteUserReq create(Long userId) {
+    public static DeleteUserReq create(String token) {
 
-        if (userId == null) {
-            throw new ErrorHandler(ErrorType.MISSING_REQUIRED_FIELDS);
+        if (token == null) {
+            throw new ErrorHandler(ErrorType.UNAUTHORIZED);
         }
 
-        if (userId < 0) {
-            throw new ErrorHandler(ErrorType.INVALID_FIELDS);
-        }
-
-        return new DeleteUserReq(userId);
+        return new DeleteUserReq(token);
     }
 }

@@ -31,16 +31,18 @@ public class UserServiceI implements UserService {
     @Override
     public GetUserByIdRes getById(GetUserByIdReq dto) {
         User user = this.userRepository.getById(dto.getUserId());
-
-        if (user == null) {
-            throw new ErrorHandler(ErrorType.USER_NOT_FOUND);
-        }
+        if (user == null) throw new ErrorHandler(ErrorType.USER_NOT_FOUND);
 
         return UserMapper.getById().toResponse(user);
     }
 
     @Override
     public RegisterUserRes register(RegisterUserReq dto) {
+        var emailCheck = this.userRepository.getByEmail(dto.getEmail());
+        if (emailCheck != null) throw new ErrorHandler(ErrorType.EMAIL_ALREADY_EXISTS);
+
+        var usernameCheck = this.userRepository.getByUsername(dto.getUsername());
+        if (usernameCheck != null) throw new ErrorHandler(ErrorType.USERNAME_ALREADY_EXISTS);
 
         User user = new User();
 
@@ -58,17 +60,14 @@ public class UserServiceI implements UserService {
 
     @Override
     public LoginUserRes login(LoginUserReq dto) {
-        User userFromDB = this.userRepository.getByEmail(dto.getEmail());
+        User user = this.userRepository.getByEmail(dto.getEmail());
+        if (user == null) throw new ErrorHandler(ErrorType.USER_NOT_FOUND);
 
-        if (userFromDB == null) {
-            throw new ErrorHandler(ErrorType.USER_NOT_FOUND);
-        }
-
-        if (!this.authService.validatePassword(userFromDB, dto.getPassword())) {
+        if (!this.authService.validatePassword(user, dto.getPassword())) {
             throw new ErrorHandler(ErrorType.INVALID_PASSWORD);
         }
 
-        final var token = this.authService.createToken(userFromDB);
+        Token token = this.authService.createToken(user);
 
         return UserMapper.login().toResponse(token);
     }
@@ -77,8 +76,8 @@ public class UserServiceI implements UserService {
     public AuthUserRes auth(AuthUserReq dto) {
         String token = this.authService.validateToken(dto.getAccessToken());
 
-        if (token == null) { // null means token is invalid
-            throw new ErrorHandler(ErrorType.INVALID_TOKEN);
+        if (token == null) {
+            throw new ErrorHandler(ErrorType.UNAUTHORIZED);
         }
 
         String subject = this.authService.getSubject(token);
@@ -93,13 +92,20 @@ public class UserServiceI implements UserService {
 
     @Override
     public void delete(DeleteUserReq dto) {
-        User user = this.userRepository.getById(dto.getUserId());
+        String token = this.authService.validateToken(dto.getToken());
+
+        if (token == null) {
+            throw new ErrorHandler(ErrorType.UNAUTHORIZED);
+        }
+
+        String subject = this.authService.getSubject(token);
+        User user = this.userRepository.getByEmail(subject);
 
         if (user == null) {
             throw new ErrorHandler(ErrorType.USER_NOT_FOUND);
         }
 
-        this.userRepository.deleteById(dto.getUserId());
+        this.userRepository.deleteById(user.getId());
     }
 
 }

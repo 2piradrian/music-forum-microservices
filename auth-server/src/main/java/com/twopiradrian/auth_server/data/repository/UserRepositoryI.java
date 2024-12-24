@@ -27,6 +27,12 @@ public class UserRepositoryI implements UserRepository {
     }
 
     @Override
+    public User getByUsername(String username) {
+        UserModel userModel = userRepository.findByUsername(username).orElse(null);
+        return userModel != null ? UserEntityMapper.toDomain(userModel) : null;
+    }
+
+    @Override
     public void save(User user) {
         UserModel userModel = UserEntityMapper.toModel(user);
         userRepository.save(userModel);

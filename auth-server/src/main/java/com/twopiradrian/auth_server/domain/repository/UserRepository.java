@@ -9,6 +9,8 @@ public interface UserRepository {
 
     User getByEmail(String email);
 
+    User getByUsername(String username);
+
     void save(User user);
 
     void update(User user);
