@@ -68,7 +68,9 @@ public class UserServiceI implements UserService {
             throw new ErrorHandler(ErrorType.INVALID_PASSWORD);
         }
 
-        return null;
+        final var token = this.authService.createToken(userFromDB);
+
+        return UserMapper.credentialsLogin().toResponse(token);
     }
 
     @Override

@@ -15,10 +15,10 @@ import java.util.function.Function;
 @Component
 public class JWTHelper {
 
-    @Value("")
+    @Value("${application.jwt.secret}")
     private String secret;
 
-    @Value("")
+    @Value("${application.jwt.expiration}")
     private long expiration;
 
     public boolean validateToken(String token) {
