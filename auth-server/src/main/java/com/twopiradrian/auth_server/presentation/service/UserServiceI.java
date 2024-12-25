@@ -48,7 +48,7 @@ public class UserServiceI implements UserService {
 
         user.setUsername(dto.getUsername());
         user.setEmail(dto.getEmail());
-        user.setPassword(dto.getPassword());
+        user.setPassword(this.authService.hashPassword(dto.getPassword()));
         user.setRoles(Set.of(Role.USER));
         user.setMemberSince(LocalDateTime.now());
         user.setLastLogin(LocalDateTime.now());

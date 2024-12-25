@@ -21,7 +21,9 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/get-by-id/{userId}")
-    public ResponseEntity<?> getById(@PathVariable Long userId) {
+    public ResponseEntity<?> getById(
+            @PathVariable Long userId
+    ) {
         try {
             GetUserByIdReq dto = UserMapper.getById().toRequest(userId);
 
@@ -33,7 +35,9 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody Map<String, Object> payload) {
+    public ResponseEntity<?> register(
+            @RequestBody Map<String, Object> payload
+    ) {
         try {
             RegisterUserReq dto = UserMapper.register().toRequest(payload);
 
@@ -45,7 +49,9 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Map<String, Object> payload) {
+    public ResponseEntity<?> login(
+            @RequestBody Map<String, Object> payload
+    ) {
         try {
             LoginUserReq dto = UserMapper.login().toRequest(payload);
 
@@ -57,7 +63,9 @@ public class UserController {
     }
 
     @GetMapping("/auth")
-    public ResponseEntity<?> login(@RequestHeader("Authorization") String token) {
+    public ResponseEntity<?> auth(
+            @RequestHeader("Authorization") String token
+    ) {
         try {
             AuthUserReq dto = UserMapper.auth().toRequest(token);
 

@@ -10,7 +10,7 @@ public class LoginMapper {
 
     public LoginUserReq toRequest(Map<String, Object> payload) {
         return LoginUserReq.create(
-                (String) payload.get("username"),
+                (String) payload.get("email"),
                 (String) payload.get("password")
         );
     }
