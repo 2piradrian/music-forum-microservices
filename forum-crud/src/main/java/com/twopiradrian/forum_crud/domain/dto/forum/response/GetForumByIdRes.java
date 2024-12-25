@@ -14,6 +14,10 @@ import java.util.List;
 @AllArgsConstructor
 public class GetForumByIdRes {
 
+    private final Long authorId;
+
+    private final String authorUsername;
+
     private final Long forumId;
 
     private final String title;
@@ -21,8 +25,6 @@ public class GetForumByIdRes {
     private final String content;
 
     private final Long views;
-
-    private final User author;
 
     private final int upvoters;
 

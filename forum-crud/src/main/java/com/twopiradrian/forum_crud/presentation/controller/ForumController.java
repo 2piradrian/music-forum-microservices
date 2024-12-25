@@ -64,10 +64,11 @@ public class ForumController {
 
     @PatchMapping("/update-upvoters")
     public ResponseEntity<?> updateUpvoters(
+            @RequestHeader("Authorization") String token,
             @RequestBody Map<String, Object> payload
     ) {
         try {
-            UpdateForumUpvotersReq dto = ForumMapper.updateUpvoters().toRequest(payload);
+            UpdateForumUpvotersReq dto = ForumMapper.updateUpvoters().toRequest(token, payload);
             this.forumService.updateUpvoters(dto);
 
             return ResponseEntity.ok().build();
@@ -79,10 +80,11 @@ public class ForumController {
 
     @DeleteMapping("/delete")
     public ResponseEntity<?> delete(
+            @RequestHeader("Authorization") String token,
             @RequestBody Map<String, Object> payload
     ) {
         try {
-            DeleteForumReq dto = ForumMapper.delete().toRequest(payload);
+            DeleteForumReq dto = ForumMapper.delete().toRequest(token, payload);
             this.forumService.delete(dto);
 
             return ResponseEntity.ok().build();

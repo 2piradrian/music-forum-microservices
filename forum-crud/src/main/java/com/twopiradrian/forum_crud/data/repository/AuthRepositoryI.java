@@ -2,6 +2,7 @@ package com.twopiradrian.forum_crud.data.repository;
 
 import com.twopiradrian.forum_crud.data.auth_server.AuthServerRepository;
 import com.twopiradrian.forum_crud.domain.entity.TokenClaims;
+import com.twopiradrian.forum_crud.domain.entity.User;
 import com.twopiradrian.forum_crud.domain.repository.AuthRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -20,5 +21,14 @@ public class AuthRepositoryI implements AuthRepository {
 
         return claims.orElse(null);
     }
+
+    @Override
+    public User getById(Long userId) {
+        Optional<User> user = this.authServerRepository.getById(userId);
+
+        return user.orElse(null);
+    }
+
+
 
 }

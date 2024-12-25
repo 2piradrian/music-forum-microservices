@@ -10,11 +10,11 @@ public class CommentEntityMapper {
     public static Comment toDomain(CommentModel commentModel) {
         return new Comment(
                 commentModel.getId(),
-                UserEntityMapper.toDomain(commentModel.getAuthor()),
+                commentModel.getAuthorId(),
                 ForumEntityMapper.toDomain(commentModel.getForum()),
                 commentModel.getReplyTo() != null ? toDomain(commentModel.getReplyTo()) : null,
                 commentModel.getContent(),
-                commentModel.getLikedBy().stream().map(UserEntityMapper::toDomain).collect(Collectors.toSet()),
+                commentModel.getLikedBy(),
                 commentModel.getCreatedAt()
         );
     }
@@ -22,11 +22,11 @@ public class CommentEntityMapper {
     public static CommentModel toModel(Comment comment) {
         return new CommentModel(
                 comment.getId(),
-                UserEntityMapper.toModel(comment.getAuthor()),
+                comment.getAuthorId(),
                 ForumEntityMapper.toModel(comment.getForum()),
                 comment.getReplyTo() != null ? toModel(comment.getReplyTo()) : null,
                 comment.getContent(),
-                comment.getLikedBy().stream().map(UserEntityMapper::toModel).collect(Collectors.toSet()),
+                comment.getLikedBy(),
                 comment.getCreatedAt()
         );
     }

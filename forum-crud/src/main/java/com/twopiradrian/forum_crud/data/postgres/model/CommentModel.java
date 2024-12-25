@@ -30,7 +30,6 @@ public class CommentModel {
 
     private String content;
 
-    @ManyToMany
     private Set<Long> likedBy;
 
     private LocalDateTime createdAt;

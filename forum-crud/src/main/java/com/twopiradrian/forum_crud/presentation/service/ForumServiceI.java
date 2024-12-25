@@ -31,12 +31,15 @@ public class ForumServiceI implements ForumService {
         Forum forum = this.forumRepository.getById(dto.getForumId());
         if(forum == null) throw new ErrorHandler(ErrorType.FORUM_NOT_FOUND);
 
+        User author = this.authRepository.getById(forum.getAuthorId());
+        if(author == null) throw new ErrorHandler(ErrorType.USER_NOT_FOUND);
+
         Long views = forum.getViews();
         forum.setViews(views + 1);
 
         forumRepository.update(forum);
 
-        return ForumMapper.getById().toResponse(forum);
+        return ForumMapper.getById().toResponse(forum, author);
     }
 
     @Override

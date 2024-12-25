@@ -7,8 +7,9 @@ import java.util.Map;
 
 public class UpdateUpvotersMapper {
 
-    public UpdateForumUpvotersReq toRequest(Map<String, Object> payload) {
+    public UpdateForumUpvotersReq toRequest(String token, Map<String, Object> payload) {
         return UpdateForumUpvotersReq.create(
+                token,
                 (Long) payload.get("userId"),
                 (Long) payload.get("forumId")
         );
