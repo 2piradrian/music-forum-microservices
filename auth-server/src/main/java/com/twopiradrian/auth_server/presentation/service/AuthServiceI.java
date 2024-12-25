@@ -33,8 +33,17 @@ public class AuthServiceI implements AuthService {
 
     @Override
     public String validateToken(String token) {
-        if (this.jwtHelper.validateToken(token)) {
-            return token;
+        if (token == null || token.isEmpty()) {
+            return null;
+        }
+
+        if (!token.startsWith("Bearer ")) {
+            return null;
+        }
+
+        String tokenValue = token.replace("Bearer ", "");
+        if (this.jwtHelper.validateToken(tokenValue)) {
+            return tokenValue;
         }
         
         return null;
