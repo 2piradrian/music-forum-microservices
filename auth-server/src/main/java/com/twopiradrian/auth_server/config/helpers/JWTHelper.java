@@ -43,6 +43,10 @@ public class JWTHelper {
                 .compact();
     }
 
+    private Date getExpirationDate(String token) {
+        return this.getClaims(token, Claims::getExpiration);
+    }
+
     private <T> T getClaims(String token, Function<Claims, T> resolver) {
         // gets the claims from the token and signs it
         return resolver.apply(this.signToken(token));
@@ -60,7 +64,4 @@ public class JWTHelper {
         return Keys.hmacShaKeyFor(this.secret.getBytes(StandardCharsets.UTF_8));
     }
 
-    private Date getExpirationDate(String token) {
-        return this.getClaims(token, Claims::getExpiration);
-    }
 }

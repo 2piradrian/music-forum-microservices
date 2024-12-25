@@ -1,4 +1,4 @@
-package com.twopiradrian.report_ms.config.beans;
+package com.twopiradrian.forum_crud.beans;
 
 import org.springframework.cloud.loadbalancer.core.ServiceInstanceListSupplier;
 import org.springframework.context.ConfigurableApplicationContext;
