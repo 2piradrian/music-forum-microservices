@@ -34,7 +34,7 @@ public class CreateForumReq {
         }
 
         title = title.trim();
-        if (title.isEmpty() || title.length() > 256) {
+        if (title.isEmpty() || title.length() > 64) {
             throw new ErrorHandler(ErrorType.INVALID_FIELDS);
         }
 

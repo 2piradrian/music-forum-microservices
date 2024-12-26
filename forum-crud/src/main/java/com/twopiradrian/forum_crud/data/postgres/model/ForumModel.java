@@ -25,6 +25,7 @@ public class ForumModel {
 
     private String title;
 
+    @Column(columnDefinition = "TEXT")
     private String content;
 
     private Long views;

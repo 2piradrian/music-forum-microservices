@@ -1,5 +1,6 @@
 package com.twopiradrian.forum_crud.data.auth_server;
 
+import com.twopiradrian.forum_crud.beans.LoadBalancerConfiguration;
 import com.twopiradrian.forum_crud.domain.entity.TokenClaims;
 import com.twopiradrian.forum_crud.domain.entity.User;
 import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import java.util.Optional;
 
 @FeignClient(name = "auth-server")
-@LoadBalancerClient(name = "auth-server")
+@LoadBalancerClient(name = "auth-server", configuration = LoadBalancerConfiguration.class)
 public interface AuthServerRepository {
 
     @GetMapping("/api/users/auth")

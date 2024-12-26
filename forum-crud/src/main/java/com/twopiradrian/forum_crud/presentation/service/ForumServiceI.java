@@ -13,11 +13,13 @@ import com.twopiradrian.forum_crud.domain.error.ErrorHandler;
 import com.twopiradrian.forum_crud.domain.error.ErrorType;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Set;
 
+@Slf4j
 @Service
 @Transactional
 @AllArgsConstructor
@@ -47,6 +49,8 @@ public class ForumServiceI implements ForumService {
         TokenClaims claims = this.authRepository.auth(dto.getToken());
         if (claims == null) throw new ErrorHandler(ErrorType.UNAUTHORIZED);
 
+        log.info("claims: {}", claims);
+
         Forum forum = new Forum();
 
         forum.setAuthorId(claims.getUserId());
@@ -60,9 +64,9 @@ public class ForumServiceI implements ForumService {
         forum.setCreatedAt(java.time.LocalDateTime.now());
         forum.setUpdatedAt(java.time.LocalDateTime.now());
 
-        forumRepository.save(forum);
+        Forum saved = forumRepository.save(forum);
 
-        return ForumMapper.create().toResponse(forum);
+        return ForumMapper.create().toResponse(saved);
     }
 
     @Override

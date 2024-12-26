@@ -6,9 +6,9 @@ public interface ForumRepository {
 
     Forum getById(Long forumId);
 
-    void save(Forum forum);
+    Forum save(Forum forum);
 
-    void update(Forum forum);
+    Forum update(Forum forum);
 
     void deleteById(Long forumId);
 

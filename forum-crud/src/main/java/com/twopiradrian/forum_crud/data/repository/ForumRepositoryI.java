@@ -21,15 +21,19 @@ public class ForumRepositoryI implements ForumRepository {
     }
 
     @Override
-    public void save(Forum forum) {
+    public Forum save(Forum forum) {
         ForumModel forumModel = ForumEntityMapper.toModel(forum);
-        forumRepository.save(forumModel);
+        ForumModel saved = forumRepository.save(forumModel);
+
+        return ForumEntityMapper.toDomain(saved);
     }
 
     @Override
-    public void update(Forum forum) {
+    public Forum update(Forum forum) {
         ForumModel forumModel = ForumEntityMapper.toModel(forum);
-        forumRepository.save(forumModel);
+        ForumModel saved = forumRepository.save(forumModel);
+
+        return ForumEntityMapper.toDomain(saved);
     }
 
     @Override
