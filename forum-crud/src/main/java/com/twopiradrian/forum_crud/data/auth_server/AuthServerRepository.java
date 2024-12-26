@@ -15,10 +15,10 @@ import java.util.Optional;
 @LoadBalancerClient(name = "auth-server", configuration = LoadBalancerConfiguration.class)
 public interface AuthServerRepository {
 
-    @GetMapping("/api/users/auth")
+    @GetMapping("/auth-server/api/users/auth")
     Optional<TokenClaims> auth (@RequestHeader("Authorization") String token);
 
-    @GetMapping("/api/users/get-by-id/{userId}")
+    @GetMapping("/auth-server/api/users/get-by-id/{userId}")
     Optional<User> getById (@PathVariable Long userId);
 
 }
