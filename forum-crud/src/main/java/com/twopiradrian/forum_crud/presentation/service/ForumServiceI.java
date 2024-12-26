@@ -53,7 +53,7 @@ public class ForumServiceI implements ForumService {
 
         Forum forum = new Forum();
 
-        forum.setAuthorId(claims.getUserId());
+        forum.setAuthorId(claims.getId());
         forum.setTitle(dto.getTitle());
         forum.setContent(dto.getContent());
         forum.setCategory(Category.valueOf(dto.getCategory()));
@@ -77,7 +77,7 @@ public class ForumServiceI implements ForumService {
         Forum forum = this.forumRepository.getById(dto.getForumId());
         if (forum == null) throw new ErrorHandler(ErrorType.FORUM_NOT_FOUND);
 
-        if (!forum.getAuthorId().equals(claims.getUserId())) {
+        if (!forum.getAuthorId().equals(claims.getId())) {
             throw new ErrorHandler(ErrorType.UNAUTHORIZED);
         }
 
@@ -98,7 +98,7 @@ public class ForumServiceI implements ForumService {
         if (forum == null) throw new ErrorHandler(ErrorType.FORUM_NOT_FOUND);
 
         Set<Long> upvoters = forum.getUpvoters();
-        Long user = claims.getUserId();
+        Long user = claims.getId();
 
         if (upvoters.contains(user)) {
             upvoters.remove(user);
@@ -118,7 +118,7 @@ public class ForumServiceI implements ForumService {
         Forum forum = this.forumRepository.getById(dto.getForumId());
         if (forum == null) throw new ErrorHandler(ErrorType.FORUM_NOT_FOUND);
 
-        if (!forum.getAuthorId().equals(claims.getUserId())) {
+        if (!forum.getAuthorId().equals(claims.getId())) {
             throw new ErrorHandler(ErrorType.UNAUTHORIZED);
         }
 

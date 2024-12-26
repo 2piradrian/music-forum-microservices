@@ -9,10 +9,10 @@ import java.util.Set;
 @AllArgsConstructor
 public class TokenClaims {
 
-    private final Long userId;
+    private final Long id;
 
     private final String email;
 
-    private final Set<Role> role;
+    private final Set<Role> roles;
 
 }

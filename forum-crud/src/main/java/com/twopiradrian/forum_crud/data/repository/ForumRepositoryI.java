@@ -31,9 +31,9 @@ public class ForumRepositoryI implements ForumRepository {
     @Override
     public Forum update(Forum forum) {
         ForumModel forumModel = ForumEntityMapper.toModel(forum);
-        ForumModel saved = forumRepository.save(forumModel);
+        ForumModel updated = forumRepository.save(forumModel);
 
-        return ForumEntityMapper.toDomain(saved);
+        return ForumEntityMapper.toDomain(updated);
     }
 
     @Override

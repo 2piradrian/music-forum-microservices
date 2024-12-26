@@ -33,15 +33,19 @@ public class UserRepositoryI implements UserRepository {
     }
 
     @Override
-    public void save(User user) {
+    public User save(User user) {
         UserModel userModel = UserEntityMapper.toModel(user);
-        userRepository.save(userModel);
+        UserModel saved = userRepository.save(userModel);
+
+        return UserEntityMapper.toDomain(saved);
     }
 
     @Override
-    public void update(User user) {
+    public User update(User user) {
         UserModel userModel = UserEntityMapper.toModel(user);
-        userRepository.save(userModel);
+        UserModel updated = userRepository.save(userModel);
+
+        return UserEntityMapper.toDomain(updated);
     }
 
     @Override
