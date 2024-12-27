@@ -4,6 +4,7 @@ import com.twopiradrian.forum_crud.data.postgres.mapper.ForumEntityMapper;
 import com.twopiradrian.forum_crud.data.postgres.model.ForumModel;
 import com.twopiradrian.forum_crud.data.postgres.repository.PostgresForumRepository;
 import com.twopiradrian.forum_crud.domain.entity.Forum;
+import com.twopiradrian.forum_crud.domain.entity.Status;
 import com.twopiradrian.forum_crud.domain.repository.ForumRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -17,7 +18,16 @@ public class ForumRepositoryI implements ForumRepository {
     @Override
     public Forum getById(String forumId) {
         ForumModel forumModel = forumRepository.findById(forumId).orElse(null);
-        return forumModel != null ? ForumEntityMapper.toDomain(forumModel) : null;
+
+        if (forumModel == null) {
+            return null;
+        }
+
+        if (forumModel.getStatus().equals(Status.DELETED)) {
+            return null;
+        }
+
+        return ForumEntityMapper.toDomain(forumModel);
     }
 
     @Override
@@ -34,11 +44,6 @@ public class ForumRepositoryI implements ForumRepository {
         ForumModel updated = forumRepository.save(forumModel);
 
         return ForumEntityMapper.toDomain(updated);
-    }
-
-    @Override
-    public void deleteById(String forumId) {
-        forumRepository.deleteById(forumId);
     }
 
 }

@@ -3,7 +3,6 @@ package com.twopiradrian.forum_crud.presentation.controller;
 import com.twopiradrian.forum_crud.domain.dto.forum.mapper.ForumMapper;
 import com.twopiradrian.forum_crud.domain.dto.forum.request.*;
 import com.twopiradrian.forum_crud.domain.error.ErrorHandler;
-import com.twopiradrian.forum_crud.domain.error.ErrorResponse;
 import com.twopiradrian.forum_crud.presentation.service.ForumService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -68,8 +67,8 @@ public class ForumController {
             @RequestBody Map<String, Object> payload
     ) {
         try {
-            UpdateForumUpvotersReq dto = ForumMapper.updateUpvoters().toRequest(token, payload);
-            this.forumService.updateUpvoters(dto);
+            ToggleForumVotesReq dto = ForumMapper.toggleVotes().toRequest(token, payload);
+            this.forumService.toggleVotes(dto);
 
             return ResponseEntity.ok().build();
         }

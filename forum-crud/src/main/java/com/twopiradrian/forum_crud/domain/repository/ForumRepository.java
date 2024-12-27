@@ -10,6 +10,4 @@ public interface ForumRepository {
 
     Forum update(Forum forum);
 
-    void deleteById(String forumId);
-
 }

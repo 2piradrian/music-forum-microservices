@@ -1,6 +1,7 @@
 package com.twopiradrian.forum_crud.data.postgres.model;
 
 import com.twopiradrian.forum_crud.domain.entity.Category;
+import com.twopiradrian.forum_crud.domain.entity.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,14 +34,16 @@ public class ForumModel {
 
     private Set<String> upvoters;
 
+    private Set<String> downvoters;
+
     @Enumerated(EnumType.STRING)
     private Category category;
-
-    @OneToMany(mappedBy = "forum", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CommentModel> comments;
 
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
 }

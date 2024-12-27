@@ -5,10 +5,7 @@ import com.twopiradrian.forum_crud.data.repository.ForumRepositoryI;
 import com.twopiradrian.forum_crud.domain.dto.forum.mapper.ForumMapper;
 import com.twopiradrian.forum_crud.domain.dto.forum.request.*;
 import com.twopiradrian.forum_crud.domain.dto.forum.response.*;
-import com.twopiradrian.forum_crud.domain.entity.Category;
-import com.twopiradrian.forum_crud.domain.entity.Forum;
-import com.twopiradrian.forum_crud.domain.entity.TokenClaims;
-import com.twopiradrian.forum_crud.domain.entity.User;
+import com.twopiradrian.forum_crud.domain.entity.*;
 import com.twopiradrian.forum_crud.domain.error.ErrorHandler;
 import com.twopiradrian.forum_crud.domain.error.ErrorType;
 import jakarta.transaction.Transactional;
@@ -55,10 +52,11 @@ public class ForumServiceI implements ForumService {
         forum.setTitle(dto.getTitle());
         forum.setContent(dto.getContent());
         forum.setCategory(Category.valueOf(dto.getCategory()));
+        forum.setStatus(Status.ACTIVE);
 
         forum.setViews(0);
         forum.setUpvoters(Set.of());
-        forum.setComments(List.of());
+        forum.setDownvoters(Set.of());
         forum.setCreatedAt(java.time.LocalDateTime.now());
         forum.setUpdatedAt(java.time.LocalDateTime.now());
 
@@ -88,22 +86,38 @@ public class ForumServiceI implements ForumService {
     }
 
     @Override
-    public void updateUpvoters(UpdateForumUpvotersReq dto) {
+    public void toggleVotes(ToggleForumVotesReq dto) {
         TokenClaims claims = this.authRepository.auth(dto.getToken());
         if (claims == null) throw new ErrorHandler(ErrorType.UNAUTHORIZED);
 
         Forum forum = this.forumRepository.getById(dto.getForumId());
         if (forum == null) throw new ErrorHandler(ErrorType.FORUM_NOT_FOUND);
 
-        Set<String> upvoters = forum.getUpvoters();
         String user = claims.getId();
 
-        if (upvoters.contains(user)) {
-            upvoters.remove(user);
+        Set<String> upvoters = forum.getUpvoters();
+        Set<String> downvoters = forum.getDownvoters();
+
+        if (dto.getVoteType().equals("UPVOTE")) {
+            if (upvoters.contains(user)) {
+                upvoters.remove(user);
+            }
+            else {
+                upvoters.add(user);
+                downvoters.remove(user);
+            }
         }
-        else {
-            upvoters.add(user);
+        if (dto.getVoteType().equals("DOWNVOTE")) {
+            if (downvoters.contains(user)) {
+                downvoters.remove(user);
+            } else {
+                downvoters.add(user);
+                upvoters.remove(user);
+            }
         }
+
+        forum.setUpvoters(upvoters);
+        forum.setDownvoters(downvoters);
 
         forumRepository.update(forum);
     }
@@ -120,6 +134,9 @@ public class ForumServiceI implements ForumService {
             throw new ErrorHandler(ErrorType.UNAUTHORIZED);
         }
 
-        forumRepository.deleteById(dto.getForumId());
+        forum.setStatus(Status.DELETED);
+
+        forumRepository.update(forum);
     }
+
 }

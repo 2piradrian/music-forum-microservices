@@ -25,12 +25,14 @@ public class Forum {
 
     private Set<String> upvoters;
 
-    private Category category;
+    private Set<String> downvoters;
 
-    private List<Comment> comments;
+    private Category category;
 
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
+    private Status status;
 
 }

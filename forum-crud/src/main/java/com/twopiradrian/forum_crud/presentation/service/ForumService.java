@@ -2,7 +2,7 @@ package com.twopiradrian.forum_crud.presentation.service;
 
 import com.twopiradrian.forum_crud.domain.dto.forum.request.CreateForumReq;
 import com.twopiradrian.forum_crud.domain.dto.forum.request.EditForumReq;
-import com.twopiradrian.forum_crud.domain.dto.forum.request.UpdateForumUpvotersReq;
+import com.twopiradrian.forum_crud.domain.dto.forum.request.ToggleForumVotesReq;
 import com.twopiradrian.forum_crud.domain.dto.forum.response.CreateForumRes;
 import com.twopiradrian.forum_crud.domain.dto.forum.response.EditForumRes;
 import com.twopiradrian.forum_crud.domain.dto.forum.request.DeleteForumReq;
@@ -17,7 +17,7 @@ public interface ForumService {
 
     EditForumRes edit(EditForumReq dto);
 
-    void updateUpvoters(UpdateForumUpvotersReq dto);
+    void toggleVotes(ToggleForumVotesReq dto);
 
     void delete(DeleteForumReq dto);
 }

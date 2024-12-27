@@ -21,8 +21,8 @@ public class ForumMapper {
         return new GetByIdMapper();
     }
 
-    public static UpdateUpvotersMapper updateUpvoters() {
-        return new UpdateUpvotersMapper();
+    public static ToggleVotesMapper toggleVotes() {
+        return new ToggleVotesMapper();
     }
 
 }

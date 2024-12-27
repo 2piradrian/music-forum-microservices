@@ -15,10 +15,11 @@ public class ForumEntityMapper {
                 forumModel.getViews(),
                 forumModel.getAuthorId(),
                 forumModel.getUpvoters(),
+                forumModel.getDownvoters(),
                 forumModel.getCategory(),
-                forumModel.getComments().stream().map(CommentEntityMapper::toDomain).collect(Collectors.toList()),
                 forumModel.getCreatedAt(),
-                forumModel.getUpdatedAt()
+                forumModel.getUpdatedAt(),
+                forumModel.getStatus()
         );
     }
 
@@ -30,10 +31,11 @@ public class ForumEntityMapper {
                 forum.getViews(),
                 forum.getAuthorId(),
                 forum.getUpvoters(),
+                forum.getDownvoters(),
                 forum.getCategory(),
-                forum.getComments().stream().map(CommentEntityMapper::toModel).collect(Collectors.toList()),
                 forum.getCreatedAt(),
-                forum.getUpdatedAt()
+                forum.getUpdatedAt(),
+                forum.getStatus()
         );
     }
 

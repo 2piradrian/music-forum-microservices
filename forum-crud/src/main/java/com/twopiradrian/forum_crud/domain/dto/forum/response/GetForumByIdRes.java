@@ -26,11 +26,11 @@ public class GetForumByIdRes {
 
     private final Integer views;
 
-    private final int upvoters;
+    private final Integer upvoters;
+
+    private final Integer downvoters;
 
     private final Category category;
-
-    private final List<Comment> comments;
 
     private final LocalDateTime createdAt;
 

@@ -25,8 +25,8 @@ public class GetByIdMapper {
                 forum.getContent(),
                 forum.getViews(),
                 forum.getUpvoters().size(),
+                forum.getDownvoters().size(),
                 forum.getCategory(),
-                forum.getComments(),
                 forum.getCreatedAt()
         );
     }
