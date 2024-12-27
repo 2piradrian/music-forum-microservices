@@ -11,11 +11,13 @@ public class CommentEntityMapper {
         return new Comment(
                 commentModel.getId(),
                 commentModel.getAuthorId(),
-                ForumEntityMapper.toDomain(commentModel.getForum()),
+                commentModel.getForumId(),
                 commentModel.getReplyTo() != null ? toDomain(commentModel.getReplyTo()) : null,
                 commentModel.getContent(),
-                commentModel.getLikedBy(),
-                commentModel.getCreatedAt()
+                commentModel.getUpvoters(),
+                commentModel.getDownvoters(),
+                commentModel.getCreatedAt(),
+                commentModel.getUpdatedAt()
         );
     }
 
@@ -23,11 +25,13 @@ public class CommentEntityMapper {
         return new CommentModel(
                 comment.getId(),
                 comment.getAuthorId(),
-                ForumEntityMapper.toModel(comment.getForum()),
+                comment.getForumId(),
                 comment.getReplyTo() != null ? toModel(comment.getReplyTo()) : null,
                 comment.getContent(),
-                comment.getLikedBy(),
-                comment.getCreatedAt()
+                comment.getUpvoters(),
+                comment.getDownvoters(),
+                comment.getCreatedAt(),
+                comment.getUpdatedAt()
         );
     }
 }

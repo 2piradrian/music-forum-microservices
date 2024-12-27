@@ -22,16 +22,21 @@ public class CommentModel {
 
     private String authorId;
 
-    @ManyToOne
-    private ForumModel forum;
+    @Column(name = "forum_id", nullable = false)
+    private String forumId;
 
     @ManyToOne
     private CommentModel replyTo;
 
+    @Column(columnDefinition = "TEXT")
     private String content;
 
-    private Set<String> likedBy;
+    private Set<String> upvoters;
+
+    private Set<String> downvoters;
 
     private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
 
 }

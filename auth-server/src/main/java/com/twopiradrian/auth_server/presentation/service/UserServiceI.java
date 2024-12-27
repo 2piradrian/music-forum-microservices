@@ -71,6 +71,9 @@ public class UserServiceI implements UserService {
             throw new ErrorHandler(ErrorType.INVALID_PASSWORD);
         }
 
+        user.setLastLogin(LocalDateTime.now());
+        this.userRepository.save(user);
+
         Token token = this.authService.createToken(user);
 
         return UserMapper.login().toResponse(token);

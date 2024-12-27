@@ -16,14 +16,18 @@ public class Comment {
 
     private String authorId;
 
-    private Forum forum;
+    private String forumId;
 
     private Comment replyTo;
 
     private String content;
 
-    private Set<String> likedBy;
+    private Set<String> upvoters;
+
+    private Set<String> downvoters;
 
     private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
 
 }

@@ -7,9 +7,9 @@ public interface CommentRepository {
 
     Comment getById(String commentId);
 
-    void save(Comment comment);
+    Comment save(Comment comment);
 
-    void update(Comment comment);
+    Comment update(Comment comment);
 
     void deleteById(String commentId);
 

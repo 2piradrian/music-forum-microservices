@@ -21,15 +21,19 @@ public class CommentRepositoryI implements CommentRepository {
     }
 
     @Override
-    public void save(Comment comment) {
+    public Comment save(Comment comment) {
         CommentModel commentModel = CommentEntityMapper.toModel(comment);
-        commentRepository.save(commentModel);
+        CommentModel saved = commentRepository.save(commentModel);
+
+        return CommentEntityMapper.toDomain(saved);
     }
 
     @Override
-    public void update(Comment comment) {
+    public Comment update(Comment comment) {
         CommentModel commentModel = CommentEntityMapper.toModel(comment);
-        commentRepository.save(commentModel);
+        CommentModel updated = commentRepository.save(commentModel);
+
+        return CommentEntityMapper.toDomain(updated);
     }
 
     @Override

@@ -80,6 +80,7 @@ public class ForumServiceI implements ForumService {
         forum.setTitle(dto.getTitle());
         forum.setContent(dto.getContent());
         forum.setCategory(Category.valueOf(dto.getCategory()));
+        forum.setUpdatedAt(java.time.LocalDateTime.now());
 
         forumRepository.update(forum);
         return ForumMapper.edit().toResponse(forum);
@@ -134,6 +135,7 @@ public class ForumServiceI implements ForumService {
             throw new ErrorHandler(ErrorType.UNAUTHORIZED);
         }
 
+        forum.setUpdatedAt(java.time.LocalDateTime.now());
         forum.setStatus(Status.DELETED);
 
         forumRepository.update(forum);
