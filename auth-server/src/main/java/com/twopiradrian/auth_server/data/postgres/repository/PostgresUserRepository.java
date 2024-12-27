@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface PostgresUserRepository extends JpaRepository<UserModel, Long> {
+public interface PostgresUserRepository extends JpaRepository<UserModel, String> {
 
     Optional<UserModel> findByEmail(String email);
 

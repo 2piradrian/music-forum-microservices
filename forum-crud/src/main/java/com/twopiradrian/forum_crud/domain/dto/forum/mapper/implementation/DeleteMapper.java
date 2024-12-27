@@ -9,7 +9,7 @@ public class DeleteMapper {
     public DeleteForumReq toRequest(String  token, Map<String, Object> payload) {
         return DeleteForumReq.create(
                 token,
-                (Long) payload.get("forumId")
+                (String) payload.get("forumId")
         );
     }
 

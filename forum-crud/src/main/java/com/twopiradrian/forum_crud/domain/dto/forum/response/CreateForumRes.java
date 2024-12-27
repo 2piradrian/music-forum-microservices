@@ -7,6 +7,6 @@ import lombok.Getter;
 @AllArgsConstructor
 public class CreateForumRes {
 
-    private long forumId;
+    private String forumId;
 
 }

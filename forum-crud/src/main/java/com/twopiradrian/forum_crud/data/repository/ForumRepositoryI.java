@@ -15,7 +15,7 @@ public class ForumRepositoryI implements ForumRepository {
     private final PostgresForumRepository forumRepository;
 
     @Override
-    public Forum getById(Long forumId) {
+    public Forum getById(String forumId) {
         ForumModel forumModel = forumRepository.findById(forumId).orElse(null);
         return forumModel != null ? ForumEntityMapper.toDomain(forumModel) : null;
     }
@@ -37,7 +37,7 @@ public class ForumRepositoryI implements ForumRepository {
     }
 
     @Override
-    public void deleteById(Long forumId) {
+    public void deleteById(String forumId) {
         forumRepository.deleteById(forumId);
     }
 

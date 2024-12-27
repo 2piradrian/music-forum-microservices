@@ -9,7 +9,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class TokenClaims {
 
-    private final Long id;
+    private final String id;
 
     private final String email;
 

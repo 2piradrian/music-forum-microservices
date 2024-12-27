@@ -10,7 +10,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class AuthUserRes {
 
-    private final Long id;
+    private final String id;
 
     private final String email;
 

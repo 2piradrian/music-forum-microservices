@@ -36,7 +36,7 @@ public class ForumServiceI implements ForumService {
         User author = this.authRepository.getById(forum.getAuthorId());
         if(author == null) throw new ErrorHandler(ErrorType.USER_NOT_FOUND);
 
-        Long views = forum.getViews();
+        Integer views = forum.getViews();
         forum.setViews(views + 1);
 
         forumRepository.update(forum);
@@ -49,8 +49,6 @@ public class ForumServiceI implements ForumService {
         TokenClaims claims = this.authRepository.auth(dto.getToken());
         if (claims == null) throw new ErrorHandler(ErrorType.UNAUTHORIZED);
 
-        log.info("claims: {}", claims);
-
         Forum forum = new Forum();
 
         forum.setAuthorId(claims.getId());
@@ -58,7 +56,7 @@ public class ForumServiceI implements ForumService {
         forum.setContent(dto.getContent());
         forum.setCategory(Category.valueOf(dto.getCategory()));
 
-        forum.setViews(0L);
+        forum.setViews(0);
         forum.setUpvoters(Set.of());
         forum.setComments(List.of());
         forum.setCreatedAt(java.time.LocalDateTime.now());
@@ -97,8 +95,8 @@ public class ForumServiceI implements ForumService {
         Forum forum = this.forumRepository.getById(dto.getForumId());
         if (forum == null) throw new ErrorHandler(ErrorType.FORUM_NOT_FOUND);
 
-        Set<Long> upvoters = forum.getUpvoters();
-        Long user = claims.getId();
+        Set<String> upvoters = forum.getUpvoters();
+        String user = claims.getId();
 
         if (upvoters.contains(user)) {
             upvoters.remove(user);

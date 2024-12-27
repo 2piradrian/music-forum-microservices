@@ -5,7 +5,7 @@ import com.twopiradrian.forum_crud.domain.entity.User;
 
 public interface UserRepository {
 
-    User getById(Long userId);
+    User getById(String userId);
 
     User getByEmailOrUsername(String email, String username);
 
@@ -13,5 +13,5 @@ public interface UserRepository {
 
     void update(User user);
 
-    void deleteById(Long userId);
+    void deleteById(String userId);
 }

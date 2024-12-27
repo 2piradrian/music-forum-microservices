@@ -19,7 +19,7 @@ public class JWTHelper {
     private String secret;
 
     @Value("${application.jwt.expiration}")
-    private long expiration;
+    private Long expiration;
 
     public boolean validateToken(String token) {
         final var expirationDate = this.getExpirationDate(token);

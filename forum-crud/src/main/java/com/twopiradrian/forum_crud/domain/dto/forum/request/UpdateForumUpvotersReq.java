@@ -9,17 +9,17 @@ public class UpdateForumUpvotersReq {
 
     private final String token;
 
-    private final Long userId;
+    private final String userId;
 
-    private final Long forumId;
+    private final String forumId;
 
-    private UpdateForumUpvotersReq(String token, Long userId, Long forumId) {
+    private UpdateForumUpvotersReq(String token, String userId, String forumId) {
         this.token = token;
         this.userId = userId;
         this.forumId = forumId;
     }
 
-    public static UpdateForumUpvotersReq create(String token, Long userId, Long forumId) {
+    public static UpdateForumUpvotersReq create(String token, String userId, String forumId) {
 
         if (token == null) {
             throw new ErrorHandler(ErrorType.UNAUTHORIZED);
@@ -27,10 +27,6 @@ public class UpdateForumUpvotersReq {
 
         if (userId == null || forumId == null) {
             throw new ErrorHandler(ErrorType.MISSING_REQUIRED_FIELDS);
-        }
-
-        if (userId < 0 || forumId < 0) {
-            throw new ErrorHandler(ErrorType.INVALID_FIELDS);
         }
 
         return new UpdateForumUpvotersReq(token, userId, forumId);

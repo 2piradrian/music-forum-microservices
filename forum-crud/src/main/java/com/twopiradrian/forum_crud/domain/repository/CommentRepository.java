@@ -5,12 +5,12 @@ import com.twopiradrian.forum_crud.domain.entity.Comment;
 
 public interface CommentRepository {
 
-    Comment getById(Long commentId);
+    Comment getById(String commentId);
 
     void save(Comment comment);
 
     void update(Comment comment);
 
-    void deleteById(Long commentId);
+    void deleteById(String commentId);
 
 }

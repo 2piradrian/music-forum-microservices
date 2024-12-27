@@ -7,6 +7,6 @@ import lombok.Getter;
 @AllArgsConstructor
 public class EditForumRes {
 
-    private long forumId;
+    private String forumId;
 
 }

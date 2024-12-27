@@ -19,6 +19,6 @@ public interface AuthServerRepository {
     Optional<TokenClaims> auth (@RequestHeader("Authorization") String token);
 
     @GetMapping("/auth-server/api/users/get-by-id/{userId}")
-    Optional<User> getById (@PathVariable Long userId);
+    Optional<User> getById (@PathVariable String userId);
 
 }

@@ -4,12 +4,12 @@ import com.twopiradrian.forum_crud.domain.entity.Forum;
 
 public interface ForumRepository {
 
-    Forum getById(Long forumId);
+    Forum getById(String forumId);
 
     Forum save(Forum forum);
 
     Forum update(Forum forum);
 
-    void deleteById(Long forumId);
+    void deleteById(String forumId);
 
 }

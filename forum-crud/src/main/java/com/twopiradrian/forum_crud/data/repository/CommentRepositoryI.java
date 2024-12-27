@@ -15,7 +15,7 @@ public class CommentRepositoryI implements CommentRepository {
     private final PostgresCommentRepository commentRepository;
 
     @Override
-    public Comment getById(Long commentId) {
+    public Comment getById(String commentId) {
         CommentModel commentModel = commentRepository.findById(commentId).orElse(null);
         return commentModel != null ? CommentEntityMapper.toDomain(commentModel) : null;
     }
@@ -33,7 +33,7 @@ public class CommentRepositoryI implements CommentRepository {
     }
 
     @Override
-    public void deleteById(Long commentId) {
+    public void deleteById(String commentId) {
         commentRepository.deleteById(commentId);
     }
 

@@ -9,18 +9,18 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-@Entity
 @Data
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "comments")
 public class CommentModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
-    private Long authorId;
+    private String authorId;
 
     @ManyToOne
     private ForumModel forum;
@@ -30,7 +30,7 @@ public class CommentModel {
 
     private String content;
 
-    private Set<Long> likedBy;
+    private Set<String> likedBy;
 
     private LocalDateTime createdAt;
 

@@ -11,28 +11,27 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
-@Entity
 @Data
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Table(name = "forums")
 public class ForumModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
     private String title;
 
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    private Long views;
+    private Integer views;
 
-    private Long authorId;
+    private String authorId;
 
-    private Set<Long> upvoters;
+    private Set<String> upvoters;
 
     @Enumerated(EnumType.STRING)
     private Category category;

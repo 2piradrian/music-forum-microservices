@@ -6,7 +6,7 @@ import com.twopiradrian.auth_server.domain.entity.User;
 
 public class GetByIdMapper {
 
-    public GetUserByIdReq toRequest(Long userId) {
+    public GetUserByIdReq toRequest(String userId) {
         return GetUserByIdReq.create(
                 userId
         );

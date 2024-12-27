@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class GetByIdMapper {
 
-    public GetForumByIdReq toRequest(Long forumId) {
+    public GetForumByIdReq toRequest(String forumId) {
         return GetForumByIdReq.create(
                 forumId
         );

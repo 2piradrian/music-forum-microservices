@@ -11,7 +11,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class RegisterUserRes {
 
-    private final Long userId;
+    private final String userId;
 
     private final String username;
 

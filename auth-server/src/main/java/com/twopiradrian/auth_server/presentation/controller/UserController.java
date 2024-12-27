@@ -22,7 +22,7 @@ public class UserController {
 
     @GetMapping("/get-by-id/{userId}")
     public ResponseEntity<?> getById(
-            @PathVariable Long userId
+            @PathVariable String userId
     ) {
         try {
             GetUserByIdReq dto = UserMapper.getById().toRequest(userId);

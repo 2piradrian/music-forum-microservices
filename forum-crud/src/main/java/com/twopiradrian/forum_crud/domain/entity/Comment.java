@@ -12,9 +12,9 @@ import java.util.Set;
 @NoArgsConstructor
 public class Comment {
 
-    private Long id;
+    private String id;
 
-    private Long authorId;
+    private String authorId;
 
     private Forum forum;
 
@@ -22,7 +22,7 @@ public class Comment {
 
     private String content;
 
-    private Set<Long> likedBy;
+    private Set<String> likedBy;
 
     private LocalDateTime createdAt;
 

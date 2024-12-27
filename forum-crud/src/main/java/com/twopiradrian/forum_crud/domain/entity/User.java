@@ -12,7 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class User {
 
-    private Long id;
+    private String id;
 
     private String username;
 

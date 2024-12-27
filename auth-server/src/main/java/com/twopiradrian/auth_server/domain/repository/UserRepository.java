@@ -5,7 +5,7 @@ import com.twopiradrian.auth_server.domain.entity.User;
 
 public interface UserRepository {
 
-    User getById(Long userId);
+    User getById(String userId);
 
     User getByEmail(String email);
 
@@ -15,5 +15,5 @@ public interface UserRepository {
 
     User update(User user);
 
-    void deleteById(Long userId);
+    void deleteById(String userId);
 }

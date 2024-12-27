@@ -20,7 +20,7 @@ public class ForumController {
 
     @GetMapping("/get-by-id/{forumId}")
     public ResponseEntity<?> getById(
-            @PathVariable Long forumId
+            @PathVariable String forumId
     ) {
         try {
             GetForumByIdReq dto = ForumMapper.getById().toRequest(forumId);

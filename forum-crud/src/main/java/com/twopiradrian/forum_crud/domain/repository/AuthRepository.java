@@ -7,6 +7,6 @@ public interface AuthRepository {
 
     TokenClaims auth(String token);
 
-    User getById(Long userId);
+    User getById(String userId);
 
 }

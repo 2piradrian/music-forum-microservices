@@ -13,17 +13,17 @@ import java.util.Set;
 @NoArgsConstructor
 public class Forum {
 
-    private Long id;
+    private String id;
 
     private String title;
 
     private String content;
 
-    private Long views;
+    private Integer views;
 
-    private Long authorId;
+    private String authorId;
 
-    private Set<Long> upvoters;
+    private Set<String> upvoters;
 
     private Category category;
 

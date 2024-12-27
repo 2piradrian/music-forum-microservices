@@ -23,7 +23,7 @@ public class AuthRepositoryI implements AuthRepository {
     }
 
     @Override
-    public User getById(Long userId) {
+    public User getById(String userId) {
         Optional<User> user = this.authServerRepository.getById(userId);
 
         return user.orElse(null);

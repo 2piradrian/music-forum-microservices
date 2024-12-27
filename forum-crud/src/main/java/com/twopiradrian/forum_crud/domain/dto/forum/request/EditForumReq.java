@@ -10,16 +10,15 @@ public class EditForumReq {
 
     private final String token;
 
+    private final String forumId;
+
     private final String title;
 
     private final String content;
 
     private final String category;
 
-
-    private final Long forumId;
-
-    private EditForumReq(String token, String title, String content, String category, Long forumId) {
+    private EditForumReq(String token, String forumId, String title, String content, String category) {
         this.token = token;
         this.title = title;
         this.content = content;
@@ -27,7 +26,7 @@ public class EditForumReq {
         this.forumId = forumId;
     }
 
-    public static EditForumReq create(String token, String title, String content, String category, Long forumId) {
+    public static EditForumReq create(String token, String forumId, String title, String content, String category) {
 
         if (token == null) {
             throw new ErrorHandler(ErrorType.UNAUTHORIZED);
@@ -66,7 +65,7 @@ public class EditForumReq {
             throw new ErrorHandler(ErrorType.INVALID_FIELDS);
         }
 
-        return new EditForumReq(token, title, content, category, forumId);
+        return new EditForumReq(token, forumId, title, content, category);
     }
 
 }

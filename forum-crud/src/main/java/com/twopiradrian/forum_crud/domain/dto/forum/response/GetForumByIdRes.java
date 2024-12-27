@@ -14,17 +14,17 @@ import java.util.List;
 @AllArgsConstructor
 public class GetForumByIdRes {
 
-    private final Long authorId;
+    private final String authorId;
 
     private final String authorUsername;
 
-    private final Long forumId;
+    private final String forumId;
 
     private final String title;
 
     private final String content;
 
-    private final Long views;
+    private final Integer views;
 
     private final int upvoters;
 

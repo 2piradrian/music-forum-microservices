@@ -11,7 +11,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class GetUserByIdRes {
 
-    private final Long userId;
+    private final String id;
 
     private final String username;
 

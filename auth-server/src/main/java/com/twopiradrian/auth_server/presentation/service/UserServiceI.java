@@ -14,11 +14,13 @@ import com.twopiradrian.auth_server.domain.error.ErrorHandler;
 import com.twopiradrian.auth_server.domain.error.ErrorType;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Set;
 
+@Slf4j
 @Service
 @Transactional
 @AllArgsConstructor
@@ -53,9 +55,9 @@ public class UserServiceI implements UserService {
         user.setMemberSince(LocalDateTime.now());
         user.setLastLogin(LocalDateTime.now());
 
-        this.userRepository.save(user);
+        User saved = this.userRepository.save(user);
 
-        return UserMapper.register().toResponse(user);
+        return UserMapper.register().toResponse(saved);
     }
 
     @Override

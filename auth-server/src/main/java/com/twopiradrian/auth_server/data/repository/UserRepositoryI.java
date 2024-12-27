@@ -15,7 +15,7 @@ public class UserRepositoryI implements UserRepository {
     private final PostgresUserRepository userRepository;
 
     @Override
-    public User getById(Long userId) {
+    public User getById(String userId) {
         UserModel userModel = userRepository.findById(userId).orElse(null);
         return userModel != null ? UserEntityMapper.toDomain(userModel) : null;
     }
@@ -49,7 +49,7 @@ public class UserRepositoryI implements UserRepository {
     }
 
     @Override
-    public void deleteById(Long userId) {
+    public void deleteById(String userId) {
         userRepository.deleteById(userId);
     }
 
