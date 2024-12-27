@@ -21,4 +21,8 @@ public class UserMapper {
         return new AuthMapper();
     }
 
+    public static DeleteMapper delete() {
+        return new DeleteMapper();
+    }
+
 }

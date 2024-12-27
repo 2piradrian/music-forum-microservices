@@ -1,6 +1,7 @@
 package com.twopiradrian.auth_server.data.postgres.model;
 
 import com.twopiradrian.auth_server.domain.entity.Role;
+import com.twopiradrian.auth_server.domain.entity.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,8 +31,10 @@ public class UserModel {
 
     private LocalDateTime lastLogin;
 
-    @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
 }

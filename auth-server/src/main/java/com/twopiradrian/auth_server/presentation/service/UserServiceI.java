@@ -8,6 +8,7 @@ import com.twopiradrian.auth_server.domain.dto.user.response.GetUserByIdRes;
 import com.twopiradrian.auth_server.domain.dto.user.response.RegisterUserRes;
 import com.twopiradrian.auth_server.domain.dto.user.response.AuthUserRes;
 import com.twopiradrian.auth_server.domain.entity.Role;
+import com.twopiradrian.auth_server.domain.entity.Status;
 import com.twopiradrian.auth_server.domain.entity.Token;
 import com.twopiradrian.auth_server.domain.entity.User;
 import com.twopiradrian.auth_server.domain.error.ErrorHandler;
@@ -51,6 +52,7 @@ public class UserServiceI implements UserService {
         user.setUsername(dto.getUsername());
         user.setEmail(dto.getEmail());
         user.setPassword(this.authService.hashPassword(dto.getPassword()));
+        user.setStatus(Status.ACTIVE);
         user.setRoles(Set.of(Role.USER));
         user.setMemberSince(LocalDateTime.now());
         user.setLastLogin(LocalDateTime.now());
@@ -107,7 +109,9 @@ public class UserServiceI implements UserService {
             throw new ErrorHandler(ErrorType.USER_NOT_FOUND);
         }
 
-        this.userRepository.deleteById(user.getId());
+        user.setStatus(Status.DELETED);
+
+        this.userRepository.save(user);
     }
 
 }

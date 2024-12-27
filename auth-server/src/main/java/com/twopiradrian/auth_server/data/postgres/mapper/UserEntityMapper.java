@@ -13,7 +13,8 @@ public class UserEntityMapper {
                 userModel.getEmail(),
                 userModel.getMemberSince(),
                 userModel.getLastLogin(),
-                userModel.getRoles()
+                userModel.getRoles(),
+                userModel.getStatus()
         );
     }
 
@@ -25,7 +26,8 @@ public class UserEntityMapper {
                 user.getPassword(),
                 user.getMemberSince(),
                 user.getLastLogin(),
-                user.getRoles()
+                user.getRoles(),
+                user.getStatus()
         );
     }
 

@@ -1,10 +1,7 @@
 package com.twopiradrian.auth_server.presentation.controller;
 
 import com.twopiradrian.auth_server.domain.dto.user.mapper.UserMapper;
-import com.twopiradrian.auth_server.domain.dto.user.request.GetUserByIdReq;
-import com.twopiradrian.auth_server.domain.dto.user.request.LoginUserReq;
-import com.twopiradrian.auth_server.domain.dto.user.request.RegisterUserReq;
-import com.twopiradrian.auth_server.domain.dto.user.request.AuthUserReq;
+import com.twopiradrian.auth_server.domain.dto.user.request.*;
 import com.twopiradrian.auth_server.domain.error.ErrorHandler;
 import com.twopiradrian.auth_server.presentation.service.UserService;
 import lombok.AllArgsConstructor;
@@ -70,6 +67,21 @@ public class UserController {
             AuthUserReq dto = UserMapper.auth().toRequest(token);
 
             return ResponseEntity.ok(this.userService.auth(dto));
+        }
+        catch (ErrorHandler e) {
+            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
+        }
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> delete(
+            @RequestHeader("Authorization") String token
+    ) {
+        try {
+            DeleteUserReq dto = UserMapper.delete().toRequest(token);
+            this.userService.delete(dto);
+
+            return ResponseEntity.ok().build();
         }
         catch (ErrorHandler e) {
             return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
