@@ -3,7 +3,6 @@ package com.twopiradrian.forum_crud.data.postgres.model;
 import com.twopiradrian.forum_crud.domain.entity.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

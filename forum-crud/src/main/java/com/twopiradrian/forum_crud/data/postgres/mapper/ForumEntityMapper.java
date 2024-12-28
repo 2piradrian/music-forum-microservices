@@ -3,8 +3,6 @@ package com.twopiradrian.forum_crud.data.postgres.mapper;
 import com.twopiradrian.forum_crud.data.postgres.model.ForumModel;
 import com.twopiradrian.forum_crud.domain.entity.Forum;
 
-import java.util.stream.Collectors;
-
 public class ForumEntityMapper {
 
     public static Forum toDomain(ForumModel forumModel) {

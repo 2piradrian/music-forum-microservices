@@ -3,8 +3,6 @@ package com.twopiradrian.forum_crud.data.postgres.mapper;
 import com.twopiradrian.forum_crud.data.postgres.model.CommentModel;
 import com.twopiradrian.forum_crud.domain.entity.Comment;
 
-import java.util.stream.Collectors;
-
 public class CommentEntityMapper {
 
     public static Comment toDomain(CommentModel commentModel) {

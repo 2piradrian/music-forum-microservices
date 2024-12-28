@@ -6,8 +6,6 @@ import com.twopiradrian.forum_crud.domain.dto.forum.response.GetForumByIdRes;
 import com.twopiradrian.forum_crud.domain.entity.Forum;
 import com.twopiradrian.forum_crud.domain.entity.User;
 
-import java.util.Map;
-
 public class GetByIdMapper {
 
     public GetForumByIdReq toRequest(String forumId) {
