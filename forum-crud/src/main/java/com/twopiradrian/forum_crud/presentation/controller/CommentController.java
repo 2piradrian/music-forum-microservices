@@ -1,10 +1,7 @@
 package com.twopiradrian.forum_crud.presentation.controller;
 
 import com.twopiradrian.forum_crud.domain.dto.comment.mapper.CommentMapper;
-import com.twopiradrian.forum_crud.domain.dto.comment.request.CreateCommentReq;
-import com.twopiradrian.forum_crud.domain.dto.comment.request.DeleteCommentReq;
-import com.twopiradrian.forum_crud.domain.dto.comment.request.EditCommentReq;
-import com.twopiradrian.forum_crud.domain.dto.comment.request.ToggleCommentVotesReq;
+import com.twopiradrian.forum_crud.domain.dto.comment.request.*;
 import com.twopiradrian.forum_crud.domain.error.ErrorHandler;
 import com.twopiradrian.forum_crud.presentation.service.CommentService;
 import lombok.AllArgsConstructor;
@@ -19,6 +16,22 @@ import java.util.Map;
 public class CommentController {
 
     private final CommentService commentService;
+
+    @GetMapping("/get-page")
+    public ResponseEntity<?> getByForumId(
+            @RequestParam("forumId") String forumId,
+            @RequestParam("size") Integer size,
+            @RequestParam("page") Integer page
+    ) {
+        try {
+            GetCommentPageReq dto = CommentMapper.getPage().toRequest(forumId, size, page);
+
+            return ResponseEntity.ok(this.commentService.getComments(dto));
+        }
+        catch (ErrorHandler e) {
+            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
+        }
+    }
 
     @PostMapping("/create")
     public ResponseEntity<?> create(

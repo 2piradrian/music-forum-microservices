@@ -17,7 +17,8 @@ public class CommentEntityMapper {
                 commentModel.getUpvoters(),
                 commentModel.getDownvoters(),
                 commentModel.getCreatedAt(),
-                commentModel.getUpdatedAt()
+                commentModel.getUpdatedAt(),
+                commentModel.getStatus()
         );
     }
 
@@ -31,7 +32,8 @@ public class CommentEntityMapper {
                 comment.getUpvoters(),
                 comment.getDownvoters(),
                 comment.getCreatedAt(),
-                comment.getUpdatedAt()
+                comment.getUpdatedAt(),
+                comment.getStatus()
         );
     }
 }
