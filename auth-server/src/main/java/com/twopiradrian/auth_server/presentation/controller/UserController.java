@@ -21,86 +21,46 @@ public class UserController {
     public ResponseEntity<?> getById(
             @PathVariable(value = "userId") String userId
     ) {
-        try {
-            GetUserByIdReq dto = UserMapper.getById().toRequest(userId);
+        GetUserByIdReq dto = UserMapper.getById().toRequest(userId);
 
-            return ResponseEntity.ok(this.userService.getById(dto));
-        }
-        catch (ErrorHandler e) {
-            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
-        }
-        catch (Exception e) {
-            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
-        }
+        return ResponseEntity.ok(this.userService.getById(dto));
     }
 
     @PostMapping("/register")
     public ResponseEntity<?> register(
             @RequestBody Map<String, Object> payload
     ) {
-        try {
-            RegisterUserReq dto = UserMapper.register().toRequest(payload);
+        RegisterUserReq dto = UserMapper.register().toRequest(payload);
 
-            return ResponseEntity.ok(this.userService.register(dto));
-        }
-        catch (ErrorHandler e) {
-            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
-        }
-        catch (Exception e) {
-            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
-        }
+        return ResponseEntity.ok(this.userService.register(dto));
     }
 
     @PostMapping("/login")
     public ResponseEntity<?> login(
             @RequestBody Map<String, Object> payload
     ) {
-        try {
-            LoginUserReq dto = UserMapper.login().toRequest(payload);
+        LoginUserReq dto = UserMapper.login().toRequest(payload);
 
-            return ResponseEntity.ok(this.userService.login(dto));
-        }
-        catch (ErrorHandler e) {
-            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
-        }
-        catch (Exception e) {
-            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
-        }
+        return ResponseEntity.ok(this.userService.login(dto));
     }
 
     @GetMapping("/auth")
     public ResponseEntity<?> auth(
             @RequestHeader(value = "Authorization") String token
     ) {
-        try {
-            AuthUserReq dto = UserMapper.auth().toRequest(token);
+        AuthUserReq dto = UserMapper.auth().toRequest(token);
 
-            return ResponseEntity.ok(this.userService.auth(dto));
-        }
-        catch (ErrorHandler e) {
-            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
-        }
-        catch (Exception e) {
-            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
-        }
+        return ResponseEntity.ok(this.userService.auth(dto));
     }
 
     @DeleteMapping("/delete")
     public ResponseEntity<?> delete(
             @RequestHeader(value = "Authorization") String token
     ) {
-        try {
-            DeleteUserReq dto = UserMapper.delete().toRequest(token);
-            this.userService.delete(dto);
+        DeleteUserReq dto = UserMapper.delete().toRequest(token);
+        this.userService.delete(dto);
 
-            return ResponseEntity.ok().build();
-        }
-        catch (ErrorHandler e) {
-            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
-        }
-        catch (Exception e) {
-            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
-        }
+        return ResponseEntity.ok().build();
     }
 
 }

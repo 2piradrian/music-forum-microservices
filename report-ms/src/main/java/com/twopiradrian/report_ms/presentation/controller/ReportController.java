@@ -20,17 +20,9 @@ public class ReportController {
 
     @PostMapping
     public ResponseEntity<?> makeMonthlyForumReport(@RequestBody Map<String, Object> payload) {
-        try {
-            MakeMonthlyForumReportReq dto = ForumMapper.makeMonthlyReport().toRequest(payload);
+        MakeMonthlyForumReportReq dto = ForumMapper.makeMonthlyReport().toRequest(payload);
 
-            return ResponseEntity.ok(this.reportService.makeMonthlyForumReport(dto));
-        }
-        catch (ErrorHandler e) {
-            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
-        }
-        catch (Exception e) {
-            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
-        }
+        return ResponseEntity.ok(this.reportService.makeMonthlyForumReport(dto));
     }
 
 }
