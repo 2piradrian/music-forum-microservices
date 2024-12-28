@@ -11,6 +11,4 @@ public interface CommentRepository {
 
     Comment update(Comment comment);
 
-    void deleteById(String commentId);
-
 }

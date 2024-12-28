@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Set;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Forum {
 
     private String id;

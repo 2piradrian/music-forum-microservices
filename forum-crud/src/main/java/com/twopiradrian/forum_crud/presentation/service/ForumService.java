@@ -20,4 +20,5 @@ public interface ForumService {
     void toggleVotes(ToggleForumVotesReq dto);
 
     void delete(DeleteForumReq dto);
+
 }

@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Comment {
 
     private String id;
@@ -29,5 +29,7 @@ public class Comment {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
+    private Status status;
 
 }

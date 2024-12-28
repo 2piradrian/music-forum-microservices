@@ -10,9 +10,11 @@ public enum ErrorType {
 
     USER_NOT_FOUND("User not found", 404),
     FORUM_NOT_FOUND("Forum not found", 404),
-    USER_ALREADY_EXISTS("User already exists", 409),
 
-    UNAUTHORIZED("Unauthorized", 401);
+    UNAUTHORIZED("Unauthorized", 401),
+
+    FORUM_NOT_ACTIVE("Forum not active", 400),
+    COMMENT_NOT_FOUND("Comment not found", 404);
 
     private final String message;
     private final int httpCode;

@@ -1,5 +1,6 @@
 package com.twopiradrian.forum_crud.data.postgres.model;
 
+import com.twopiradrian.forum_crud.domain.entity.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,5 +39,8 @@ public class CommentModel {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
 }

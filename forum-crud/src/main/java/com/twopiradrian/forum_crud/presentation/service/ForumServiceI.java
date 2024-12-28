@@ -13,7 +13,9 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Slf4j
@@ -36,7 +38,7 @@ public class ForumServiceI implements ForumService {
         Integer views = forum.getViews();
         forum.setViews(views + 1);
 
-        forumRepository.update(forum);
+        this.forumRepository.update(forum);
 
         return ForumMapper.getById().toResponse(forum, author);
     }
@@ -57,10 +59,10 @@ public class ForumServiceI implements ForumService {
         forum.setViews(0);
         forum.setUpvoters(Set.of());
         forum.setDownvoters(Set.of());
-        forum.setCreatedAt(java.time.LocalDateTime.now());
-        forum.setUpdatedAt(java.time.LocalDateTime.now());
+        forum.setCreatedAt(LocalDateTime.now());
+        forum.setUpdatedAt(LocalDateTime.now());
 
-        Forum saved = forumRepository.save(forum);
+        Forum saved = this.forumRepository.save(forum);
 
         return ForumMapper.create().toResponse(saved);
     }
@@ -80,10 +82,10 @@ public class ForumServiceI implements ForumService {
         forum.setTitle(dto.getTitle());
         forum.setContent(dto.getContent());
         forum.setCategory(Category.valueOf(dto.getCategory()));
-        forum.setUpdatedAt(java.time.LocalDateTime.now());
+        forum.setUpdatedAt(LocalDateTime.now());
 
-        forumRepository.update(forum);
-        return ForumMapper.edit().toResponse(forum);
+        Forum edited = this.forumRepository.update(forum);
+        return ForumMapper.edit().toResponse(edited);
     }
 
     @Override
@@ -99,16 +101,15 @@ public class ForumServiceI implements ForumService {
         Set<String> upvoters = forum.getUpvoters();
         Set<String> downvoters = forum.getDownvoters();
 
-        if (dto.getVoteType().equals("UPVOTE")) {
+        if (Objects.equals(Vote.UPVOTE.toString(), dto.getVoteType())) {
             if (upvoters.contains(user)) {
                 upvoters.remove(user);
-            }
-            else {
+            } else {
                 upvoters.add(user);
                 downvoters.remove(user);
             }
         }
-        if (dto.getVoteType().equals("DOWNVOTE")) {
+        if (Objects.equals(Vote.DOWNVOTE.toString(), dto.getVoteType())) {
             if (downvoters.contains(user)) {
                 downvoters.remove(user);
             } else {
@@ -120,7 +121,7 @@ public class ForumServiceI implements ForumService {
         forum.setUpvoters(upvoters);
         forum.setDownvoters(downvoters);
 
-        forumRepository.update(forum);
+        this.forumRepository.update(forum);
     }
 
     @Override
@@ -135,10 +136,10 @@ public class ForumServiceI implements ForumService {
             throw new ErrorHandler(ErrorType.UNAUTHORIZED);
         }
 
-        forum.setUpdatedAt(java.time.LocalDateTime.now());
+        forum.setUpdatedAt(LocalDateTime.now());
         forum.setStatus(Status.DELETED);
 
-        forumRepository.update(forum);
+        this.forumRepository.update(forum);
     }
 
 }

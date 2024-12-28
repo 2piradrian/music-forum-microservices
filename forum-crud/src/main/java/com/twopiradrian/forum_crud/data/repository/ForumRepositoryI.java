@@ -17,7 +17,7 @@ public class ForumRepositoryI implements ForumRepository {
 
     @Override
     public Forum getById(String forumId) {
-        ForumModel forumModel = forumRepository.findById(forumId).orElse(null);
+        ForumModel forumModel = this.forumRepository.findById(forumId).orElse(null);
 
         if (forumModel == null) {
             return null;
@@ -33,7 +33,7 @@ public class ForumRepositoryI implements ForumRepository {
     @Override
     public Forum save(Forum forum) {
         ForumModel forumModel = ForumEntityMapper.toModel(forum);
-        ForumModel saved = forumRepository.save(forumModel);
+        ForumModel saved = this.forumRepository.save(forumModel);
 
         return ForumEntityMapper.toDomain(saved);
     }
@@ -41,7 +41,7 @@ public class ForumRepositoryI implements ForumRepository {
     @Override
     public Forum update(Forum forum) {
         ForumModel forumModel = ForumEntityMapper.toModel(forum);
-        ForumModel updated = forumRepository.save(forumModel);
+        ForumModel updated = this.forumRepository.save(forumModel);
 
         return ForumEntityMapper.toDomain(updated);
     }
