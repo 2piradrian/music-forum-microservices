@@ -9,6 +9,10 @@ public class ForumMapper {
         return new CreateMapper();
     }
 
+    public static GetPageMapper getPage() {
+        return new GetPageMapper();
+    }
+
     public static DeleteMapper delete() {
         return new DeleteMapper();
     }

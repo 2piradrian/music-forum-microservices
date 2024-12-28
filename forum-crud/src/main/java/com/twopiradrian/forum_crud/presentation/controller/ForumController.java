@@ -19,7 +19,7 @@ public class ForumController {
 
     @GetMapping("/get-by-id/{forumId}")
     public ResponseEntity<?> getById(
-            @PathVariable String forumId
+            @PathVariable(value = "forumId") String forumId
     ) {
         try {
             GetForumByIdReq dto = ForumMapper.getById().toRequest(forumId);
@@ -31,9 +31,25 @@ public class ForumController {
         }
     }
 
+    @GetMapping("/get-forums")
+    public ResponseEntity<?> getForums(
+            @RequestParam(value = "category", required = false) String category,
+            @RequestParam(value = "size") Integer size,
+            @RequestParam(value = "page") Integer page
+    ) {
+        try {
+            GetForumPageReq dto = ForumMapper.getPage().toRequest(category, size, page);
+
+            return ResponseEntity.ok(this.forumService.getForums(dto));
+        }
+        catch (ErrorHandler e) {
+            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
+        }
+    }
+
     @PostMapping("/create")
     public ResponseEntity<?> create(
-            @RequestHeader("Authorization") String token,
+            @RequestHeader(value = "Authorization") String token,
             @RequestBody Map<String, Object> payload
     ) {
         try {
@@ -48,7 +64,7 @@ public class ForumController {
 
     @PatchMapping("/edit")
     public ResponseEntity<?> edit(
-            @RequestHeader("Authorization") String token,
+            @RequestHeader(value = "Authorization") String token,
             @RequestBody Map<String, Object> payload
     ) {
         try {
@@ -63,7 +79,7 @@ public class ForumController {
 
     @PatchMapping("/toggle-votes")
     public ResponseEntity<?> toggleVotes(
-            @RequestHeader("Authorization") String token,
+            @RequestHeader(value = "Authorization") String token,
             @RequestBody Map<String, Object> payload
     ) {
         try {
@@ -79,7 +95,7 @@ public class ForumController {
 
     @DeleteMapping("/delete")
     public ResponseEntity<?> delete(
-            @RequestHeader("Authorization") String token,
+            @RequestHeader(value = "Authorization") String token,
             @RequestBody Map<String, Object> payload
     ) {
         try {

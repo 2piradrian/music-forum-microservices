@@ -7,18 +7,18 @@ import lombok.Getter;
 @Getter
 public class AuthUserReq {
 
-    private final String accessToken;
+    private final String token;
 
-    private AuthUserReq(String accessToken) {
-        this.accessToken = accessToken;
+    private AuthUserReq(String token) {
+        this.token = token;
     }
 
-    public static AuthUserReq create(String accessToken) {
+    public static AuthUserReq create(String token) {
 
-        if (accessToken == null) {
+        if (token == null) {
             throw new ErrorHandler(ErrorType.MISSING_REQUIRED_FIELDS);
         }
 
-        return new AuthUserReq(accessToken);
+        return new AuthUserReq(token);
     }
 }

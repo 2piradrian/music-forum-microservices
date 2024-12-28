@@ -7,9 +7,9 @@ import com.twopiradrian.auth_server.domain.entity.User;
 
 public class AuthMapper {
 
-    public AuthUserReq toRequest(String accessToken) {
+    public AuthUserReq toRequest(String token) {
         return AuthUserReq.create(
-                accessToken
+                token
         );
     }
 

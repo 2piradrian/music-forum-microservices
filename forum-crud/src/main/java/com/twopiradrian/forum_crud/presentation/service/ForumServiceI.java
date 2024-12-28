@@ -44,6 +44,14 @@ public class ForumServiceI implements ForumService {
     }
 
     @Override
+    public GetForumPageRes getForums(GetForumPageReq dto) {
+        PageContent<Forum> forums =
+                this.forumRepository.getAllForums(dto.getPage(), dto.getSize(), dto.getCategory());
+
+        return ForumMapper.getPage().toResponse(forums);
+    }
+
+    @Override
     public CreateForumRes create(CreateForumReq dto) {
         TokenClaims claims = this.authRepository.auth(dto.getToken());
         if (claims == null) throw new ErrorHandler(ErrorType.UNAUTHORIZED);

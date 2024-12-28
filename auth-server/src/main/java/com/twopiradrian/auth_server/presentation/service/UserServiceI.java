@@ -81,7 +81,7 @@ public class UserServiceI implements UserService {
 
     @Override
     public AuthUserRes auth(AuthUserReq dto) {
-        String token = this.authService.validateToken(dto.getAccessToken());
+        String token = this.authService.validateToken(dto.getToken());
 
         if (token == null) {
             throw new ErrorHandler(ErrorType.UNAUTHORIZED);

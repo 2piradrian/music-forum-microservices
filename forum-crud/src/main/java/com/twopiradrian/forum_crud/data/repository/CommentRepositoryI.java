@@ -42,7 +42,7 @@ public class CommentRepositoryI implements CommentRepository {
     public PageContent<Comment> getByForumId(String forumId, Integer page, Integer size) {
         Page<CommentModel> commentModels = this.commentRepository.findAllByForumId(forumId, PageRequest.of(page, size));
 
-        return new PageContent(
+        return new PageContent<Comment>(
                 commentModels.getContent().stream().map(CommentEntityMapper::toDomain).collect(Collectors.toList()),
                 commentModels.getNumber(),
                 commentModels.hasNext() ? commentModels.getNumber() + 1 : null

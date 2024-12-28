@@ -4,10 +4,16 @@ import com.twopiradrian.forum_crud.data.postgres.mapper.ForumEntityMapper;
 import com.twopiradrian.forum_crud.data.postgres.model.ForumModel;
 import com.twopiradrian.forum_crud.data.postgres.repository.PostgresForumRepository;
 import com.twopiradrian.forum_crud.domain.entity.Forum;
+import com.twopiradrian.forum_crud.domain.entity.PageContent;
 import com.twopiradrian.forum_crud.domain.entity.Status;
 import com.twopiradrian.forum_crud.domain.repository.ForumRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 @AllArgsConstructor
@@ -28,6 +34,29 @@ public class ForumRepositoryI implements ForumRepository {
         }
 
         return ForumEntityMapper.toDomain(forumModel);
+    }
+
+    @Override
+    public PageContent<Forum> getAllForums(Integer page, Integer size, String category) {
+        Page<ForumModel> forumModels;
+        if (category != null) {
+            forumModels
+                    = this.forumRepository.findAllByCategoryAndStatusNotAndOrderByCreatedAtDesc(
+                            category, Status.DELETED.toString(), PageRequest.of(page, size)
+            );
+        }
+        else {
+            forumModels
+                    = this.forumRepository.findAllByStatusNotAndOrderByCreatedAtDesc(
+                            Status.DELETED.toString(), PageRequest.of(page, size)
+            );
+        }
+
+        return new PageContent<Forum>(
+                forumModels.getContent().stream().map(ForumEntityMapper::toDomain).collect(Collectors.toList()),
+                forumModels.getNumber(),
+                forumModels.hasNext() ? forumModels.getNumber() + 1 : null
+        );
     }
 
     @Override

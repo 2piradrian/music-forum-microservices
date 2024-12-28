@@ -17,11 +17,11 @@ public class CommentController {
 
     private final CommentService commentService;
 
-    @GetMapping("/get-page")
+    @GetMapping("/get-comments")
     public ResponseEntity<?> getByForumId(
-            @RequestParam("forumId") String forumId,
-            @RequestParam("size") Integer size,
-            @RequestParam("page") Integer page
+            @RequestParam(value = "forumId") String forumId,
+            @RequestParam(value = "size") Integer size,
+            @RequestParam(value = "page") Integer page
     ) {
         try {
             GetCommentPageReq dto = CommentMapper.getPage().toRequest(forumId, size, page);
@@ -35,7 +35,7 @@ public class CommentController {
 
     @PostMapping("/create")
     public ResponseEntity<?> create(
-            @RequestHeader("Authorization") String token,
+            @RequestHeader(value = "Authorization") String token,
             @RequestBody Map<String, Object> payload
     ) {
         try {
@@ -50,7 +50,7 @@ public class CommentController {
 
     @PatchMapping("/edit")
     public ResponseEntity<?> edit(
-            @RequestHeader("Authorization") String token,
+            @RequestHeader(value = "Authorization") String token,
             @RequestBody Map<String, Object> payload
     ) {
         try {
@@ -65,7 +65,7 @@ public class CommentController {
 
     @PatchMapping("/toggle-votes")
     public ResponseEntity<?> toggleVotes(
-            @RequestHeader("Authorization") String token,
+            @RequestHeader(value = "Authorization") String token,
             @RequestBody Map<String, Object> payload
     ) {
         try {
@@ -81,7 +81,7 @@ public class CommentController {
 
     @DeleteMapping("/delete")
     public ResponseEntity<?> delete(
-            @RequestHeader("Authorization") String token,
+            @RequestHeader(value = "Authorization") String token,
             @RequestBody Map<String, Object> payload
     ) {
         try {

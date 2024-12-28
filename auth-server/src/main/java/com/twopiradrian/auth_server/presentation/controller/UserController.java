@@ -19,7 +19,7 @@ public class UserController {
 
     @GetMapping("/get-by-id/{userId}")
     public ResponseEntity<?> getById(
-            @PathVariable String userId
+            @PathVariable(value = "userId") String userId
     ) {
         try {
             GetUserByIdReq dto = UserMapper.getById().toRequest(userId);
@@ -61,7 +61,7 @@ public class UserController {
 
     @GetMapping("/auth")
     public ResponseEntity<?> auth(
-            @RequestHeader("Authorization") String token
+            @RequestHeader(value = "Authorization") String token
     ) {
         try {
             AuthUserReq dto = UserMapper.auth().toRequest(token);
@@ -75,7 +75,7 @@ public class UserController {
 
     @DeleteMapping("/delete")
     public ResponseEntity<?> delete(
-            @RequestHeader("Authorization") String token
+            @RequestHeader(value = "Authorization") String token
     ) {
         try {
             DeleteUserReq dto = UserMapper.delete().toRequest(token);

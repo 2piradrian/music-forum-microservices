@@ -5,9 +5,6 @@ import com.twopiradrian.forum_crud.domain.dto.comment.response.GetCommentPageRes
 import com.twopiradrian.forum_crud.domain.entity.Comment;
 import com.twopiradrian.forum_crud.domain.entity.PageContent;
 
-import java.util.List;
-import java.util.Map;
-
 public class GetPageMapper {
 
     public GetCommentPageReq toRequest(String forumId, Integer page, Integer size) {
