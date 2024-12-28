@@ -4,10 +4,15 @@ import com.twopiradrian.forum_crud.data.postgres.mapper.CommentEntityMapper;
 import com.twopiradrian.forum_crud.data.postgres.model.CommentModel;
 import com.twopiradrian.forum_crud.data.postgres.repository.PostgresCommentRepository;
 import com.twopiradrian.forum_crud.domain.entity.Comment;
+import com.twopiradrian.forum_crud.domain.entity.PageContent;
 import com.twopiradrian.forum_crud.domain.entity.Status;
 import com.twopiradrian.forum_crud.domain.repository.CommentRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
+
+import java.util.stream.Collectors;
 
 @Repository
 @AllArgsConstructor
@@ -31,6 +36,17 @@ public class CommentRepositoryI implements CommentRepository {
         }
 
         return CommentEntityMapper.toDomain(commentModel);
+    }
+
+    @Override
+    public PageContent<Comment> getByForumId(String forumId, Integer page, Integer size) {
+        Page<CommentModel> commentModels = this.commentRepository.findAllByForumId(forumId, PageRequest.of(page, size));
+
+        return new PageContent(
+                commentModels.getContent().stream().map(CommentEntityMapper::toDomain).collect(Collectors.toList()),
+                commentModels.getNumber(),
+                commentModels.hasNext() ? commentModels.getNumber() + 1 : null
+        );
     }
 
     @Override

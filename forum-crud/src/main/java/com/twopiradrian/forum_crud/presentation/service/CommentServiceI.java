@@ -5,12 +5,10 @@ import com.twopiradrian.forum_crud.data.repository.AuthRepositoryI;
 import com.twopiradrian.forum_crud.data.repository.CommentRepositoryI;
 import com.twopiradrian.forum_crud.data.repository.ForumRepositoryI;
 import com.twopiradrian.forum_crud.domain.dto.comment.mapper.CommentMapper;
-import com.twopiradrian.forum_crud.domain.dto.comment.request.CreateCommentReq;
-import com.twopiradrian.forum_crud.domain.dto.comment.request.DeleteCommentReq;
-import com.twopiradrian.forum_crud.domain.dto.comment.request.EditCommentReq;
-import com.twopiradrian.forum_crud.domain.dto.comment.request.ToggleCommentVotesReq;
+import com.twopiradrian.forum_crud.domain.dto.comment.request.*;
 import com.twopiradrian.forum_crud.domain.dto.comment.response.CreateCommentRes;
 import com.twopiradrian.forum_crud.domain.dto.comment.response.EditCommentRes;
+import com.twopiradrian.forum_crud.domain.dto.comment.response.GetCommentPageRes;
 import com.twopiradrian.forum_crud.domain.entity.*;
 import com.twopiradrian.forum_crud.domain.error.ErrorHandler;
 import com.twopiradrian.forum_crud.domain.error.ErrorType;
@@ -32,6 +30,21 @@ public class CommentServiceI implements CommentService {
     private final CommentRepositoryI commentRepository;
     private final ForumRepositoryI forumRepository;
     private final AuthRepositoryI authRepository;
+
+    @Override
+    public GetCommentPageRes getComments(GetCommentPageReq dto) {
+        Forum forum = this.forumRepository.getById(dto.getForumId());
+        if(forum == null) throw new ErrorHandler(ErrorType.FORUM_NOT_FOUND);
+
+        if (forum.getStatus() != Status.DELETED) {
+            throw new ErrorHandler(ErrorType.FORUM_NOT_FOUND);
+        }
+
+        PageContent<Comment> comments =
+                this.commentRepository.getByForumId(dto.getForumId(), dto.getPage(), dto.getSize());
+
+        return CommentMapper.getPage().toResponse(comments);
+    }
 
     @Override
     public CreateCommentRes create(CreateCommentReq dto) {

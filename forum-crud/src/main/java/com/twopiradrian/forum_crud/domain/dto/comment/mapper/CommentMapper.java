@@ -5,6 +5,10 @@ import com.twopiradrian.forum_crud.domain.dto.comment.mapper.implementation.*;
 
 public class CommentMapper {
 
+    public static GetPageMapper getPage() {
+        return new GetPageMapper();
+    }
+
     public static CreateMapper create() {
         return new CreateMapper();
     }
