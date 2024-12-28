@@ -41,13 +41,13 @@ public class ForumRepositoryI implements ForumRepository {
         Page<ForumModel> forumModels;
         if (category != null) {
             forumModels
-                    = this.forumRepository.findAllByCategoryAndStatusNotAndOrderByCreatedAtDesc(
+                    = this.forumRepository.findAllByCategory(
                             category, Status.DELETED.toString(), PageRequest.of(page, size)
             );
         }
         else {
             forumModels
-                    = this.forumRepository.findAllByStatusNotAndOrderByCreatedAtDesc(
+                    = this.forumRepository.findAll(
                             Status.DELETED.toString(), PageRequest.of(page, size)
             );
         }

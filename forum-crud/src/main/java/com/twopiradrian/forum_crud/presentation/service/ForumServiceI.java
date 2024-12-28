@@ -140,7 +140,11 @@ public class ForumServiceI implements ForumService {
         Forum forum = this.forumRepository.getById(dto.getForumId());
         if (forum == null) throw new ErrorHandler(ErrorType.FORUM_NOT_FOUND);
 
-        if (!forum.getAuthorId().equals(claims.getId())) {
+        boolean isAuthor = forum.getAuthorId().equals(claims.getId());
+        boolean isAdmin = claims.getRoles().contains(Role.ADMIN);
+        boolean isModerator = claims.getRoles().contains(Role.MODERATOR);
+
+        if (!isAuthor && !isAdmin && !isModerator) {
             throw new ErrorHandler(ErrorType.UNAUTHORIZED);
         }
 

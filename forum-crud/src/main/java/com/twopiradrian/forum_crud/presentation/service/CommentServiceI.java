@@ -1,6 +1,5 @@
 package com.twopiradrian.forum_crud.presentation.service;
 
-
 import com.twopiradrian.forum_crud.data.repository.AuthRepositoryI;
 import com.twopiradrian.forum_crud.data.repository.CommentRepositoryI;
 import com.twopiradrian.forum_crud.data.repository.ForumRepositoryI;
@@ -142,7 +141,11 @@ public class CommentServiceI implements CommentService {
         Comment comment = this.commentRepository.getById(dto.getCommentId());
         if (comment == null) throw new ErrorHandler(ErrorType.COMMENT_NOT_FOUND);
 
-        if (!comment.getAuthorId().equals(claims.getId())) {
+        boolean isAuthor = comment.getAuthorId().equals(claims.getId());
+        boolean isAdmin = claims.getRoles().contains(Role.ADMIN);
+        boolean isModerator = claims.getRoles().contains(Role.MODERATOR);
+
+        if (!isAuthor && !isAdmin && !isModerator) {
             throw new ErrorHandler(ErrorType.UNAUTHORIZED);
         }
 
