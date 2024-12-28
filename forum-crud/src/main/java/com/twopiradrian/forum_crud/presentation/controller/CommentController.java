@@ -24,17 +24,9 @@ public class CommentController {
             @RequestParam(value = "size") Integer size,
             @RequestParam(value = "page") Integer page
     ) {
-        try {
-            GetCommentPageReq dto = CommentMapper.getPage().toRequest(forumId, size, page);
+        GetCommentPageReq dto = CommentMapper.getPage().toRequest(forumId, size, page);
 
-            return ResponseEntity.ok(this.commentService.getComments(dto));
-        }
-        catch (ErrorHandler e) {
-            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
-        }
-        catch (Exception e) {
-            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
-        }
+        return ResponseEntity.ok(this.commentService.getComments(dto));
     }
 
     @PostMapping("/create")
@@ -42,17 +34,9 @@ public class CommentController {
             @RequestHeader(value = "Authorization") String token,
             @RequestBody Map<String, Object> payload
     ) {
-        try {
-            CreateCommentReq dto = CommentMapper.create().toRequest(token, payload);
+        CreateCommentReq dto = CommentMapper.create().toRequest(token, payload);
 
-            return ResponseEntity.ok(this.commentService.create(dto));
-        }
-        catch (ErrorHandler e) {
-            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
-        }
-        catch (Exception e) {
-            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
-        }
+        return ResponseEntity.ok(this.commentService.create(dto));
     }
 
     @PatchMapping("/edit")
@@ -60,17 +44,9 @@ public class CommentController {
             @RequestHeader(value = "Authorization") String token,
             @RequestBody Map<String, Object> payload
     ) {
-        try {
-            EditCommentReq dto = CommentMapper.edit().toRequest(token, payload);
+        EditCommentReq dto = CommentMapper.edit().toRequest(token, payload);
 
-            return ResponseEntity.ok(this.commentService.edit(dto));
-        }
-        catch (ErrorHandler e) {
-            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
-        }
-        catch (Exception e) {
-            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
-        }
+        return ResponseEntity.ok(this.commentService.edit(dto));
     }
 
     @PatchMapping("/toggle-votes")
@@ -78,18 +54,10 @@ public class CommentController {
             @RequestHeader(value = "Authorization") String token,
             @RequestBody Map<String, Object> payload
     ) {
-        try {
-            ToggleCommentVotesReq dto = CommentMapper.toggleVotes().toRequest(token, payload);
-            this.commentService.toggleVotes(dto);
+        ToggleCommentVotesReq dto = CommentMapper.toggleVotes().toRequest(token, payload);
+        this.commentService.toggleVotes(dto);
 
-            return ResponseEntity.ok().build();
-        }
-        catch (ErrorHandler e) {
-            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
-        }
-        catch (Exception e) {
-            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
-        }
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/delete")
@@ -97,18 +65,10 @@ public class CommentController {
             @RequestHeader(value = "Authorization") String token,
             @RequestBody Map<String, Object> payload
     ) {
-        try {
-            DeleteCommentReq dto = CommentMapper.delete().toRequest(token, payload);
-            this.commentService.delete(dto);
+        DeleteCommentReq dto = CommentMapper.delete().toRequest(token, payload);
+        this.commentService.delete(dto);
 
-            return ResponseEntity.ok().build();
-        }
-        catch (ErrorHandler e) {
-            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
-        }
-        catch (Exception e) {
-            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
-        }
+        return ResponseEntity.ok().build();
     }
 
 }

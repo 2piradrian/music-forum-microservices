@@ -1,4 +1,4 @@
-package com.twopiradrian.forum_crud.beans;
+package com.twopiradrian.forum_crud.config.beans;
 
 import org.springframework.cloud.loadbalancer.core.ServiceInstanceListSupplier;
 import org.springframework.context.ConfigurableApplicationContext;

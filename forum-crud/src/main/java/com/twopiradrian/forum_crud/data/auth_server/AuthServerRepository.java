@@ -1,6 +1,6 @@
 package com.twopiradrian.forum_crud.data.auth_server;
 
-import com.twopiradrian.forum_crud.beans.LoadBalancerConfiguration;
+import com.twopiradrian.forum_crud.config.beans.LoadBalancerConfiguration;
 import com.twopiradrian.forum_crud.domain.entity.TokenClaims;
 import com.twopiradrian.forum_crud.domain.entity.User;
 import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;

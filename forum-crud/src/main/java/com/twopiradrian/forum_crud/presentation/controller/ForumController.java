@@ -22,17 +22,9 @@ public class ForumController {
     public ResponseEntity<?> getById(
             @PathVariable(value = "forumId") String forumId
     ) {
-        try {
-            GetForumByIdReq dto = ForumMapper.getById().toRequest(forumId);
+        GetForumByIdReq dto = ForumMapper.getById().toRequest(forumId);
 
-            return ResponseEntity.ok(this.forumService.getById(dto));
-        }
-        catch (ErrorHandler e) {
-            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
-        }
-        catch (Exception e) {
-            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
-        }
+        return ResponseEntity.ok(this.forumService.getById(dto));
     }
 
     @GetMapping("/get-forums")
@@ -41,17 +33,9 @@ public class ForumController {
             @RequestParam(value = "size") Integer size,
             @RequestParam(value = "page") Integer page
     ) {
-        try {
-            GetForumPageReq dto = ForumMapper.getPage().toRequest(category, size, page);
+        GetForumPageReq dto = ForumMapper.getPage().toRequest(category, size, page);
 
-            return ResponseEntity.ok(this.forumService.getForums(dto));
-        }
-        catch (ErrorHandler e) {
-            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
-        }
-        catch (Exception e) {
-            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
-        }
+        return ResponseEntity.ok(this.forumService.getForums(dto));
     }
 
     @GetMapping("/get-monthly-forums")
@@ -60,17 +44,9 @@ public class ForumController {
             @RequestParam(value = "month") Integer month,
             @RequestParam(value = "year") Integer year
     ) {
-        try {
-            GetMonthlyForumsReq dto = ForumMapper.getMonthly().toRequest(token, month, year);
+        GetMonthlyForumsReq dto = ForumMapper.getMonthly().toRequest(token, month, year);
 
-            return ResponseEntity.ok(this.forumService.getMonthlyForums(dto));
-        }
-        catch (ErrorHandler e) {
-            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
-        }
-        catch (Exception e) {
-            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
-        }
+        return ResponseEntity.ok(this.forumService.getMonthlyForums(dto));
     }
 
     @PostMapping("/create")
@@ -78,17 +54,9 @@ public class ForumController {
             @RequestHeader(value = "Authorization") String token,
             @RequestBody Map<String, Object> payload
     ) {
-        try {
-            CreateForumReq dto = ForumMapper.create().toRequest(token, payload);
+        CreateForumReq dto = ForumMapper.create().toRequest(token, payload);
 
-            return ResponseEntity.ok(this.forumService.create(dto));
-        }
-        catch (ErrorHandler e) {
-            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
-        }
-        catch (Exception e) {
-            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
-        }
+        return ResponseEntity.ok(this.forumService.create(dto));
     }
 
     @PatchMapping("/edit")
@@ -96,17 +64,9 @@ public class ForumController {
             @RequestHeader(value = "Authorization") String token,
             @RequestBody Map<String, Object> payload
     ) {
-        try {
-            EditForumReq dto = ForumMapper.edit().toRequest(token, payload);
+        EditForumReq dto = ForumMapper.edit().toRequest(token, payload);
 
-            return ResponseEntity.ok(this.forumService.edit(dto));
-        }
-        catch (ErrorHandler e) {
-            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
-        }
-        catch (Exception e) {
-            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
-        }
+        return ResponseEntity.ok(this.forumService.edit(dto));
     }
 
     @PatchMapping("/toggle-votes")
@@ -114,18 +74,10 @@ public class ForumController {
             @RequestHeader(value = "Authorization") String token,
             @RequestBody Map<String, Object> payload
     ) {
-        try {
-            ToggleForumVotesReq dto = ForumMapper.toggleVotes().toRequest(token, payload);
-            this.forumService.toggleVotes(dto);
+        ToggleForumVotesReq dto = ForumMapper.toggleVotes().toRequest(token, payload);
+        this.forumService.toggleVotes(dto);
 
-            return ResponseEntity.ok().build();
-        }
-        catch (ErrorHandler e) {
-            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
-        }
-        catch (Exception e) {
-            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
-        }
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/delete")
@@ -133,18 +85,10 @@ public class ForumController {
             @RequestHeader(value = "Authorization") String token,
             @RequestBody Map<String, Object> payload
     ) {
-        try {
-            DeleteForumReq dto = ForumMapper.delete().toRequest(token, payload);
-            this.forumService.delete(dto);
+        DeleteForumReq dto = ForumMapper.delete().toRequest(token, payload);
+        this.forumService.delete(dto);
 
-            return ResponseEntity.ok().build();
-        }
-        catch (ErrorHandler e) {
-            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
-        }
-        catch (Exception e) {
-            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
-        }
+        return ResponseEntity.ok().build();
     }
 
 }
