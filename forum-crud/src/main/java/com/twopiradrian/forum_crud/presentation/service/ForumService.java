@@ -1,16 +1,15 @@
 package com.twopiradrian.forum_crud.presentation.service;
 
 import com.twopiradrian.forum_crud.domain.dto.forum.request.*;
-import com.twopiradrian.forum_crud.domain.dto.forum.response.CreateForumRes;
-import com.twopiradrian.forum_crud.domain.dto.forum.response.EditForumRes;
-import com.twopiradrian.forum_crud.domain.dto.forum.response.GetForumByIdRes;
-import com.twopiradrian.forum_crud.domain.dto.forum.response.GetForumPageRes;
+import com.twopiradrian.forum_crud.domain.dto.forum.response.*;
 
 public interface ForumService {
 
     GetForumByIdRes getById(GetForumByIdReq dto);
 
     GetForumPageRes getForums(GetForumPageReq dto);
+
+    GetMonthlyForumsRes getMonthlyForums(GetMonthlyForumsReq dto);
 
     CreateForumRes create(CreateForumReq dto);
 

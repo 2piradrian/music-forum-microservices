@@ -60,6 +60,15 @@ public class ForumRepositoryI implements ForumRepository {
     }
 
     @Override
+    public List<Forum> getMonthlyForums(int month, int year) {
+        List<ForumModel> forumModels = this.forumRepository.getMonthlyForums(
+                month, year, Status.DELETED.toString()
+        );
+
+        return forumModels.stream().map(ForumEntityMapper::toDomain).collect(Collectors.toList());
+    }
+
+    @Override
     public Forum save(Forum forum) {
         ForumModel forumModel = ForumEntityMapper.toModel(forum);
         ForumModel saved = this.forumRepository.save(forumModel);

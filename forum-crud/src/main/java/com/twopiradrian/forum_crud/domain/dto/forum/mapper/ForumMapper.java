@@ -13,6 +13,10 @@ public class ForumMapper {
         return new GetPageMapper();
     }
 
+    public static GetMonthlyMapper getMonthly() {
+        return new GetMonthlyMapper();
+    }
+
     public static DeleteMapper delete() {
         return new DeleteMapper();
     }

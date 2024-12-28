@@ -16,7 +16,7 @@ public class ForumRepositoryI implements ForumRepository {
     private final ForumCrudRepository forumCrudRepository;
 
     @Override
-    public List<Forum> getMonthlyForums(int month, int year) {
+    public List<Forum> getMonthlyForums(Integer month, Integer year) {
 
         GetMonthlyForumsReq dto = GetMonthlyForumsReq.create(month, year);
 

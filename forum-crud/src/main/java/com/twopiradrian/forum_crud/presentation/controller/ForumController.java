@@ -47,6 +47,22 @@ public class ForumController {
         }
     }
 
+    @GetMapping("/get-monthly-forums")
+    public ResponseEntity<?> getMonthlyForums(
+            @RequestHeader(value = "Authorization") String token,
+            @RequestParam(value = "month") Integer month,
+            @RequestParam(value = "year") Integer year
+    ) {
+        try {
+            GetMonthlyForumsReq dto = ForumMapper.getMonthly().toRequest(token, month, year);
+
+            return ResponseEntity.ok(this.forumService.getMonthlyForums(dto));
+        }
+        catch (ErrorHandler e) {
+            return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
+        }
+    }
+
     @PostMapping("/create")
     public ResponseEntity<?> create(
             @RequestHeader(value = "Authorization") String token,

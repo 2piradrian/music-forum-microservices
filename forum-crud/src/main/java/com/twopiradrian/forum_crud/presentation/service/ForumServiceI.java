@@ -52,6 +52,21 @@ public class ForumServiceI implements ForumService {
     }
 
     @Override
+    public GetMonthlyForumsRes getMonthlyForums(GetMonthlyForumsReq dto) {
+        TokenClaims claims = this.authRepository.auth(dto.getToken());
+
+        if (claims == null) throw new ErrorHandler(ErrorType.UNAUTHORIZED);
+
+        boolean isAdmin = claims.getRoles().contains(Role.ADMIN);
+        if (!isAdmin) throw new ErrorHandler(ErrorType.UNAUTHORIZED);
+
+        List<Forum> forums =
+                this.forumRepository.getMonthlyForums(dto.getMonth(), dto.getYear());
+
+        return ForumMapper.getMonthly().toResponse(forums);
+    }
+
+    @Override
     public CreateForumRes create(CreateForumReq dto) {
         TokenClaims claims = this.authRepository.auth(dto.getToken());
         if (claims == null) throw new ErrorHandler(ErrorType.UNAUTHORIZED);
