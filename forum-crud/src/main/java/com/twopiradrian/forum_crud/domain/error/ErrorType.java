@@ -14,7 +14,9 @@ public enum ErrorType {
     UNAUTHORIZED("Unauthorized", 401),
 
     FORUM_NOT_ACTIVE("Forum not active", 400),
-    COMMENT_NOT_FOUND("Comment not found", 404);
+    COMMENT_NOT_FOUND("Comment not found", 404),
+
+    INTERNAL_ERROR("Internal error", 500);
 
     private final String message;
     private final int httpCode;

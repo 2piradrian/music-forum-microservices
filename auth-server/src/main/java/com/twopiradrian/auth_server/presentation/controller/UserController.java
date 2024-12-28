@@ -2,7 +2,7 @@ package com.twopiradrian.auth_server.presentation.controller;
 
 import com.twopiradrian.auth_server.domain.dto.user.mapper.UserMapper;
 import com.twopiradrian.auth_server.domain.dto.user.request.*;
-import com.twopiradrian.auth_server.domain.error.ErrorHandler;
+import com.twopiradrian.auth_server.domain.error.*;
 import com.twopiradrian.auth_server.presentation.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +29,9 @@ public class UserController {
         catch (ErrorHandler e) {
             return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
         }
+        catch (Exception e) {
+            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
+        }
     }
 
     @PostMapping("/register")
@@ -42,6 +45,9 @@ public class UserController {
         }
         catch (ErrorHandler e) {
             return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
         }
     }
 
@@ -57,6 +63,9 @@ public class UserController {
         catch (ErrorHandler e) {
             return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
         }
+        catch (Exception e) {
+            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
+        }
     }
 
     @GetMapping("/auth")
@@ -70,6 +79,9 @@ public class UserController {
         }
         catch (ErrorHandler e) {
             return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
         }
     }
 
@@ -86,5 +98,9 @@ public class UserController {
         catch (ErrorHandler e) {
             return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
         }
+        catch (Exception e) {
+            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
+        }
     }
+
 }

@@ -3,6 +3,7 @@ package com.twopiradrian.forum_crud.presentation.controller;
 import com.twopiradrian.forum_crud.domain.dto.forum.mapper.ForumMapper;
 import com.twopiradrian.forum_crud.domain.dto.forum.request.*;
 import com.twopiradrian.forum_crud.domain.error.ErrorHandler;
+import com.twopiradrian.forum_crud.domain.error.ErrorType;
 import com.twopiradrian.forum_crud.presentation.service.ForumService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,9 @@ public class ForumController {
         catch (ErrorHandler e) {
             return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
         }
+        catch (Exception e) {
+            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
+        }
     }
 
     @GetMapping("/get-forums")
@@ -44,6 +48,9 @@ public class ForumController {
         }
         catch (ErrorHandler e) {
             return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
         }
     }
 
@@ -61,6 +68,9 @@ public class ForumController {
         catch (ErrorHandler e) {
             return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
         }
+        catch (Exception e) {
+            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
+        }
     }
 
     @PostMapping("/create")
@@ -76,6 +86,9 @@ public class ForumController {
         catch (ErrorHandler e) {
             return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
         }
+        catch (Exception e) {
+            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
+        }
     }
 
     @PatchMapping("/edit")
@@ -90,6 +103,9 @@ public class ForumController {
         }
         catch (ErrorHandler e) {
             return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
         }
     }
 
@@ -107,6 +123,9 @@ public class ForumController {
         catch (ErrorHandler e) {
             return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
         }
+        catch (Exception e) {
+            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
+        }
     }
 
     @DeleteMapping("/delete")
@@ -122,6 +141,9 @@ public class ForumController {
         }
         catch (ErrorHandler e) {
             return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
         }
     }
 

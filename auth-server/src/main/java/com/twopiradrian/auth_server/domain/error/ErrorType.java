@@ -13,7 +13,9 @@ public enum ErrorType {
     EMAIL_ALREADY_EXISTS("Email already exists", 409),
 
     INVALID_PASSWORD("Invalid password", 401),
-    UNAUTHORIZED("Unauthorized", 401);
+    UNAUTHORIZED("Unauthorized", 401),
+
+    INTERNAL_ERROR("Internal error", 500);
 
     private final String message;
     private final int httpCode;

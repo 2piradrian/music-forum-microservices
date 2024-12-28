@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface ForumRepository {
 
-    List<Forum> getMonthlyForums(int month, int year);
+    List<Forum> getMonthlyForums(Integer month, Integer year);
 
 }

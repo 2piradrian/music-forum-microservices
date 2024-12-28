@@ -3,6 +3,7 @@ package com.twopiradrian.forum_crud.presentation.controller;
 import com.twopiradrian.forum_crud.domain.dto.comment.mapper.CommentMapper;
 import com.twopiradrian.forum_crud.domain.dto.comment.request.*;
 import com.twopiradrian.forum_crud.domain.error.ErrorHandler;
+import com.twopiradrian.forum_crud.domain.error.ErrorType;
 import com.twopiradrian.forum_crud.presentation.service.CommentService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,9 @@ public class CommentController {
         catch (ErrorHandler e) {
             return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
         }
+        catch (Exception e) {
+            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
+        }
     }
 
     @PostMapping("/create")
@@ -46,6 +50,9 @@ public class CommentController {
         catch (ErrorHandler e) {
             return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
         }
+        catch (Exception e) {
+            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
+        }
     }
 
     @PatchMapping("/edit")
@@ -60,6 +67,9 @@ public class CommentController {
         }
         catch (ErrorHandler e) {
             return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
         }
     }
 
@@ -77,6 +87,9 @@ public class CommentController {
         catch (ErrorHandler e) {
             return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
         }
+        catch (Exception e) {
+            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
+        }
     }
 
     @DeleteMapping("/delete")
@@ -92,6 +105,9 @@ public class CommentController {
         }
         catch (ErrorHandler e) {
             return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(500).body(ErrorType.INTERNAL_ERROR.getMessage());
         }
     }
 
