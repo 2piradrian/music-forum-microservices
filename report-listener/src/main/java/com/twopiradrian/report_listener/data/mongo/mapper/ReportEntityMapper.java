@@ -8,6 +8,8 @@ public class ReportEntityMapper {
     public static Report toDomain(ReportModel reportModel) {
         return new Report(
             reportModel.getId(),
+            reportModel.getDate(),
+            reportModel.getType(),
             reportModel.getContent()
         );
     }
@@ -15,6 +17,8 @@ public class ReportEntityMapper {
     public static ReportModel toModel(Report report) {
         return new ReportModel(
             report.getId(),
+            report.getDate(),
+            report.getType(),
             report.getContent()
         );
     }

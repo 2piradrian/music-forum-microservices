@@ -15,5 +15,4 @@ public interface UserRepository {
 
     User update(User user);
 
-    void deleteById(String userId);
 }

@@ -16,26 +16,26 @@ public class UserRepositoryI implements UserRepository {
 
     @Override
     public User getById(String userId) {
-        UserModel userModel = userRepository.findById(userId).orElse(null);
+        UserModel userModel = this.userRepository.findById(userId).orElse(null);
         return userModel != null ? UserEntityMapper.toDomain(userModel) : null;
     }
 
     @Override
     public User getByEmail(String email) {
-        UserModel userModel = userRepository.findByEmail(email).orElse(null);
+        UserModel userModel = this.userRepository.findByEmail(email).orElse(null);
         return userModel != null ? UserEntityMapper.toDomain(userModel) : null;
     }
 
     @Override
     public User getByUsername(String username) {
-        UserModel userModel = userRepository.findByUsername(username).orElse(null);
+        UserModel userModel = this.userRepository.findByUsername(username).orElse(null);
         return userModel != null ? UserEntityMapper.toDomain(userModel) : null;
     }
 
     @Override
     public User save(User user) {
         UserModel userModel = UserEntityMapper.toModel(user);
-        UserModel saved = userRepository.save(userModel);
+        UserModel saved = this.userRepository.save(userModel);
 
         return UserEntityMapper.toDomain(saved);
     }
@@ -43,14 +43,9 @@ public class UserRepositoryI implements UserRepository {
     @Override
     public User update(User user) {
         UserModel userModel = UserEntityMapper.toModel(user);
-        UserModel updated = userRepository.save(userModel);
+        UserModel updated = this.userRepository.save(userModel);
 
         return UserEntityMapper.toDomain(updated);
-    }
-
-    @Override
-    public void deleteById(String userId) {
-        userRepository.deleteById(userId);
     }
 
 }

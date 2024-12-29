@@ -15,7 +15,7 @@ public class ReportRepositoryI implements ReportRepository {
     private final MongoReportRepository reportRepository;
 
     @Override
-    public void saveReport(Report report) {
+    public void save(Report report) {
         ReportModel reportModel = ReportEntityMapper.toModel(report);
         this.reportRepository.save(reportModel);
     }

@@ -16,9 +16,13 @@ public class ReportController {
 
     private ReportService reportService;
 
-    @PostMapping
-    public ResponseEntity<?> makeMonthlyForumReport(@RequestBody Map<String, Object> payload) {
-        MakeMonthlyForumReportReq dto = ForumMapper.makeMonthlyReport().toRequest(payload);
+    @GetMapping("/forums/monthly")
+    public ResponseEntity<?> makeMonthlyForumReport(
+            @RequestHeader(value = "Authorization") String token,
+            @RequestHeader(value = "month") Integer month,
+            @RequestHeader(value = "year") Integer year
+    ) {
+        MakeMonthlyForumReportReq dto = ForumMapper.makeMonthlyReport().toRequest(token, month, year);
 
         return ResponseEntity.ok(this.reportService.makeMonthlyForumReport(dto));
     }

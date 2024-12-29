@@ -2,19 +2,21 @@ package com.twopiradrian.report_server.domain.dto.forum.implementation;
 
 import com.twopiradrian.report_server.domain.dto.forum.request.MakeMonthlyForumReportReq;
 import com.twopiradrian.report_server.domain.dto.forum.response.MakeMonthlyForumReportRes;
+import com.twopiradrian.report_server.domain.reports.forum.MonthlyForums;
 
 import java.util.Map;
 
 public class MakeMonthlyForumReportMapper {
 
-    public MakeMonthlyForumReportReq toRequest(Map<String, Object> payload) {
+    public MakeMonthlyForumReportReq toRequest(String token, Integer month, Integer year) {
         return MakeMonthlyForumReportReq.create(
-                (Integer) payload.get("month"),
-                (Integer) payload.get("year")
+                token,
+                month,
+                year
         );
     }
 
-    public MakeMonthlyForumReportRes toResponse(String report) {
+    public MakeMonthlyForumReportRes toResponse(MonthlyForums report) {
         return new MakeMonthlyForumReportRes(
             report
         );

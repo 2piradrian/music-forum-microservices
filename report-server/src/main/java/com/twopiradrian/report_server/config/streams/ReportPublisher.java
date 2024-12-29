@@ -15,4 +15,5 @@ public class ReportPublisher {
         this.streamBridge.send("consumer-report-in-0", report);
         this.streamBridge.send("consumer-report-out-0", report);
     }
+
 }

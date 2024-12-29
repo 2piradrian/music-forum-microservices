@@ -15,7 +15,7 @@ public class ReportServiceI implements ReportService {
 
     @Override
     public void saveReport(Report report) {
-        System.out.println("Saving report: " + report);
+        this.reportRepository.save(report);
     }
 
 }
