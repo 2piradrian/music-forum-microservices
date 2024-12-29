@@ -1,8 +1,8 @@
 package com.twopiradrian.forum_crud.domain.dto.forum.request;
 
 import com.twopiradrian.forum_crud.domain.entity.Vote;
-import com.twopiradrian.forum_crud.domain.error.ErrorHandler;
-import com.twopiradrian.forum_crud.domain.error.ErrorType;
+import com.twopiradrian.error.ErrorHandler;
+import com.twopiradrian.error.ErrorType;
 import lombok.Getter;
 
 @Getter

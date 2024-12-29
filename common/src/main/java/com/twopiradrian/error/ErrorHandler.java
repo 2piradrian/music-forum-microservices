@@ -1,8 +1,5 @@
-package com.twopiradrian.forum_crud.domain.error;
+package com.twopiradrian.error;
 
-import lombok.Getter;
-
-@Getter
 public class ErrorHandler extends RuntimeException {
 
     private final int httpCode;
@@ -14,6 +11,10 @@ public class ErrorHandler extends RuntimeException {
 
     public ErrorResponse toResponse() {
         return new ErrorResponse(this);
+    }
+
+    public int getHttpCode() {
+        return this.httpCode;
     }
 
 }

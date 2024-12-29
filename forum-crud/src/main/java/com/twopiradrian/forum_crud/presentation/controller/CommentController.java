@@ -2,8 +2,8 @@ package com.twopiradrian.forum_crud.presentation.controller;
 
 import com.twopiradrian.forum_crud.domain.dto.comment.mapper.CommentMapper;
 import com.twopiradrian.forum_crud.domain.dto.comment.request.*;
-import com.twopiradrian.forum_crud.domain.error.ErrorHandler;
-import com.twopiradrian.forum_crud.domain.error.ErrorType;
+import com.twopiradrian.error.ErrorHandler;
+import com.twopiradrian.error.ErrorType;
 import com.twopiradrian.forum_crud.presentation.service.CommentService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

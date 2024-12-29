@@ -1,8 +1,5 @@
-package com.twopiradrian.forum_crud.domain.error;
+package com.twopiradrian.error;
 
-import lombok.Getter;
-
-@Getter
 public enum ErrorType {
 
     MISSING_REQUIRED_FIELDS("Missing required fields", 400),
@@ -25,4 +22,13 @@ public enum ErrorType {
         this.message = message;
         this.httpCode = httpCode;
     }
+
+    public String getMessage() {
+        return this.message;
+    }
+
+    public int getHttpCode() {
+        return this.httpCode;
+    }
+
 }

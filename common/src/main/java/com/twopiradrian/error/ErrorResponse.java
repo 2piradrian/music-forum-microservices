@@ -1,4 +1,4 @@
-package com.twopiradrian.forum_crud.domain.error;
+package com.twopiradrian.error;
 
 public class ErrorResponse {
 

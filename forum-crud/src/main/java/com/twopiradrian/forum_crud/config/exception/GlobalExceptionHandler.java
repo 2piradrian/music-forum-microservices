@@ -1,7 +1,7 @@
 package com.twopiradrian.forum_crud.config.exception;
 
-import com.twopiradrian.forum_crud.domain.error.ErrorHandler;
-import com.twopiradrian.forum_crud.domain.error.ErrorType;
+import com.twopiradrian.error.ErrorHandler;
+import com.twopiradrian.error.ErrorType;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,13 +12,14 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ErrorHandler.class)
     public ResponseEntity<?> handleErrorHandler(ErrorHandler e) {
-        return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
+        return ResponseEntity
+                .status(e.getHttpCode()).body(e.toResponse());
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleGenericException(Exception e) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(ErrorType.INTERNAL_ERROR.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR).body(ErrorType.INTERNAL_ERROR.getMessage());
     }
 
 }
