@@ -9,8 +9,8 @@ public class MakeMonthlyForumReportMapper {
 
     public MakeMonthlyForumReportReq toRequest(Map<String, Object> payload) {
         return MakeMonthlyForumReportReq.create(
-                (int) payload.get("month"),
-                (int) payload.get("year")
+                (Integer) payload.get("month"),
+                (Integer) payload.get("year")
         );
     }
 

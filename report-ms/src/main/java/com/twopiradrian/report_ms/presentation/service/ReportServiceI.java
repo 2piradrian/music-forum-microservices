@@ -1,12 +1,12 @@
 package com.twopiradrian.report_ms.presentation.service;
 
+import com.twopiradrian.entity.Forum;
 import com.twopiradrian.report_ms.config.streams.ReportPublisher;
 import com.twopiradrian.report_ms.data.repository.ForumRepositoryI;
 import com.twopiradrian.report_ms.config.helper.ReportHelper;
 import com.twopiradrian.report_ms.domain.dto.forum.mapper.ForumMapper;
 import com.twopiradrian.report_ms.domain.dto.forum.request.MakeMonthlyForumReportReq;
 import com.twopiradrian.report_ms.domain.dto.forum.response.MakeMonthlyForumReportRes;
-import com.twopiradrian.report_ms.domain.entity.Forum;
 import com.twopiradrian.error.ErrorHandler;
 import com.twopiradrian.error.ErrorType;
 import lombok.AllArgsConstructor;

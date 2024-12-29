@@ -1,6 +1,6 @@
 package com.twopiradrian.report_ms.config.helper;
 
-import com.twopiradrian.report_ms.domain.entity.Forum;
+import com.twopiradrian.entity.Forum;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +14,7 @@ public class ReportHelper {
         // template: "{The forum {forumId} was created by {userId} at {createdAt}, and has {views} views}"
         return this.reportTemplate
                 .replace("{forumId}", String.valueOf(forum.getId()))
-                .replace("{userId}", String.valueOf(forum.getAuthor().getId()))
+                .replace("{userId}", String.valueOf(forum.getAuthorId()))
                 .replace("{createdAt}", String.valueOf(forum.getCreatedAt()))
                 .replace("{views}", String.valueOf(forum.getViews()));
 

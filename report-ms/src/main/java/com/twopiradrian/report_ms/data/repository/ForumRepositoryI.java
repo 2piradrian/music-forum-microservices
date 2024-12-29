@@ -1,8 +1,8 @@
 package com.twopiradrian.report_ms.data.repository;
 
+import com.twopiradrian.entity.Forum;
 import com.twopiradrian.report_ms.data.dto.forum.request.GetMonthlyForumsReq;
 import com.twopiradrian.report_ms.data.forum_crud.ForumCrudRepository;
-import com.twopiradrian.report_ms.domain.entity.Forum;
 import com.twopiradrian.report_ms.domain.repository.ForumRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;

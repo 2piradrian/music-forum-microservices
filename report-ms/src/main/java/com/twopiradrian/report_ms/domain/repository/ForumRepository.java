@@ -1,6 +1,6 @@
 package com.twopiradrian.report_ms.domain.repository;
 
-import com.twopiradrian.report_ms.domain.entity.Forum;
+import com.twopiradrian.entity.Forum;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.twopiradrian.report_ms.data.dto.forum.response;
 
-import com.twopiradrian.report_ms.domain.entity.Forum;
+import com.twopiradrian.entity.Forum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
