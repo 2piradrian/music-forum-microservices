@@ -1,4 +1,4 @@
-package com.twopiradrian.report_server;
+package com.twopiradrian.forum_server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,10 +8,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
-public class ReportServerApplication {
+public class ForumServerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ReportServerApplication.class, args);
+		SpringApplication.run(ForumServerApplication.class, args);
 	}
 
 }
