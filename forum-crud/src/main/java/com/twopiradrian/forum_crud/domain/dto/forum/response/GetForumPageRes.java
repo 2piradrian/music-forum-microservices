@@ -1,6 +1,6 @@
 package com.twopiradrian.forum_crud.domain.dto.forum.response;
 
-import com.twopiradrian.forum_crud.domain.entity.Forum;
+import com.twopiradrian.entity.Forum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

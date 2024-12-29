@@ -1,8 +1,8 @@
 package com.twopiradrian.forum_crud.domain.repository;
 
 
-import com.twopiradrian.forum_crud.domain.entity.Comment;
-import com.twopiradrian.forum_crud.domain.entity.PageContent;
+import com.twopiradrian.entity.Comment;
+import com.twopiradrian.entity.PageContent;
 
 public interface CommentRepository {
 

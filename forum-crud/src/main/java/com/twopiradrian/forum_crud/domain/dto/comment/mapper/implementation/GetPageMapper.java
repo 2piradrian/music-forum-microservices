@@ -1,9 +1,9 @@
 package com.twopiradrian.forum_crud.domain.dto.comment.mapper.implementation;
 
+import com.twopiradrian.entity.Comment;
+import com.twopiradrian.entity.PageContent;
 import com.twopiradrian.forum_crud.domain.dto.comment.request.GetCommentPageReq;
 import com.twopiradrian.forum_crud.domain.dto.comment.response.GetCommentPageRes;
-import com.twopiradrian.forum_crud.domain.entity.Comment;
-import com.twopiradrian.forum_crud.domain.entity.PageContent;
 
 public class GetPageMapper {
 

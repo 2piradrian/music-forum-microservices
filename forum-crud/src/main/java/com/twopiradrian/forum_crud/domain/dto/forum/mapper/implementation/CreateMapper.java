@@ -1,8 +1,8 @@
 package com.twopiradrian.forum_crud.domain.dto.forum.mapper.implementation;
 
+import com.twopiradrian.entity.Forum;
 import com.twopiradrian.forum_crud.domain.dto.forum.request.CreateForumReq;
 import com.twopiradrian.forum_crud.domain.dto.forum.response.CreateForumRes;
-import com.twopiradrian.forum_crud.domain.entity.Forum;
 
 import java.util.Map;
 

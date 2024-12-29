@@ -1,7 +1,7 @@
 package com.twopiradrian.forum_crud.domain.repository;
 
-import com.twopiradrian.forum_crud.domain.entity.Forum;
-import com.twopiradrian.forum_crud.domain.entity.PageContent;
+import com.twopiradrian.entity.Forum;
+import com.twopiradrian.entity.PageContent;
 
 import java.util.List;
 

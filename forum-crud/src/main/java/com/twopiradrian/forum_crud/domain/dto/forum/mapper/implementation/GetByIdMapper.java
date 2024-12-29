@@ -1,10 +1,10 @@
 package com.twopiradrian.forum_crud.domain.dto.forum.mapper.implementation;
 
 
+import com.twopiradrian.entity.Forum;
+import com.twopiradrian.entity.User;
 import com.twopiradrian.forum_crud.domain.dto.forum.request.GetForumByIdReq;
 import com.twopiradrian.forum_crud.domain.dto.forum.response.GetForumByIdRes;
-import com.twopiradrian.forum_crud.domain.entity.Forum;
-import com.twopiradrian.forum_crud.domain.entity.User;
 
 public class GetByIdMapper {
 

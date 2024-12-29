@@ -1,8 +1,8 @@
 package com.twopiradrian.forum_crud.domain.dto.comment.mapper.implementation;
 
+import com.twopiradrian.entity.Comment;
 import com.twopiradrian.forum_crud.domain.dto.comment.request.EditCommentReq;
 import com.twopiradrian.forum_crud.domain.dto.comment.response.EditCommentRes;
-import com.twopiradrian.forum_crud.domain.entity.Comment;
 
 import java.util.Map;
 

@@ -1,7 +1,7 @@
 package com.twopiradrian.forum_crud.data.postgres.mapper;
 
+import com.twopiradrian.entity.Comment;
 import com.twopiradrian.forum_crud.data.postgres.model.CommentModel;
-import com.twopiradrian.forum_crud.domain.entity.Comment;
 
 public class CommentEntityMapper {
 

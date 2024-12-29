@@ -1,7 +1,7 @@
 package com.twopiradrian.forum_crud.data.postgres.mapper;
 
+import com.twopiradrian.entity.Forum;
 import com.twopiradrian.forum_crud.data.postgres.model.ForumModel;
-import com.twopiradrian.forum_crud.domain.entity.Forum;
 
 public class ForumEntityMapper {
 

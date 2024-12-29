@@ -1,5 +1,6 @@
 package com.twopiradrian.forum_crud.presentation.service;
 
+import com.twopiradrian.entity.*;
 import com.twopiradrian.forum_crud.data.repository.AuthRepositoryI;
 import com.twopiradrian.forum_crud.data.repository.CommentRepositoryI;
 import com.twopiradrian.forum_crud.data.repository.ForumRepositoryI;
@@ -8,7 +9,6 @@ import com.twopiradrian.forum_crud.domain.dto.comment.request.*;
 import com.twopiradrian.forum_crud.domain.dto.comment.response.CreateCommentRes;
 import com.twopiradrian.forum_crud.domain.dto.comment.response.EditCommentRes;
 import com.twopiradrian.forum_crud.domain.dto.comment.response.GetCommentPageRes;
-import com.twopiradrian.forum_crud.domain.entity.*;
 import com.twopiradrian.error.ErrorHandler;
 import com.twopiradrian.error.ErrorType;
 import lombok.AllArgsConstructor;

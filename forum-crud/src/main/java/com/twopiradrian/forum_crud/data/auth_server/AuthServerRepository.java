@@ -1,8 +1,8 @@
 package com.twopiradrian.forum_crud.data.auth_server;
 
+import com.twopiradrian.entity.TokenClaims;
+import com.twopiradrian.entity.User;
 import com.twopiradrian.forum_crud.config.beans.LoadBalancerConfiguration;
-import com.twopiradrian.forum_crud.domain.entity.TokenClaims;
-import com.twopiradrian.forum_crud.domain.entity.User;
 import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

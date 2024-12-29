@@ -1,11 +1,11 @@
 package com.twopiradrian.forum_crud.data.repository;
 
+import com.twopiradrian.entity.Forum;
+import com.twopiradrian.entity.PageContent;
+import com.twopiradrian.entity.Status;
 import com.twopiradrian.forum_crud.data.postgres.mapper.ForumEntityMapper;
 import com.twopiradrian.forum_crud.data.postgres.model.ForumModel;
 import com.twopiradrian.forum_crud.data.postgres.repository.PostgresForumRepository;
-import com.twopiradrian.forum_crud.domain.entity.Forum;
-import com.twopiradrian.forum_crud.domain.entity.PageContent;
-import com.twopiradrian.forum_crud.domain.entity.Status;
 import com.twopiradrian.forum_crud.domain.repository.ForumRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;

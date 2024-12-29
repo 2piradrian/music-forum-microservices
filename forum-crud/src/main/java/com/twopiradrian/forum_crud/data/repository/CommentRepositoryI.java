@@ -1,11 +1,11 @@
 package com.twopiradrian.forum_crud.data.repository;
 
+import com.twopiradrian.entity.Comment;
+import com.twopiradrian.entity.PageContent;
+import com.twopiradrian.entity.Status;
 import com.twopiradrian.forum_crud.data.postgres.mapper.CommentEntityMapper;
 import com.twopiradrian.forum_crud.data.postgres.model.CommentModel;
 import com.twopiradrian.forum_crud.data.postgres.repository.PostgresCommentRepository;
-import com.twopiradrian.forum_crud.domain.entity.Comment;
-import com.twopiradrian.forum_crud.domain.entity.PageContent;
-import com.twopiradrian.forum_crud.domain.entity.Status;
 import com.twopiradrian.forum_crud.domain.repository.CommentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;

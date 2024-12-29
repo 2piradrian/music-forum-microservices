@@ -1,7 +1,7 @@
 package com.twopiradrian.forum_crud.domain.repository;
 
-import com.twopiradrian.forum_crud.domain.entity.TokenClaims;
-import com.twopiradrian.forum_crud.domain.entity.User;
+import com.twopiradrian.entity.TokenClaims;
+import com.twopiradrian.entity.User;
 
 public interface AuthRepository {
 

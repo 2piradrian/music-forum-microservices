@@ -1,9 +1,9 @@
 package com.twopiradrian.forum_crud.domain.dto.forum.mapper.implementation;
 
+import com.twopiradrian.entity.Forum;
+import com.twopiradrian.entity.PageContent;
 import com.twopiradrian.forum_crud.domain.dto.forum.request.GetForumPageReq;
 import com.twopiradrian.forum_crud.domain.dto.forum.response.GetForumPageRes;
-import com.twopiradrian.forum_crud.domain.entity.Forum;
-import com.twopiradrian.forum_crud.domain.entity.PageContent;
 
 public class GetPageMapper {
 

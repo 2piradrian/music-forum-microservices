@@ -1,11 +1,11 @@
 package com.twopiradrian.forum_crud.presentation.service;
 
+import com.twopiradrian.entity.*;
 import com.twopiradrian.forum_crud.data.repository.AuthRepositoryI;
 import com.twopiradrian.forum_crud.data.repository.ForumRepositoryI;
 import com.twopiradrian.forum_crud.domain.dto.forum.mapper.ForumMapper;
 import com.twopiradrian.forum_crud.domain.dto.forum.request.*;
 import com.twopiradrian.forum_crud.domain.dto.forum.response.*;
-import com.twopiradrian.forum_crud.domain.entity.*;
 import com.twopiradrian.error.ErrorHandler;
 import com.twopiradrian.error.ErrorType;
 import jakarta.transaction.Transactional;
