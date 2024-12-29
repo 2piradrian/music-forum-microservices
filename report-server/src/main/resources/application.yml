@@ -1,7 +1,7 @@
 spring:
 
   application:
-    name: report-ms
+    name: report-server
 
   profiles:
     default: default
@@ -21,7 +21,7 @@ spring:
 
 server:
   servlet:
-    context-path: /report-ms
+    context-path: /report-server
   port: 0
 
 eureka:

@@ -11,8 +11,8 @@
 	<groupId>com.twopiradrian</groupId>
 	<artifactId>report-ms</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>report-ms</name>
-	<description>Forum Report </description>
+	<name>report-server</name>
+	<description>Music Forum Report Maker</description>
 	<url/>
 	<licenses>
 		<license/>
