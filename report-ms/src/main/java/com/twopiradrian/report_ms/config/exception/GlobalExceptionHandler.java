@@ -1,7 +1,7 @@
 package com.twopiradrian.report_ms.config.exception;
 
-import com.twopiradrian.report_ms.domain.error.ErrorHandler;
-import com.twopiradrian.report_ms.domain.error.ErrorType;
+import com.twopiradrian.error.ErrorHandler;
+import com.twopiradrian.error.ErrorType;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

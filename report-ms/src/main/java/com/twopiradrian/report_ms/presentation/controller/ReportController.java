@@ -2,8 +2,8 @@ package com.twopiradrian.report_ms.presentation.controller;
 
 import com.twopiradrian.report_ms.domain.dto.forum.mapper.ForumMapper;
 import com.twopiradrian.report_ms.domain.dto.forum.request.MakeMonthlyForumReportReq;
-import com.twopiradrian.report_ms.domain.error.ErrorHandler;
-import com.twopiradrian.report_ms.domain.error.ErrorType;
+import com.twopiradrian.error.ErrorHandler;
+import com.twopiradrian.error.ErrorType;
 import com.twopiradrian.report_ms.presentation.service.ReportService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

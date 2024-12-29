@@ -1,7 +1,7 @@
 package com.twopiradrian.report_ms.data.dto.forum.request;
 
-import com.twopiradrian.report_ms.domain.error.ErrorHandler;
-import com.twopiradrian.report_ms.domain.error.ErrorType;
+import com.twopiradrian.error.ErrorHandler;
+import com.twopiradrian.error.ErrorType;
 import lombok.Getter;
 
 @Getter

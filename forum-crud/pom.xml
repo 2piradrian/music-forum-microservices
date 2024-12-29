@@ -76,10 +76,9 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>com.twopiradrian</groupId>
-			<artifactId>common</artifactId>
+			<artifactId>music-forum-common</artifactId>
 			<version>1.0.0</version>
 		</dependency>
 	</dependencies>

@@ -2,7 +2,6 @@ package com.twopiradrian.auth_server.presentation.controller;
 
 import com.twopiradrian.auth_server.domain.dto.user.mapper.UserMapper;
 import com.twopiradrian.auth_server.domain.dto.user.request.*;
-import com.twopiradrian.auth_server.domain.error.*;
 import com.twopiradrian.auth_server.presentation.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

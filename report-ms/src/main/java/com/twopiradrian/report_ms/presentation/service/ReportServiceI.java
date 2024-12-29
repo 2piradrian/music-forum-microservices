@@ -7,8 +7,8 @@ import com.twopiradrian.report_ms.domain.dto.forum.mapper.ForumMapper;
 import com.twopiradrian.report_ms.domain.dto.forum.request.MakeMonthlyForumReportReq;
 import com.twopiradrian.report_ms.domain.dto.forum.response.MakeMonthlyForumReportRes;
 import com.twopiradrian.report_ms.domain.entity.Forum;
-import com.twopiradrian.report_ms.domain.error.ErrorHandler;
-import com.twopiradrian.report_ms.domain.error.ErrorType;
+import com.twopiradrian.error.ErrorHandler;
+import com.twopiradrian.error.ErrorType;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

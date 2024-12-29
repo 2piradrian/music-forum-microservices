@@ -9,6 +9,10 @@ public enum ErrorType {
     FORUM_NOT_FOUND("Forum not found", 404),
 
     UNAUTHORIZED("Unauthorized", 401),
+    INVALID_PASSWORD("Invalid password", 400),
+
+    USERNAME_ALREADY_EXISTS("Username already exists", 400),
+    EMAIL_ALREADY_EXISTS("Email already exists", 400),
 
     FORUM_NOT_ACTIVE("Forum not active", 400),
     COMMENT_NOT_FOUND("Comment not found", 404),

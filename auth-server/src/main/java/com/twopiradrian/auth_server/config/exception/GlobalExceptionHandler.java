@@ -1,7 +1,7 @@
 package com.twopiradrian.auth_server.config.exception;
 
-import com.twopiradrian.auth_server.domain.error.ErrorHandler;
-import com.twopiradrian.auth_server.domain.error.ErrorType;
+import com.twopiradrian.error.ErrorHandler;
+import com.twopiradrian.error.ErrorType;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

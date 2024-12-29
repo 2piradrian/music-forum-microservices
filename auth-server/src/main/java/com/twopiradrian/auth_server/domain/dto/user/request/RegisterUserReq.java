@@ -1,7 +1,7 @@
 package com.twopiradrian.auth_server.domain.dto.user.request;
 
-import com.twopiradrian.auth_server.domain.error.ErrorHandler;
-import com.twopiradrian.auth_server.domain.error.ErrorType;
+import com.twopiradrian.error.ErrorHandler;
+import com.twopiradrian.error.ErrorType;
 import com.twopiradrian.auth_server.domain.validator.RegexValidators;
 import lombok.Getter;
 
