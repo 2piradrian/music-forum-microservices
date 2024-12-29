@@ -1,7 +1,8 @@
 package com.twopiradrian.auth_server.presentation.service;
 
-import com.twopiradrian.auth_server.domain.entity.Token;
-import com.twopiradrian.auth_server.domain.entity.User;
+
+import com.twopiradrian.entity.Token;
+import com.twopiradrian.entity.User;
 
 public interface AuthService {
 

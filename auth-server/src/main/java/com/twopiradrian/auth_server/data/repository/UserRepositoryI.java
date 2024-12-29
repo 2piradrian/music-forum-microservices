@@ -3,8 +3,8 @@ package com.twopiradrian.auth_server.data.repository;
 import com.twopiradrian.auth_server.data.postgres.mapper.UserEntityMapper;
 import com.twopiradrian.auth_server.data.postgres.model.UserModel;
 import com.twopiradrian.auth_server.data.postgres.repository.PostgresUserRepository;
-import com.twopiradrian.auth_server.domain.entity.User;
 import com.twopiradrian.auth_server.domain.repository.UserRepository;
+import com.twopiradrian.entity.User;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 

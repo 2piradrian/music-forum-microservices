@@ -2,7 +2,7 @@ package com.twopiradrian.auth_server.domain.dto.user.mapper.implementation;
 
 import com.twopiradrian.auth_server.domain.dto.user.request.GetUserByIdReq;
 import com.twopiradrian.auth_server.domain.dto.user.response.GetUserByIdRes;
-import com.twopiradrian.auth_server.domain.entity.User;
+import com.twopiradrian.entity.User;
 
 public class GetByIdMapper {
 

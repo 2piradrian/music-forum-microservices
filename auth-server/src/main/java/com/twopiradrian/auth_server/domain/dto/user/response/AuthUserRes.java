@@ -1,6 +1,6 @@
 package com.twopiradrian.auth_server.domain.dto.user.response;
 
-import com.twopiradrian.auth_server.domain.entity.Role;
+import com.twopiradrian.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

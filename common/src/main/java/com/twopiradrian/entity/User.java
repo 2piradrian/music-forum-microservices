@@ -26,6 +26,6 @@ public class User {
 
     private Set<Role> roles;
 
-    private Set<Forum> posts;
+    private Status status;
 
 }

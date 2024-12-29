@@ -1,7 +1,7 @@
 package com.twopiradrian.auth_server.data.postgres.mapper;
 
 import com.twopiradrian.auth_server.data.postgres.model.UserModel;
-import com.twopiradrian.auth_server.domain.entity.User;
+import com.twopiradrian.entity.User;
 
 public class UserEntityMapper {
 

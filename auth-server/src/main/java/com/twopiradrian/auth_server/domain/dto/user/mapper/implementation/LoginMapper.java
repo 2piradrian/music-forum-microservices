@@ -2,7 +2,7 @@ package com.twopiradrian.auth_server.domain.dto.user.mapper.implementation;
 
 import com.twopiradrian.auth_server.domain.dto.user.request.LoginUserReq;
 import com.twopiradrian.auth_server.domain.dto.user.response.LoginUserRes;
-import com.twopiradrian.auth_server.domain.entity.Token;
+import com.twopiradrian.entity.Token;
 
 import java.util.Map;
 

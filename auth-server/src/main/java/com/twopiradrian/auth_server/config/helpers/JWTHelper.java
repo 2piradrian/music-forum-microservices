@@ -1,6 +1,6 @@
 package com.twopiradrian.auth_server.config.helpers;
 
-import com.twopiradrian.auth_server.domain.entity.User;
+import com.twopiradrian.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;

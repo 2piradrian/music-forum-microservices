@@ -1,7 +1,7 @@
 package com.twopiradrian.auth_server.data.postgres.model;
 
-import com.twopiradrian.auth_server.domain.entity.Role;
-import com.twopiradrian.auth_server.domain.entity.Status;
+import com.twopiradrian.entity.Role;
+import com.twopiradrian.entity.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

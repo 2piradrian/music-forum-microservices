@@ -1,4 +1,4 @@
-package com.twopiradrian.auth_server.domain.entity;
+package com.twopiradrian.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

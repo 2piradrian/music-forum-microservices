@@ -3,7 +3,7 @@ package com.twopiradrian.auth_server.domain.dto.user.mapper.implementation;
 
 import com.twopiradrian.auth_server.domain.dto.user.request.RegisterUserReq;
 import com.twopiradrian.auth_server.domain.dto.user.response.RegisterUserRes;
-import com.twopiradrian.auth_server.domain.entity.User;
+import com.twopiradrian.entity.User;
 
 import java.util.Map;
 
