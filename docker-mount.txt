@@ -1,0 +1,5 @@
+mvn clean install -DskipTest=true
+
+docker build -t service-name .
+
+docker run -p port:containerPort --name name containerId

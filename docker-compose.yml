@@ -67,3 +67,11 @@ services:
     ports:
       - "9092:9092"
       
+  # Application microservices
+
+  registry-server:
+    image: registry-server:latest
+    container_name: registry-server
+    restart: always
+    ports:
+      - 8761:8761
