@@ -1,9 +1,7 @@
-package com.twopiradrian.forum_server.config.exception;
+package com.twopiradrian.gateway.exception;
 
 import com.twopiradrian.error.ErrorHandler;
-import com.twopiradrian.error.ErrorResponse;
 import com.twopiradrian.error.ErrorType;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

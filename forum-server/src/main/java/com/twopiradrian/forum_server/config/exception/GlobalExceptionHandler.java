@@ -1,6 +1,7 @@
 package com.twopiradrian.forum_server.config.exception;
 
 import com.twopiradrian.error.ErrorHandler;
+import com.twopiradrian.error.ErrorResponse;
 import com.twopiradrian.error.ErrorType;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,13 +14,15 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ErrorHandler.class)
     public ResponseEntity<?> handleErrorHandler(ErrorHandler e) {
         return ResponseEntity
-                .status(e.getHttpCode()).body(e.toResponse());
+                .status(e.getHttpCode())
+                .body(e.toResponse());
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleGenericException(Exception e) {
+    public ResponseEntity<?> handleGenericException(Exception e) {
         return ResponseEntity
-                .status(HttpStatus.INTERNAL_SERVER_ERROR).body(ErrorType.INTERNAL_ERROR.getMessage());
+                .status(500)
+                .body(new ErrorHandler(ErrorType.INTERNAL_ERROR).toResponse());
     }
 
 }

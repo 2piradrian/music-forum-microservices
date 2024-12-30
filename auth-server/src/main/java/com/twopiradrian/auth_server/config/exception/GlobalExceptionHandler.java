@@ -1,4 +1,4 @@
-package com.twopiradrian.gateway.exception;
+package com.twopiradrian.auth_server.config.exception;
 
 import com.twopiradrian.error.ErrorHandler;
 import com.twopiradrian.error.ErrorType;

@@ -26,16 +26,6 @@ server:
     context-path: /forum-server
   port: 0
 
-logging:
-  level:
-    org:
-      hibernate:
-        SQL: DEBUG
-        type:
-          descriptor:
-            sql:
-              BasicBinder: TRACE
-
 eureka:
   instance:
     instance-id: "${spring.application.name}:${random.value}"
