@@ -1,8 +1,7 @@
-package com.twopiradrian.report_server.config.exception;
+package com.twopiradrian.gateway.exception;
 
 import com.twopiradrian.error.ErrorHandler;
 import com.twopiradrian.error.ErrorType;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -12,13 +11,16 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ErrorHandler.class)
     public ResponseEntity<?> handleErrorHandler(ErrorHandler e) {
-        return ResponseEntity.status(e.getHttpCode()).body(e.toResponse());
+        return ResponseEntity
+                .status(e.getHttpCode())
+                .body(e.toResponse());
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleGenericException(Exception e) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(ErrorType.INTERNAL_ERROR.getMessage());
+    public ResponseEntity<?> handleGenericException(Exception e) {
+        return ResponseEntity
+                .status(500)
+                .body(new ErrorHandler(ErrorType.INTERNAL_ERROR).toResponse());
     }
 
 }
