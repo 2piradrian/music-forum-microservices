@@ -7,6 +7,8 @@
 # You need to have installed: maven, java 21
 # if you are a windows user, you will need to install all of this in your wsl
 
+## todo: change await for a better implementation
+
 await() {
     number=$1
 
