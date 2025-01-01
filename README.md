@@ -1,18 +1,30 @@
 # Project: Music Forum
+## To run it:
+```
+cd ./common
+mvn package
+mvn install
+cd ..
+docker compose up
+```
+and start the microservices in this order:
+1. registry-server
+2. config-server
+3. auth-server
+4. forum-server
+5. report-server
+6. gateway
+
+local url: http://localhost:4040
+
 # 📁 Collection: Users 
 
 
 ## End-point: Get By ID
 ### Method: GET
 >```
->{{base_url}}/api/users/get-by-id/8fcebeb7-e7fa-49bc-8f7a-6b1290a47180
+>{{base_url}}/api/users/get-by-id/e7e19a07-8a83-4264-8a2a-53ac5c8bb326
 >```
-### Body (**raw**)
-
-```json
-
-```
-
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
@@ -27,16 +39,6 @@
 |---|---|
 |Authorization|Bearer {{access token}}|
 
-
-### Body (**raw**)
-
-```json
-{
-    "email": "rodriguezcadr@gmail.com",
-    "password": "123asfd@#$AA",
-    "username": "rodriguezcadr"
-}
-```
 
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
@@ -88,12 +90,6 @@
 |Authorization|Bearer {{access token}}|
 
 
-### Body formdata
-
-|Param|value|Type|
-|---|---|---|
-
-
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 # 📁 Collection: Forum 
@@ -104,12 +100,6 @@
 >```
 >{{base_url}}/api/forum/get-by-id/bdd77e84-8cfe-4b99-8176-b083658aa947
 >```
-### Body (**raw**)
-
-```json
-
-```
-
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
@@ -118,12 +108,6 @@
 >```
 >{{base_url}}/api/forum/get-forums?category=SONGS&size=1&page=0
 >```
-### Body (**raw**)
-
-```json
-
-```
-
 ### Query Params
 
 |Param|value|
@@ -147,12 +131,6 @@
 |---|---|
 |Authorization|Bearer {{access token}}|
 
-
-### Body (**raw**)
-
-```json
-
-```
 
 ### Query Params
 
@@ -270,12 +248,6 @@
 >```
 >{{base_url}}/api/comment/get-comments?forumId=bdd77e84-8cfe-4b99-8176-b083658aa947&size=10&page=0
 >```
-### Body (**raw**)
-
-```json
-
-```
-
 ### Query Params
 
 |Param|value|
@@ -398,21 +370,9 @@
 |Authorization|Bearer {{access token}}|
 
 
-### Body (**raw**)
-
-```json
-
-```
-
 ### Query Params
 
 |Param|value|
 |---|---|
 |month|1|
 |year|2025|
-
-
-
-⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
-_________________________________________________
-Powered By: [postman-to-markdown](https://github.com/bautistaj/postman-to-markdown/)
