@@ -13,7 +13,7 @@ spring:
     stream:
       kafka:
         binder:
-          brokers: localhost:9092
+          brokers: "${spring.cloud.stream.kafka.binder.brokers}"
       function:
         binding:
           consumer-report-out-0:
