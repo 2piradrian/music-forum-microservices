@@ -2,7 +2,7 @@ spring:
   data:
     mongodb:
       authentication-database: admin
-      host: localhost
+      host: mongo-db
       port: 27017
       username: music-forum
       password: music-forum
