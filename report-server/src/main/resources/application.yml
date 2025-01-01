@@ -11,12 +11,7 @@ spring:
 
   data:
     mongodb:
-      authentication-database: ${spring.data.mongodb.authentication-database}
-      host: ${spring.data.mongodb.host}
-      port: ${spring.data.mongodb.port}
-      username: ${spring.data.mongodb.username}
-      password: ${spring.data.mongodb.password}
-      database: ${spring.data.mongodb.database}
+      uri: "${spring.data.mongodb.uri}"
 
 server:
   servlet:
