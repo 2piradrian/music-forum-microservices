@@ -1,5 +1,6 @@
-package com.twopiradrian.report_listener.data.mongo.model;
+package com.twopiradrian.report_server.data.mongo.model;
 
+import com.twopiradrian.report_server.domain.reports.ReportType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,10 +18,10 @@ public class ReportModel {
     @Id
     private String id;
 
-    private LocalDateTime date;
-
-    private String type;
+    private ReportType type;
 
     private String content;
+
+    private LocalDateTime date;
 
 }

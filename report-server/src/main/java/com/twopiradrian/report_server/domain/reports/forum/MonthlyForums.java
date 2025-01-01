@@ -12,8 +12,7 @@ import java.util.Map;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
-public class MonthlyForums extends Report {
+public class MonthlyForums {
 
     private Integer month;
 

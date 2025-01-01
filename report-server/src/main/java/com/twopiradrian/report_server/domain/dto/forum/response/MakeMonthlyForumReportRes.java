@@ -8,6 +8,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public class MakeMonthlyForumReportRes {
 
+    private final String id;
+
     private final MonthlyForums report;
 
 }

@@ -5,17 +5,19 @@ import com.twopiradrian.entity.Category;
 import com.twopiradrian.entity.Forum;
 import com.twopiradrian.error.ErrorHandler;
 import com.twopiradrian.error.ErrorType;
-import com.twopiradrian.report_server.config.streams.ReportPublisher;
 import com.twopiradrian.report_server.data.repository.ForumRepositoryI;
+import com.twopiradrian.report_server.data.repository.ReportRepositoryI;
 import com.twopiradrian.report_server.domain.dto.forum.mapper.ForumMapper;
 import com.twopiradrian.report_server.domain.dto.forum.request.MakeMonthlyForumReportReq;
 import com.twopiradrian.report_server.domain.dto.forum.response.MakeMonthlyForumReportRes;
+import com.twopiradrian.report_server.domain.reports.Report;
 import com.twopiradrian.report_server.domain.reports.ReportType;
 import com.twopiradrian.report_server.domain.reports.forum.MonthlyForums;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -25,8 +27,7 @@ import java.util.stream.Collectors;
 public class ReportServiceI implements ReportService {
 
     private final ForumRepositoryI forumRepository;
-
-    private final ReportPublisher reportPublisher;
+    private final ReportRepositoryI reportRepository;
 
     private final ObjectMapper objectMapper;
 
@@ -53,19 +54,15 @@ public class ReportServiceI implements ReportService {
                 .collect(Collectors.groupingBy(Forum::getCategory, Collectors.summingInt(Forum::getViews)));
         report.setViewsByCategory(viewsByCategory);
 
-        report.setType(ReportType.FORUM_MONTHLY_REPORT);
+        Report reportJson = new Report();
+        reportJson.setContent(this.objectMapper.valueToTree(report).toString());
+        reportJson.setType(ReportType.FORUM_MONTHLY_REPORT);
+        reportJson.setDate(LocalDateTime.now());
 
-        String reportJson;
-        try {
-            reportJson = objectMapper.writeValueAsString(report);
-        }
-        catch (Exception e) {
-            throw new ErrorHandler(ErrorType.INTERNAL_ERROR);
-        }
 
-        this.reportPublisher.publishReport(reportJson);
+        Report saved = this.reportRepository.save(reportJson);
 
-        return ForumMapper.makeMonthlyReport().toResponse(report);
+        return ForumMapper.makeMonthlyReport().toResponse(saved.getId(), report);
     }
 
 }

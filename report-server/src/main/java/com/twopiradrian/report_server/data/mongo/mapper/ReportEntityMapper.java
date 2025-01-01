@@ -1,25 +1,25 @@
-package com.twopiradrian.report_listener.data.mongo.mapper;
+package com.twopiradrian.report_server.data.mongo.mapper;
 
-import com.twopiradrian.report_listener.data.mongo.model.ReportModel;
-import com.twopiradrian.report_listener.domain.entity.Report;
+import com.twopiradrian.report_server.data.mongo.model.ReportModel;
+import com.twopiradrian.report_server.domain.reports.Report;
 
 public class ReportEntityMapper {
 
     public static Report toDomain(ReportModel reportModel) {
         return new Report(
             reportModel.getId(),
-            reportModel.getDate(),
             reportModel.getType(),
-            reportModel.getContent()
+            reportModel.getContent(),
+            reportModel.getDate()
         );
     }
 
     public static ReportModel toModel(Report report) {
         return new ReportModel(
             report.getId(),
-            report.getDate(),
             report.getType(),
-            report.getContent()
+            report.getContent(),
+            report.getDate()
         );
     }
 

@@ -16,8 +16,9 @@ public class MakeMonthlyForumReportMapper {
         );
     }
 
-    public MakeMonthlyForumReportRes toResponse(MonthlyForums report) {
+    public MakeMonthlyForumReportRes toResponse(String id, MonthlyForums report) {
         return new MakeMonthlyForumReportRes(
+                id,
             report
         );
     }
