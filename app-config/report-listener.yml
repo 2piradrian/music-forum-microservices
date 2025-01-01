@@ -6,4 +6,5 @@ spring:
       port: 27017
       username: music-forum
       password: music-forum
+      database: reports
     

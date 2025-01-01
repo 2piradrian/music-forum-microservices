@@ -13,11 +13,13 @@ import com.twopiradrian.report_server.domain.dto.forum.response.MakeMonthlyForum
 import com.twopiradrian.report_server.domain.reports.ReportType;
 import com.twopiradrian.report_server.domain.reports.forum.MonthlyForums;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class ReportServiceI implements ReportService {

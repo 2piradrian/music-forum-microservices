@@ -24,6 +24,7 @@ public class ReportListener {
     public Consumer<String> reportConsumer() {
         return reportContent -> {
             try {
+                log.info("Received report: {}", reportContent);
                 Report report = new Report();
 
                 String type = objectMapper.readTree(reportContent).get("type").asText();

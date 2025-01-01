@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,8 +57,11 @@ public class ForumRepositoryI implements ForumRepository {
 
     @Override
     public List<Forum> getMonthlyForums(Integer month, Integer year) {
+        LocalDateTime startDate = LocalDateTime.of(year, month, 1, 0, 0);
+        LocalDateTime endDate = LocalDateTime.of(year, month + 1, 1, 0, 0);
+
         List<ForumModel> forumModels = this.forumRepository.getMonthlyForums(
-                month, year, Status.DELETED
+                startDate, endDate, Status.DELETED
         );
 
         return forumModels.stream().map(ForumEntityMapper::toDomain).collect(Collectors.toList());

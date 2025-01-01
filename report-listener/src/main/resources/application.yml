@@ -16,6 +16,7 @@ spring:
       port: ${spring.data.mongodb.port}
       username: ${spring.data.mongodb.username}
       password: ${spring.data.mongodb.password}
+      database: ${spring.data.mongodb.database}
 
   cloud:
     stream:

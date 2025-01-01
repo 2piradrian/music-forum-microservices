@@ -11,7 +11,7 @@ import java.util.Map;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(path = "/api/reports")
+@RequestMapping(path = "/api/report")
 public class ReportController {
 
     private ReportService reportService;
@@ -19,8 +19,8 @@ public class ReportController {
     @GetMapping("/forums/monthly")
     public ResponseEntity<?> makeMonthlyForumReport(
             @RequestHeader(value = "Authorization") String token,
-            @RequestHeader(value = "month") Integer month,
-            @RequestHeader(value = "year") Integer year
+            @RequestParam(value = "month") Integer month,
+            @RequestParam(value = "year") Integer year
     ) {
         MakeMonthlyForumReportReq dto = ForumMapper.makeMonthlyReport().toRequest(token, month, year);
 

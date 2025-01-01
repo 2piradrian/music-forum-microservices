@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface PostgresForumRepository extends JpaRepository<ForumModel, String> {
@@ -32,14 +33,12 @@ public interface PostgresForumRepository extends JpaRepository<ForumModel, Strin
     );
 
     @Query(
-            value = "SELECT f FROM ForumModel f WHERE EXTRACT(MONTH FROM f.createdAt) = :month " +
-                    "AND EXTRACT(YEAR FROM f.createdAt) = :year " +
-                    "AND f.status <> :status ORDER BY f.createdAt DESC",
-            nativeQuery = true
+            value = "SELECT f FROM ForumModel f WHERE f.createdAt BETWEEN :startDate AND :endDate " +
+                    "AND f.status <> :status ORDER BY f.createdAt DESC"
     )
     List<ForumModel> getMonthlyForums(
-            @Param("month") Integer month,
-            @Param("year") Integer year,
+            @Param("startDate") LocalDateTime startDate,
+            @Param("endDate") LocalDateTime endDate,
             @Param("status") Status status
     );
 
