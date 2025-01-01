@@ -159,8 +159,8 @@ local url: http://localhost:4040
 
 ```json
 {
-    "title": "¿Alguien sabe qué acordes lleva 'Us and Them' de Pink Floyd?",
-    "content": "Estoy intentando analizar la estructura armónica de 'Us and Them' de *The Dark Side of the Moon*, pero no estoy seguro de qué acordes se utilizan exactamente. ¿Alguien tiene el análisis o los acordes completos de la canción? Me interesa especialmente cómo los acordes contribuyen a la atmósfera melancólica y reflexiva del tema. ¡Cualquier aporte es bienvenido, ya sea un desglose de los acordes, progresiones o incluso ideas sobre su impacto emocional!",
+    "title": "¿Recomendaciones de canciones de jazz con progresiones 2-5-1?",
+    "content": "Estoy buscando ejemplos claros donde estas progresiones se utilicen de manera destacada, tanto en composiciones como en improvisaciones, para analizar cómo se aplican en diferentes contextos y estilos dentro del jazz.",
     "category": "SONGS"
 }
 ```
