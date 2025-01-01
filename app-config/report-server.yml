@@ -3,4 +3,4 @@ spring:
     stream:
       kafka:
         binder:
-          brokers: localhost:9092
+          brokers: msg-broker:9092
