@@ -12,8 +12,6 @@ public class GetCommentPageRes {
 
     List<Comment> comments;
 
-    Integer page;
-
     Integer nextPage;
 
 }

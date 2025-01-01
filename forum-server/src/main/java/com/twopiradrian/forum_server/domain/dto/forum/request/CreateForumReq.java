@@ -14,9 +14,9 @@ public class CreateForumReq {
 
     private final String content;
 
-    private final String category;
+    private final Category category;
 
-    private CreateForumReq(String token, String title, String content, String category) {
+    private CreateForumReq(String token, String title, String content, Category category) {
         this.token = token;
         this.title = title;
         this.content = content;
@@ -51,10 +51,12 @@ public class CreateForumReq {
             throw new ErrorHandler(ErrorType.MISSING_REQUIRED_FIELDS);
         }
 
+        Category categoryEnum = null;
         boolean isValidCategory = false;
         for (Category c : Category.values()) {
             if (c.name().equals(category)) {
                 isValidCategory = true;
+                categoryEnum = c;
                 break;
             }
         }
@@ -62,7 +64,7 @@ public class CreateForumReq {
             throw new ErrorHandler(ErrorType.INVALID_FIELDS);
         }
 
-        return new CreateForumReq(token, title, content, category);
+        return new CreateForumReq(token, title, content, categoryEnum);
     }
 
 }

@@ -10,11 +10,11 @@ public class ToggleForumVotesReq {
 
     private final String token;
 
-    private final String voteType;
+    private final Vote voteType;
 
     private final String forumId;
 
-    private ToggleForumVotesReq(String token, String voteType, String forumId) {
+    private ToggleForumVotesReq(String token, Vote voteType, String forumId) {
         this.token = token;
         this.voteType = voteType;
         this.forumId = forumId;
@@ -30,10 +30,12 @@ public class ToggleForumVotesReq {
             throw new ErrorHandler(ErrorType.MISSING_REQUIRED_FIELDS);
         }
 
+        Vote voteEnum = null;
         boolean isValidVote = false;
         for (Vote c : Vote.values()) {
             if (c.name().equals(voteType)) {
                 isValidVote = true;
+                voteEnum = c;
                 break;
             }
         }
@@ -41,6 +43,7 @@ public class ToggleForumVotesReq {
             throw new ErrorHandler(ErrorType.INVALID_FIELDS);
         }
 
-        return new ToggleForumVotesReq(token, voteType, forumId);
+        return new ToggleForumVotesReq(token, voteEnum, forumId);
     }
+
 }

@@ -12,8 +12,6 @@ public class GetForumPageRes {
 
     List<Forum> forums;
 
-    Integer page;
-
     Integer nextPage;
 
 }

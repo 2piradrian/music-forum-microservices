@@ -7,7 +7,7 @@ import com.twopiradrian.forum_server.domain.dto.forum.response.GetForumPageRes;
 
 public class GetPageMapper {
 
-    public GetForumPageReq toRequest(String category, Integer page, Integer size) {
+    public GetForumPageReq toRequest(String category, Integer size, Integer page) {
         return GetForumPageReq.create(
                 category,
                 page,
@@ -18,7 +18,6 @@ public class GetPageMapper {
     public GetForumPageRes toResponse(PageContent<Forum> forums) {
         return new GetForumPageRes(
                 forums.getContent(),
-                forums.getPage(),
                 forums.getNextPage()
         );
     }

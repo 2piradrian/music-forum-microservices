@@ -8,13 +8,13 @@ import lombok.Getter;
 @Getter
 public class GetForumPageReq {
 
-    private final String category;
+    private final Category category;
 
     private final Integer page;
 
     private final Integer size;
 
-    private GetForumPageReq(String category, Integer page, Integer size) {
+    private GetForumPageReq(Category category, Integer page, Integer size) {
         this.category = category;
         this.page = page;
         this.size = size;
@@ -22,11 +22,13 @@ public class GetForumPageReq {
 
     public static GetForumPageReq create(String category, Integer page, Integer size) {
 
+        Category categoryEnum = null;
         if (category != null ) {
             boolean isValidCategory = false;
             for (Category c : Category.values()) {
                 if (c.name().equals(category)) {
                     isValidCategory = true;
+                    categoryEnum = c;
                     break;
                 }
             }
@@ -51,7 +53,7 @@ public class GetForumPageReq {
             throw new ErrorHandler(ErrorType.INVALID_FIELDS);
         }
 
-        return new GetForumPageReq(category, page, size);
+        return new GetForumPageReq(categoryEnum, page, size);
     }
 
 }

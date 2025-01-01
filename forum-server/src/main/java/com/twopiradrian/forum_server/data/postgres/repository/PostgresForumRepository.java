@@ -1,5 +1,7 @@
 package com.twopiradrian.forum_server.data.postgres.repository;
 
+import com.twopiradrian.entity.Category;
+import com.twopiradrian.entity.Status;
 import com.twopiradrian.forum_server.data.postgres.model.ForumModel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,8 +17,7 @@ public interface PostgresForumRepository extends JpaRepository<ForumModel, Strin
             value = "SELECT f FROM ForumModel f WHERE f.status <> :status ORDER BY f.createdAt DESC"
     )
     Page<ForumModel> findAll(
-            @Param("status")
-            String status,
+            @Param("status") Status status,
             Pageable pageable
     );
 
@@ -25,8 +26,8 @@ public interface PostgresForumRepository extends JpaRepository<ForumModel, Strin
                     "AND f.status <> :status ORDER BY f.createdAt DESC"
     )
     Page<ForumModel> findAllByCategory(
-            @Param("category") String category,
-            @Param("status") String status,
+            @Param("category") Category category,
+            @Param("status") Status status,
             Pageable pageable
     );
 
@@ -37,9 +38,9 @@ public interface PostgresForumRepository extends JpaRepository<ForumModel, Strin
             nativeQuery = true
     )
     List<ForumModel> getMonthlyForums(
-            @Param("month") int month,
-            @Param("year") int year,
-            @Param("status") String status
+            @Param("month") Integer month,
+            @Param("year") Integer year,
+            @Param("status") Status status
     );
 
 }

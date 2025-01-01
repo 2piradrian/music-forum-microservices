@@ -2,17 +2,19 @@ package com.twopiradrian.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class TokenClaims {
 
-    private final String id;
+    private String id;
 
-    private final String email;
+    private String email;
 
-    private final Set<Role> roles;
+    private Set<Role> roles;
 
 }

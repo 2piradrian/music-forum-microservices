@@ -35,7 +35,7 @@ public class CommentServiceI implements CommentService {
         Forum forum = this.forumRepository.getById(dto.getForumId());
         if(forum == null) throw new ErrorHandler(ErrorType.FORUM_NOT_FOUND);
 
-        if (forum.getStatus() != Status.DELETED) {
+        if (forum.getStatus() == Status.DELETED) {
             throw new ErrorHandler(ErrorType.FORUM_NOT_FOUND);
         }
 
@@ -66,6 +66,7 @@ public class CommentServiceI implements CommentService {
         comment.setDownvoters(Set.of());
         comment.setCreatedAt(LocalDateTime.now());
         comment.setUpdatedAt(LocalDateTime.now());
+        comment.setStatus(Status.ACTIVE);
 
         if (dto.getReplyTo() != null) {
             Comment replyTo = this.commentRepository.getById(dto.getReplyTo());
@@ -110,7 +111,7 @@ public class CommentServiceI implements CommentService {
         Set<String> upvoters = comment.getUpvoters();
         Set<String> downvoters = comment.getDownvoters();
 
-        if (Objects.equals(Vote.UPVOTE.toString(), dto.getVoteType())) {
+        if (Vote.UPVOTE == dto.getVoteType()) {
             if (upvoters.contains(user)) {
                 upvoters.remove(user);
             } else {
@@ -118,7 +119,7 @@ public class CommentServiceI implements CommentService {
                 downvoters.remove(user);
             }
         }
-        if (Objects.equals(Vote.DOWNVOTE.toString(), dto.getVoteType())) {
+        if (Vote.DOWNVOTE == dto.getVoteType()) {
             if (downvoters.contains(user)) {
                 downvoters.remove(user);
             } else {

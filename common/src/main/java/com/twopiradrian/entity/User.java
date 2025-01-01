@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     private String id;

@@ -7,6 +7,6 @@ import lombok.Getter;
 @AllArgsConstructor
 public class CreateCommentRes {
 
-    private String forumId;
+    private String commentId;
 
 }

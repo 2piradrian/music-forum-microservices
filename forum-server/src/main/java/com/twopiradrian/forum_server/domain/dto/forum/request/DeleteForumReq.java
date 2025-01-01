@@ -28,4 +28,5 @@ public class DeleteForumReq {
 
         return new DeleteForumReq(token, forumId);
     }
+
 }

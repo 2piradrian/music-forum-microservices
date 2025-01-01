@@ -16,9 +16,9 @@ public class EditForumReq {
 
     private final String content;
 
-    private final String category;
+    private final Category category;
 
-    private EditForumReq(String token, String forumId, String title, String content, String category) {
+    private EditForumReq(String token, String forumId, String title, String content, Category category) {
         this.token = token;
         this.title = title;
         this.content = content;
@@ -54,10 +54,12 @@ public class EditForumReq {
             throw new ErrorHandler(ErrorType.MISSING_REQUIRED_FIELDS);
         }
 
+        Category categoryEnum = null;
         boolean isValidCategory = false;
         for (Category c : Category.values()) {
             if (c.name().equals(category)) {
                 isValidCategory = true;
+                categoryEnum = c;
                 break;
             }
         }
@@ -65,7 +67,7 @@ public class EditForumReq {
             throw new ErrorHandler(ErrorType.INVALID_FIELDS);
         }
 
-        return new EditForumReq(token, forumId, title, content, category);
+        return new EditForumReq(token, forumId, title, content, categoryEnum);
     }
 
 }

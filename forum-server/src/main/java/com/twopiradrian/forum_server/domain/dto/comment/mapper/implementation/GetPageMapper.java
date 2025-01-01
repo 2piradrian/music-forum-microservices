@@ -7,18 +7,17 @@ import com.twopiradrian.forum_server.domain.dto.comment.response.GetCommentPageR
 
 public class GetPageMapper {
 
-    public GetCommentPageReq toRequest(String forumId, Integer page, Integer size) {
+    public GetCommentPageReq toRequest(String forumId, Integer size, Integer page) {
         return GetCommentPageReq.create(
                 forumId,
-                page,
-                size
+                size,
+                page
         );
     }
 
     public GetCommentPageRes toResponse(PageContent<Comment> comments) {
         return new GetCommentPageRes(
                 comments.getContent(),
-                comments.getPage(),
                 comments.getNextPage()
         );
     }

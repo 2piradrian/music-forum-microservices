@@ -76,7 +76,7 @@ public class ForumServiceI implements ForumService {
         forum.setAuthorId(claims.getId());
         forum.setTitle(dto.getTitle());
         forum.setContent(dto.getContent());
-        forum.setCategory(Category.valueOf(dto.getCategory()));
+        forum.setCategory(dto.getCategory());
         forum.setStatus(Status.ACTIVE);
 
         forum.setViews(0);
@@ -104,7 +104,7 @@ public class ForumServiceI implements ForumService {
 
         forum.setTitle(dto.getTitle());
         forum.setContent(dto.getContent());
-        forum.setCategory(Category.valueOf(dto.getCategory()));
+        forum.setCategory(dto.getCategory());
         forum.setUpdatedAt(LocalDateTime.now());
 
         Forum edited = this.forumRepository.update(forum);
@@ -124,18 +124,20 @@ public class ForumServiceI implements ForumService {
         Set<String> upvoters = forum.getUpvoters();
         Set<String> downvoters = forum.getDownvoters();
 
-        if (Objects.equals(Vote.UPVOTE.toString(), dto.getVoteType())) {
+        if (Vote.UPVOTE == dto.getVoteType()) {
             if (upvoters.contains(user)) {
                 upvoters.remove(user);
-            } else {
+            }
+            else {
                 upvoters.add(user);
                 downvoters.remove(user);
             }
         }
-        if (Objects.equals(Vote.DOWNVOTE.toString(), dto.getVoteType())) {
+        if (Vote.DOWNVOTE == dto.getVoteType()) {
             if (downvoters.contains(user)) {
                 downvoters.remove(user);
-            } else {
+            }
+            else {
                 downvoters.add(user);
                 upvoters.remove(user);
             }

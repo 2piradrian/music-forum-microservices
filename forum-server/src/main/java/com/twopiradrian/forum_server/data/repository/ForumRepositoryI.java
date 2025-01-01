@@ -1,5 +1,6 @@
 package com.twopiradrian.forum_server.data.repository;
 
+import com.twopiradrian.entity.Category;
 import com.twopiradrian.entity.Forum;
 import com.twopiradrian.entity.PageContent;
 import com.twopiradrian.entity.Status;
@@ -25,30 +26,24 @@ public class ForumRepositoryI implements ForumRepository {
     public Forum getById(String forumId) {
         ForumModel forumModel = this.forumRepository.findById(forumId).orElse(null);
 
-        if (forumModel == null) {
-            return null;
-        }
+        if (forumModel == null) return null;
 
-        if (forumModel.getStatus().equals(Status.DELETED)) {
-            return null;
-        }
+        if (forumModel.getStatus().equals(Status.DELETED)) return null;
 
         return ForumEntityMapper.toDomain(forumModel);
     }
 
     @Override
-    public PageContent<Forum> getAllForums(Integer page, Integer size, String category) {
+    public PageContent<Forum> getAllForums(Integer page, Integer size, Category category) {
         Page<ForumModel> forumModels;
         if (category != null) {
-            forumModels
-                    = this.forumRepository.findAllByCategory(
-                            category, Status.DELETED.toString(), PageRequest.of(page, size)
+            forumModels = this.forumRepository.findAllByCategory(
+                            category, Status.DELETED, PageRequest.of(page, size)
             );
         }
         else {
-            forumModels
-                    = this.forumRepository.findAll(
-                            Status.DELETED.toString(), PageRequest.of(page, size)
+            forumModels = this.forumRepository.findAll(
+                            Status.DELETED, PageRequest.of(page, size)
             );
         }
 
@@ -60,9 +55,9 @@ public class ForumRepositoryI implements ForumRepository {
     }
 
     @Override
-    public List<Forum> getMonthlyForums(int month, int year) {
+    public List<Forum> getMonthlyForums(Integer month, Integer year) {
         List<ForumModel> forumModels = this.forumRepository.getMonthlyForums(
-                month, year, Status.DELETED.toString()
+                month, year, Status.DELETED
         );
 
         return forumModels.stream().map(ForumEntityMapper::toDomain).collect(Collectors.toList());

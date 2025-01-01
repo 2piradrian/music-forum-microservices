@@ -13,13 +13,13 @@ public class GetCommentPageReq {
 
     private final Integer size;
 
-    private GetCommentPageReq(String forumId, Integer page, Integer size) {
+    private GetCommentPageReq(String forumId, Integer size, Integer page) {
         this.forumId = forumId;
         this.page = page;
         this.size = size;
     }
 
-    public static GetCommentPageReq create(String forumId, Integer page, Integer size) {
+    public static GetCommentPageReq create(String forumId, Integer size, Integer page) {
 
         if (forumId == null) {
             throw new ErrorHandler(ErrorType.MISSING_REQUIRED_FIELDS);
@@ -41,7 +41,7 @@ public class GetCommentPageReq {
             throw new ErrorHandler(ErrorType.INVALID_FIELDS);
         }
 
-        return new GetCommentPageReq(forumId, page, size);
+        return new GetCommentPageReq(forumId, size, page);
     }
 
 }
