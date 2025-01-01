@@ -7,8 +7,6 @@
 # You need to have installed: maven, java 21
 # if you are a windows user, you will need to install all of this in your wsl
 
-## todo: change await for a better implementation
-
 await() {
     number=$1
 
@@ -55,7 +53,6 @@ done
 services=(
     auth-server
     forum-server
-    report-listener
     report-server
     gateway
 )
