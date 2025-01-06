@@ -72,7 +72,7 @@ public class UserServiceI implements UserService {
         }
 
         user.setLastLogin(LocalDateTime.now());
-        this.userRepository.save(user);
+        this.userRepository.update(user);
 
         Token token = this.authService.createToken(user);
 
@@ -114,7 +114,7 @@ public class UserServiceI implements UserService {
 
         user.setStatus(Status.DELETED);
 
-        this.userRepository.save(user);
+        this.userRepository.update(user);
     }
 
 }
